@@ -1,0 +1,21 @@
+{
+  "name": "سیستم مدیریت ملک مقدم",
+  "short_name": "ملک مقدم",
+  "description": "ثبت، جستجو و آرشیو فایل‌های ملکی",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d2137",
+  "theme_color": "#0d2137",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "ثبت ملک جدید", "short_name": "ثبت", "url": "./index.html", "icons": [{"src":"icon-192.png","sizes":"192x192"}] },
+    { "name": "لیست ملک‌ها", "short_name": "لیست",  "url": "./index.html#list", "icons": [{"src":"icon-192.png","sizes":"192x192"}] }
+  ],
+  "categories": ["business","productivity"]
+}

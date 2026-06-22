@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>سیستم مدیریت ملک مقدم</title>
+
+<!-- PWA -->
+<meta name="application-name" content="ملک مقدم">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ملک مقدم">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d2137">
+<meta name="description" content="سیستم مدیریت فایل‌های ملکی مقدم">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   سیستم مدیریت ملک مقدم — طراحی حرفه‌ای v2
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* ─── DESIGN TOKENS ─── */
+:root{
+  /* پالت اصلی: نیلی عمیق + طلایی گرم + سفید صدفی */
+  --navy:#0d2137;
+  --navy2:#122a47;
+  --navy3:#1a3a5c;
+  --gold:#c9922a;
+  --gold2:#e8b44a;
+  --gold-light:#f5e4b8;
+  --gold-bg:#fdf7eb;
+
+  /* سطح‌ها */
+  --bg:#f0f2f5;
+  --surface:#ffffff;
+  --surface2:#f7f8fa;
+  --surface3:#eef0f4;
+  --surface-glass:rgba(255,255,255,.82);
+
+  /* حاشیه */
+  --border:#e2e6ed;
+  --border2:#cdd3dc;
+
+  /* متن */
+  --text:#1a2233;
+  --text2:#5a6478;
+  --text3:#9aa2b1;
+
+  /* آبی برند */
+  --ink:var(--navy);
+  --ink2:var(--navy2);
+  --ink-bg:#e8eef6;
+  --ink-light:#d0dff0;
+
+  /* سبز */
+  --green:#1a7a52;
+  --green-bg:#e4f5ee;
+  --green2:#22a06b;
+
+  /* بنفش */
+  --plum:#5c3fa0;
+  --plum-bg:#ede6f9;
+
+  /* قرمز */
+  --red:#c0392b;
+  --red2:#e74c3c;
+  --red-bg:#fdf0ef;
+
+  /* برنز (مرجع قدیمی برای سازگاری) */
+  --bronze:var(--gold);
+  --bronze-bg:var(--gold-bg);
+  --bronze-light:var(--gold-light);
+
+  /* شعاع و سایه */
+  --r:16px;--r-sm:10px;--r-xs:6px;
+  --shadow:0 1px 3px rgba(13,33,55,.05),0 4px 16px rgba(13,33,55,.07);
+  --shadow-md:0 4px 20px rgba(13,33,55,.1);
+  --shadow-lg:0 12px 40px rgba(13,33,55,.16);
+  --shadow-gold:0 4px 20px rgba(201,146,42,.25);
+
+  /* فونت */
+  --font:'Vazirmatn','Tahoma',sans-serif;
+  /* backward compat */
+  --radius:var(--r);--radius-sm:var(--r-sm);--shadow-lift:var(--shadow-lg);
+}
+
+/* ─── DARK MODE ─── */
+[data-theme="dark"]{
+  --bg:#0e1117;
+  --surface:#161b24;
+  --surface2:#1c2330;
+  --surface3:#222c3a;
+  --surface-glass:rgba(22,27,36,.88);
+  --border:#2a3344;
+  --border2:#36445a;
+  --text:#e8edf5;
+  --text2:#8a97b0;
+  --text3:#4e5e78;
+  --ink:#5b9bd5;
+  --ink2:#4a8ac4;
+  --ink-bg:#1a2a3e;
+  --ink-light:#243a52;
+  --gold:#e8b44a;
+  --gold2:#f5c96a;
+  --gold-light:#3a2e10;
+  --gold-bg:#231c08;
+  --bronze:var(--gold);
+  --bronze-bg:var(--gold-bg);
+  --bronze-light:var(--gold-light);
+  --green:#3cc48a;
+  --green-bg:#0d2118;
+  --green2:#2dae78;
+  --plum:#a07ad4;
+  --plum-bg:#1e1530;
+  --red:#e8685f;
+  --red2:#f07070;
+  --red-bg:#281010;
+  --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.4);
+  --shadow-md:0 4px 20px rgba(0,0,0,.4);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.55);
+  --shadow-gold:0 4px 20px rgba(232,180,74,.2);
+}
+
+/* ─── BASE ─── */
+html{background:var(--bg);scroll-behavior:smooth}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  font-size:14px;line-height:1.7;
+  transition:background .3s,color .3s;min-height:100vh;
+  background-image:radial-gradient(circle at 20% 10%,rgba(13,33,55,.04) 0%,transparent 50%),
+                   radial-gradient(circle at 80% 80%,rgba(201,146,42,.04) 0%,transparent 50%);
+}
+.app{max-width:1200px;margin:0 auto;padding:20px 20px 80px}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,146,42,.4)}50%{box-shadow:0 0 0 8px rgba(201,146,42,0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.page{animation:fadeUp .35s ease both}
+
+/* ─── HEADER ─── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:linear-gradient(135deg,var(--navy) 0%,#0a1d32 50%,#0d2137 100%);
+  color:#fff;border-radius:20px;padding:20px 28px;margin-bottom:20px;
+  box-shadow:var(--shadow-lg);flex-wrap:wrap;position:relative;overflow:hidden;
+}
+.topbar::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 85% 50%,rgba(201,146,42,.18) 0%,transparent 65%),
+             radial-gradient(ellipse at 15% 50%,rgba(91,155,213,.12) 0%,transparent 55%);
+  pointer-events:none;
+}
+.topbar::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,146,42,.5),transparent);
+}
+[data-theme="dark"] .topbar{
+  background:linear-gradient(135deg,#0a0f16 0%,#101720 50%,#0d1522 100%);
+  border:1px solid rgba(91,155,213,.12);
+}
+.brand{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.brand-mark{
+  width:52px;height:52px;border-radius:15px;
+  background:linear-gradient(135deg,var(--gold) 0%,#a87020 100%);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  box-shadow:0 4px 20px rgba(201,146,42,.4),inset 0 1px 0 rgba(255,255,255,.2);
+  flex-shrink:0;position:relative;
+}
+.brand-mark::after{
+  content:'';position:absolute;inset:0;border-radius:15px;
+  border:1px solid rgba(255,255,255,.15);
+}
+.brand-text h1{font-size:20px;font-weight:800;letter-spacing:.3px;
+  background:linear-gradient(90deg,#fff 60%,rgba(255,255,255,.75));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand-text span{font-size:12px;color:rgba(255,255,255,.55);display:block;margin-top:3px;font-weight:400;letter-spacing:.5px}
+
+.topbar-right{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.theme-toggle{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);border-radius:30px;
+  padding:7px 14px 7px 8px;cursor:pointer;font-family:inherit;
+  color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;
+  transition:.22s;backdrop-filter:blur(8px);
+}
+.theme-toggle:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.28)}
+.theme-toggle .icon{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  background:rgba(255,255,255,.15);transition:.2s;
+}
+
+/* ─── NAV TABS ─── */
+.nav-tabs{
+  display:flex;gap:6px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);padding:7px;
+  margin-bottom:20px;flex-wrap:wrap;
+  box-shadow:var(--shadow);
+}
+.tab-btn{
+  padding:11px 22px;border:none;border-radius:12px;font-size:13.5px;font-weight:600;
+  cursor:pointer;background:transparent;color:var(--text2);
+  font-family:inherit;transition:.2s;display:flex;align-items:center;gap:8px;
+  position:relative;
+}
+.tab-btn:hover{background:var(--surface3);color:var(--text)}
+.tab-btn.active{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;box-shadow:0 4px 14px rgba(13,33,55,.25);
+}
+.tab-count{
+  background:var(--gold);color:#fff;border-radius:12px;
+  font-size:11px;padding:2px 8px;font-weight:800;
+  min-width:22px;text-align:center;
+}
+.tab-btn.active .tab-count{background:rgba(255,255,255,.2);color:#fff}
+
+/* ─── SECTION CARDS ─── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:24px;margin-bottom:16px;
+  box-shadow:var(--shadow);transition:box-shadow .2s;
+}
+.card:hover{box-shadow:var(--shadow-md)}
+.card-title{
+  font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;padding-bottom:14px;
+  border-bottom:1px solid var(--border);position:relative;
+}
+[data-theme="dark"] .card-title{color:var(--ink)}
+.card-title::after{
+  content:'';position:absolute;bottom:-1px;right:0;width:60px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  border-radius:2px;
+}
+.card-title .ic{
+  font-size:16px;width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ink-bg);flex-shrink:0;
+}
+
+/* ─── GRID / FIELDS ─── */
+.row{display:grid;gap:14px;margin-bottom:14px}
+.g1{grid-template-columns:1fr}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;color:var(--text2);font-weight:700;letter-spacing:.3px;text-transform:uppercase}
+.field label .req{color:var(--red);margin-right:3px}
+.field input,.field select,.field textarea{
+  padding:11px 14px;
+  border:1.5px solid var(--border);
+  border-radius:var(--r-sm);
+  font-family:inherit;font-size:13.5px;color:var(--text);
+  background:var(--surface2);
+  text-align:right;direction:rtl;
+  transition:border-color .18s,background .18s,box-shadow .18s;
+  width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--text3)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--navy3);
+  background:var(--surface);
+  box-shadow:0 0 0 3px rgba(13,33,55,.08);
+}
+[data-theme="dark"] .field input:focus,[data-theme="dark"] .field select:focus,[data-theme="dark"] .field textarea:focus{
+  border-color:var(--ink);box-shadow:0 0 0 3px rgba(91,155,213,.12);
+}
+.field input[readonly]{background:var(--surface3);color:var(--text3);cursor:not-allowed}
+.field textarea{min-height:80px;resize:vertical}
+.sub{font-size:11.5px;color:var(--text3);margin-top:2px;line-height:1.5}
+.field.full{grid-column:1/-1}
+
+/* ─── DEAL TYPE PILLS ─── */
+.pill-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.pill-btn{
+  padding:10px 22px;border:2px solid var(--border2);border-radius:30px;
+  font-size:13.5px;font-weight:700;cursor:pointer;
+  background:var(--surface2);color:var(--text2);
+  font-family:inherit;transition:.18s;
+}
+.pill-btn:hover{border-color:var(--navy3);color:var(--navy)}
+[data-theme="dark"] .pill-btn:hover{border-color:var(--ink);color:var(--ink)}
+.pill-btn.sel-sale{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;border-color:var(--navy);
+  box-shadow:0 4px 14px rgba(13,33,55,.25);
+}
+.pill-btn.sel-rent{
+  background:linear-gradient(135deg,var(--green) 0%,var(--green2) 100%);
+  color:#fff;border-color:var(--green);
+  box-shadow:0 4px 14px rgba(26,122,82,.25);
+}
+.pill-btn.sel-mortgage{
+  background:linear-gradient(135deg,#8B6914 0%,var(--gold) 100%);
+  color:#fff;border-color:var(--gold);
+  box-shadow:var(--shadow-gold);
+}
+.pill-btn.sel-presale{
+  background:linear-gradient(135deg,var(--plum) 0%,#7b54c4 100%);
+  color:#fff;border-color:var(--plum);
+  box-shadow:0 4px 14px rgba(92,63,160,.25);
+}
+
+/* ─── DIRECTION / LIGHT BUTTONS ─── */
+.dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px}
+.dir-btn{
+  padding:11px 4px;border:1.5px solid var(--border);border-radius:var(--r-sm);
+  font-size:12.5px;cursor:pointer;background:var(--surface2);
+  color:var(--text2);text-align:center;font-family:inherit;transition:.18s;
+}
+.dir-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.dir-btn.sel{
+  background:var(--green-bg);color:var(--green);
+  border-color:var(--green);font-weight:700;
+  box-shadow:0 2px 8px rgba(26,122,82,.15);
+}
+.light-bar{display:flex;gap:8px;flex-wrap:wrap}
+.light-btn{
+  padding:9px 16px;border:1.5px solid var(--border);border-radius:30px;
+  font-size:12.5px;cursor:pointer;background:var(--surface2);
+  color:var(--text2);font-family:inherit;transition:.18s;
+}
+.light-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-bg)}
+.light-btn.sel{
+  background:var(--gold-bg);color:var(--gold);
+  border-color:var(--gold);font-weight:700;
+  box-shadow:0 2px 8px rgba(201,146,42,.2);
+}
+
+/* ─── CHECKBOX CHIPS ─── */
+.chk-grid{display:flex;flex-wrap:wrap;gap:8px}
+.chk-item{
+  display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text);cursor:pointer;
+  background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:22px;padding:7px 14px;transition:.18s;
+}
+.chk-item:hover{border-color:var(--border2);background:var(--surface3)}
+.chk-item input{width:14px;height:14px;cursor:pointer;accent-color:var(--navy)}
+.chk-item:has(input:checked){
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  border-color:var(--navy);color:#fff;
+  box-shadow:0 2px 8px rgba(13,33,55,.2);
+}
+.chk-section-label{
+  font-size:11.5px;font-weight:700;color:var(--text2);
+  margin:16px 0 9px;text-transform:uppercase;letter-spacing:.5px;
+}
+
+/* ─── PHOTO AREA ─── */
+.photo-upload-area{
+  border:2px dashed var(--border2);border-radius:var(--r);padding:30px 24px;
+  text-align:center;cursor:pointer;background:var(--surface2);
+  transition:.2s;position:relative;overflow:hidden;
+}
+.photo-upload-area:hover{
+  border-color:var(--navy3);background:var(--ink-bg);
+}
+.photo-upload-area input{display:none}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:14px}
+.photo-thumb{position:relative;border-radius:var(--r-sm);overflow:hidden;aspect-ratio:4/3;border:2px solid var(--border)}
+.photo-thumb img{width:100%;height:100%;object-fit:cover}
+.photo-thumb .remove-photo{
+  position:absolute;top:5px;left:5px;background:rgba(163,50,42,.9);
+  color:#fff;border:none;border-radius:50%;width:24px;height:24px;
+  cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.photo-thumb .thumb-badge{
+  position:absolute;bottom:5px;right:5px;background:var(--gold);color:#fff;
+  font-size:10px;padding:3px 8px;border-radius:6px;cursor:pointer;font-weight:700;
+  backdrop-filter:blur(4px);
+}
+.photo-thumb.is-thumb{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.photo-thumb.is-thumb .thumb-badge{background:var(--green)}
+.folder-box{
+  margin-top:14px;
+  background:linear-gradient(135deg,var(--gold-bg) 0%,#fef9f2 100%);
+  border:1.5px solid var(--gold-light);border-radius:var(--r-sm);
+  padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.folder-box .folder-ic{font-size:26px}
+.folder-box .folder-name{font-family:monospace;font-size:12.5px;color:var(--gold);font-weight:700;word-break:break-all}
+.folder-box .folder-label{font-size:11.5px;color:var(--text2);margin-bottom:3px}
+
+/* ─── BUTTONS ─── */
+.actions{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--border);
+}
+.btn{
+  padding:11px 24px;border-radius:var(--r-sm);font-size:13.5px;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:.18s;border:none;
+  display:inline-flex;align-items:center;gap:7px;letter-spacing:.2px;
+  position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 100%);
+  opacity:0;transition:.2s;
+}
+.btn:hover::before{opacity:1}
+.btn-primary{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;box-shadow:0 4px 14px rgba(13,33,55,.3);
+}
+.btn-primary:hover{box-shadow:0 6px 20px rgba(13,33,55,.4);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0)}
+.btn-accent{
+  background:linear-gradient(135deg,#8B6914 0%,var(--gold) 100%);
+  color:#fff;box-shadow:var(--shadow-gold);
+}
+.btn-accent:hover{box-shadow:0 6px 24px rgba(201,146,42,.4);transform:translateY(-1px)}
+.btn-secondary{
+  background:var(--surface2);color:var(--text);
+  border:1.5px solid var(--border);
+}
+.btn-secondary:hover{background:var(--surface3);border-color:var(--border2)}
+.btn-danger{
+  background:transparent;color:var(--red);
+  border:1.5px solid var(--border);font-size:12px;padding:8px 15px;
+}
+.btn-danger:hover{background:var(--red-bg);border-color:var(--red)}
+.btn-sm{font-size:12px;padding:7px 15px}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(16px);
+  background:linear-gradient(135deg,var(--green) 0%,var(--green2) 100%);
+  color:#fff;padding:13px 28px;border-radius:32px;font-size:13.5px;font-weight:700;
+  z-index:9999;opacity:0;pointer-events:none;transition:.28s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 8px 28px rgba(26,122,82,.35);display:flex;align-items:center;gap:8px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{
+  background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);
+  box-shadow:0 8px 28px rgba(192,57,43,.35);
+}
+
+/* ─── FILTER BAR ─── */
+.filter-bar{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:20px 24px;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.filter-bar h3{
+  font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+[data-theme="dark"] .filter-bar h3{color:var(--ink)}
+.filter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.filter-grid input,.filter-grid select{
+  padding:9px 12px;font-size:12.5px;
+  border:1.5px solid var(--border);border-radius:var(--r-sm);
+  font-family:inherit;background:var(--surface2);
+  color:var(--text);direction:rtl;text-align:right;width:100%;
+  transition:border-color .15s,box-shadow .15s;
+}
+.filter-grid input:focus,.filter-grid select:focus{
+  outline:none;border-color:var(--navy3);
+  box-shadow:0 0 0 3px rgba(13,33,55,.07);
+}
+.filter-grid label{font-size:11px;color:var(--text2);font-weight:700;display:block;margin-bottom:5px;letter-spacing:.3px;text-transform:uppercase}
+.adv-toggle{
+  margin-top:16px;background:var(--surface2);
+  border:1.5px dashed var(--border2);border-radius:var(--r-sm);
+  padding:10px 18px;font-size:12.5px;font-weight:700;color:var(--navy);
+  cursor:pointer;font-family:inherit;
+  display:flex;align-items:center;gap:9px;width:100%;
+  justify-content:center;transition:.18s;
+}
+[data-theme="dark"] .adv-toggle{color:var(--ink)}
+.adv-toggle:hover{background:var(--ink-bg);border-color:var(--navy3)}
+.range-row{display:flex;gap:6px;align-items:center;width:100%}
+.range-row input{min-width:0;flex:1}
+.range-row span{color:var(--text3);font-size:11.5px;white-space:nowrap;flex-shrink:0}
+.filter-actions{display:flex;gap:10px;margin-top:18px;align-items:center;flex-wrap:wrap}
+.result-count{
+  font-size:12.5px;color:var(--text2);margin-right:auto;font-weight:700;
+  background:var(--ink-bg);color:var(--navy);padding:5px 14px;
+  border-radius:20px;
+}
+[data-theme="dark"] .result-count{background:var(--ink-bg);color:var(--ink)}
+
+.view-toggle{display:flex;gap:4px;background:var(--surface2);border-radius:10px;padding:4px}
+.view-btn{
+  padding:7px 16px;border:none;background:transparent;border-radius:8px;
+  cursor:pointer;font-size:12.5px;font-family:inherit;color:var(--text2);
+  transition:.18s;font-weight:600;
+}
+.view-btn.active{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;box-shadow:0 2px 8px rgba(13,33,55,.2);
+}
+
+/* ─── STATS ─── */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:18px}
+.stat{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:18px 16px;text-align:center;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.2s;
+}
+.stat:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.stat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+}
+.stat-num{font-size:28px;font-weight:900;color:var(--navy);margin-bottom:2px}
+[data-theme="dark"] .stat-num{color:var(--ink)}
+.stat-lbl{font-size:11.5px;color:var(--text2);font-weight:600;letter-spacing:.3px}
+
+/* ─── PROPERTY CARDS ─── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.property-card{
+  background:var(--surface);border-radius:var(--r);
+  border:1px solid var(--border);overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:box-shadow .25s,transform .25s,border-color .25s;
+}
+.property-card:hover{
+  box-shadow:var(--shadow-lg);transform:translateY(-4px);
+  border-color:var(--border2);
+}
+.card-thumb{
+  height:175px;
+  background:linear-gradient(135deg,var(--ink-light) 0%,var(--ink-bg) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--navy);font-size:44px;position:relative;overflow:hidden;
+}
+.card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.property-card:hover .card-thumb img{transform:scale(1.04)}
+.card-thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(13,33,55,.45) 100%);
+}
+.card-badge{
+  position:absolute;top:12px;right:12px;
+  padding:5px 13px;border-radius:20px;font-size:11px;font-weight:800;color:#fff;
+  backdrop-filter:blur(8px);letter-spacing:.3px;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.badge-sale{background:rgba(13,33,55,.85)}
+.badge-rent{background:rgba(26,122,82,.85)}
+.badge-mortgage{background:rgba(139,105,20,.85)}
+.badge-presale{background:rgba(92,63,160,.85)}
+.badge-urgent{background:rgba(192,57,43,.9)}
+
+/* ─── DUPLICATE PHONE ALERT ─── */
+.dup-alert{
+  background:linear-gradient(135deg,var(--gold-bg) 0%,#fef8ec 100%);
+  border:2px solid var(--gold);border-radius:var(--r-sm);
+  padding:14px 18px;margin-top:12px;display:none;
+  box-shadow:var(--shadow-gold);
+  animation:fadeUp .25s ease;
+}
+.dup-alert .dup-title{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dup-list{display:flex;flex-direction:column;gap:7px}
+.dup-item{
+  background:var(--surface);border:1.5px solid var(--gold-light);border-radius:var(--r-sm);
+  padding:10px 14px;font-size:12.5px;display:flex;align-items:center;
+  justify-content:space-between;gap:10px;flex-wrap:wrap;transition:.15s;
+}
+.dup-item:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(201,146,42,.15)}
+.dup-item .dup-code{font-weight:800;color:var(--navy);font-family:monospace}
+[data-theme="dark"] .dup-item .dup-code{color:var(--ink)}
+.dup-item .dup-meta{color:var(--text2);font-size:12px}
+.dup-item .dup-btn{
+  font-size:11.5px;padding:5px 13px;border-radius:8px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;font-family:inherit;font-weight:700;transition:.15s;
+  box-shadow:0 2px 6px rgba(13,33,55,.2);
+}
+.dup-item .dup-btn:hover{box-shadow:0 4px 12px rgba(13,33,55,.3);transform:translateY(-1px)}
+
+/* urgent toggle */
+.urgent-toggle{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--red-bg) 0%,#fef5f5 100%);
+  border:2px solid var(--red);border-radius:var(--r-sm);
+  padding:13px 18px;cursor:pointer;user-select:none;
+  transition:.2s;margin-top:14px;
+  box-shadow:0 2px 8px rgba(192,57,43,.1);
+}
+.urgent-toggle:hover{box-shadow:0 4px 16px rgba(192,57,43,.2)}
+.urgent-toggle input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:var(--red)}
+.urgent-toggle .urg-label{font-size:14px;font-weight:800;color:var(--red)}
+.urgent-toggle .urg-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.urgent-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:linear-gradient(135deg,var(--red) 0%,var(--red2) 100%);
+  color:#fff;border-radius:12px;font-size:11px;font-weight:800;
+  padding:3px 10px;letter-spacing:.2px;
+  box-shadow:0 2px 6px rgba(192,57,43,.3);
+}
+
+.card-direction{
+  position:absolute;top:12px;left:12px;padding:4px 11px;border-radius:12px;
+  font-size:10.5px;font-weight:700;
+  background:rgba(255,255,255,.9);color:var(--green);
+  backdrop-filter:blur(6px);
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+.card-body{padding:16px}
+.card-title2{font-size:14.5px;font-weight:800;margin-bottom:8px;color:var(--text);line-height:1.4}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.meta-tag{
+  font-size:11px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;padding:4px 10px;color:var(--text2);font-weight:600;
+}
+.card-price{
+  font-size:16px;font-weight:900;
+  background:linear-gradient(90deg,var(--gold) 0%,#8B6914 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:12px;
+}
+[data-theme="dark"] .card-price{
+  background:linear-gradient(90deg,var(--gold2) 0%,var(--gold) 100%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.card-actions{display:flex;gap:7px;flex-wrap:wrap}
+.card-folder{
+  font-size:11px;color:var(--navy);background:var(--ink-bg);
+  padding:6px 12px;border-radius:8px;cursor:pointer;border:none;
+  font-family:inherit;font-weight:700;transition:.15s;
+}
+[data-theme="dark"] .card-folder{color:var(--ink);background:var(--ink-bg)}
+.card-folder:hover{background:var(--ink-light)}
+
+/* ─── TABLE VIEW ─── */
+.list-view{display:none}
+.list-view.active{display:block}
+.table-wrap{
+  overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+table{width:100%;border-collapse:collapse;background:var(--surface);font-size:12.5px;min-width:780px}
+thead{position:sticky;top:0;z-index:2}
+th{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  color:rgba(255,255,255,.9);padding:13px 14px;
+  text-align:right;font-weight:700;font-size:12px;white-space:nowrap;
+  letter-spacing:.3px;
+}
+th:first-child{border-radius:0 var(--r-sm) 0 0}
+th:last-child{border-radius:var(--r-sm) 0 0 0}
+td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--surface2)}
+tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
+
+/* ─── MODAL ─── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(13,33,55,.55);backdrop-filter:blur(6px);
+  z-index:1000;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
+.modal{
+  background:var(--surface);border-radius:20px;padding:28px;
+  max-width:780px;width:100%;max-height:90vh;overflow-y:auto;
+  position:relative;box-shadow:0 24px 60px rgba(13,33,55,.2);
+  border:1px solid var(--border);
+  animation:fadeUp .28s cubic-bezier(.34,1.36,.64,1);
+}
+.modal-close{
+  position:absolute;top:18px;left:18px;
+  background:var(--surface3);border:none;border-radius:50%;
+  width:34px;height:34px;cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text2);transition:.15s;
+}
+.modal-close:hover{background:var(--border2);color:var(--text)}
+.modal h2{
+  font-size:19px;font-weight:800;color:var(--navy);
+  margin-bottom:20px;padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+[data-theme="dark"] .modal h2{color:var(--ink)}
+.modal h2::before{
+  content:'🏠';width:36px;height:36px;border-radius:10px;
+  background:var(--ink-bg);display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.detail-item{background:var(--surface2);border-radius:10px;padding:10px 14px;border:1px solid var(--border)}
+.detail-item label{font-size:10.5px;color:var(--text3);font-weight:700;display:block;letter-spacing:.4px;text-transform:uppercase}
+.detail-item span{font-size:13px;font-weight:700;display:block;margin-top:4px;color:var(--text)}
+.detail-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:4px}
+.detail-photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:.2s}
+.detail-photos img:hover{transform:scale(1.04);box-shadow:var(--shadow-md)}
+.detail-block{background:var(--surface2);border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--border)}
+.detail-block label{font-size:11px;color:var(--text3);font-weight:700;display:block;margin-bottom:7px;text-transform:uppercase;letter-spacing:.4px}
+.detail-block.accent{background:var(--ink-bg);border-color:var(--ink-light)}
+.detail-block.accent label{color:var(--navy)}
+[data-theme="dark"] .detail-block.accent label{color:var(--ink)}
+.detail-block.accent .mono{font-family:monospace;color:var(--navy);font-size:13px;font-weight:700;word-break:break-all}
+[data-theme="dark"] .detail-block.accent .mono{color:var(--ink)}
+.detail-block .folder-link{
+  display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;padding:8px 16px;border-radius:10px;font-size:12.5px;
+  font-weight:700;text-decoration:none;transition:.15s;
+  box-shadow:0 3px 10px rgba(13,33,55,.25);
+}
+.detail-block .folder-link:hover{box-shadow:0 5px 16px rgba(13,33,55,.35);transform:translateY(-1px)}
+
+/* ─── LIGHTBOX ─── */
+.lightbox{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.92);backdrop-filter:blur(12px);
+  z-index:2000;align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex;animation:fadeIn .18s ease}
+.lightbox img{max-width:95vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox-close{
+  position:absolute;top:20px;right:20px;color:#fff;font-size:30px;
+  cursor:pointer;background:rgba(255,255,255,.1);border:none;
+  width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);transition:.15s;
+}
+.lightbox-close:hover{background:rgba(255,255,255,.2)}
+
+/* ─── EMPTY STATE ─── */
+.empty{text-align:center;padding:70px 20px;color:var(--text3)}
+.empty .icon{font-size:56px;margin-bottom:16px;opacity:.6;display:block}
+.empty p{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--text2)}
+.empty small{font-size:12.5px;color:var(--text3)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:760px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .dir-grid{grid-template-columns:repeat(2,1fr)}
+  .detail-grid{grid-template-columns:1fr}
+  .cards-grid{grid-template-columns:1fr}
+  .nav-tabs{overflow-x:auto}
+  .topbar{border-radius:14px;padding:16px 18px}
+  .brand-mark{width:42px;height:42px;font-size:20px}
+  .brand-text h1{font-size:16px}
+  .pill-btn{padding:8px 16px;font-size:13px}
+}
+
+/* ─── OWNER FILTER SEARCHABLE DROPDOWN ─── */
+.owner-filter-wrap{position:relative;width:100%}
+.owner-filter-wrap input{width:100%;padding:9px 12px;font-size:12.5px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:inherit;background:var(--surface2);color:var(--text);direction:rtl;text-align:right;transition:border-color .15s,box-shadow .15s}
+.owner-filter-wrap input:focus{outline:none;border-color:var(--navy3);box-shadow:0 0 0 3px rgba(13,33,55,.07)}
+.owner-dropdown{position:absolute;top:calc(100% + 4px);right:0;left:0;background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sm);z-index:999;max-height:220px;overflow-y:auto;box-shadow:var(--shadow-md);display:none}
+.owner-dropdown.open{display:block}
+.owner-dropdown-item{padding:9px 14px;font-size:12.5px;cursor:pointer;color:var(--text);direction:rtl;transition:background .12s}
+.owner-dropdown-item:hover,.owner-dropdown-item.focused{background:var(--ink-bg);color:var(--navy)}
+[data-theme="dark"] .owner-dropdown-item:hover,[data-theme="dark"] .owner-dropdown-item.focused{color:var(--ink)}
+.owner-dropdown-item .owner-phone{font-size:11px;color:var(--text3);margin-right:6px}
+.owner-dropdown-item.clear-opt{color:var(--red);font-weight:700}
+
+/* ─── OWNER TAG in card ─── */
+.owner-tag{display:inline-flex;align-items:center;gap:5px;background:var(--ink-bg);border:1px solid var(--ink-light);color:var(--navy);border-radius:20px;font-size:11px;font-weight:700;padding:3px 10px;margin-bottom:6px}
+[data-theme="dark"] .owner-tag{background:var(--ink-bg);color:var(--ink);border-color:var(--ink-light)}
+
+/* ─── PRINT ─── */
+@media print{
+  .nav-tabs,.actions,.filter-bar,.btn,.theme-toggle,.topbar-right{display:none!important}
+  .topbar{border-radius:0;margin:0;print-color-adjust:exact}
+}
+
+/* ─── IMPORT PAGE ─── */
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+#page-import .field label{font-size:12px;color:var(--text2);font-weight:700;display:block;margin-bottom:5px}
+#page-import input[type="url"],#page-import input[type="password"]{
+  padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);
+  font-family:var(--font);font-size:13px;background:var(--surface2);color:var(--text);
+  transition:border-color .15s,box-shadow .15s;width:100%;
+}
+#page-import input:focus{outline:none;border-color:var(--navy3);box-shadow:0 0 0 3px rgba(13,33,55,.07)}
+#previewFields .pf-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+#previewFields .pf-item label{font-size:11px;color:var(--text3);font-weight:700;display:block;margin-bottom:4px}
+#previewFields .pf-item input,#previewFields .pf-item select{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:7px 10px;font-family:var(--font);font-size:12.5px;background:var(--surface);color:var(--text)}
+#previewFields .pf-item input:focus,#previewFields .pf-item select:focus{outline:none;border-color:var(--navy3)}
+
+/* ─── PWA / MOBILE ENHANCEMENTS ─── */
+:root{
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+.bottom-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:8px 0 calc(8px + var(--safe-bottom));
+  z-index:500;
+  box-shadow:0 -4px 20px rgba(13,33,55,.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+[data-theme="dark"] .bottom-nav{
+  background:rgba(22,27,36,.95);
+}
+.bottom-nav-inner{
+  display:flex;align-items:flex-end;justify-content:space-around;
+}
+.bnav-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--font);padding:6px 12px;border-radius:12px;
+  transition:.18s;color:var(--text3);min-width:60px;
+  -webkit-tap-highlight-color:transparent;
+}
+.bnav-btn .bnav-icon{font-size:22px;line-height:1;transition:.18s;}
+.bnav-btn .bnav-label{font-size:10px;font-weight:700;color:inherit;white-space:nowrap;}
+.bnav-btn.active{color:var(--navy)}
+[data-theme="dark"] .bnav-btn.active{color:var(--ink)}
+.bnav-btn.active .bnav-icon{transform:scale(1.15)}
+.bnav-badge{
+  display:inline-block;background:var(--gold);color:#fff;
+  border-radius:10px;font-size:9px;padding:1px 5px;font-weight:800;
+  min-width:16px;text-align:center;
+}
+#pwa-install-banner{
+  display:none;
+  position:fixed;top:0;left:0;right:0;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);
+  color:#fff;padding:calc(12px + var(--safe-top)) 16px 12px;
+  z-index:9000;font-family:var(--font);
+  box-shadow:0 4px 20px rgba(13,33,55,.3);
+}
+#pwa-install-banner .banner-inner{display:flex;align-items:center;gap:12px;}
+#pwa-install-banner .banner-icon{font-size:28px}
+#pwa-install-banner .banner-text{flex:1}
+#pwa-install-banner .banner-title{font-size:14px;font-weight:800}
+#pwa-install-banner .banner-sub{font-size:12px;opacity:.75;margin-top:2px}
+#pwa-install-banner .banner-btn{
+  background:var(--gold);color:#fff;border:none;border-radius:20px;
+  padding:8px 18px;font-size:13px;font-weight:800;font-family:var(--font);
+  cursor:pointer;white-space:nowrap;
+}
+#pwa-install-banner .banner-close{
+  background:rgba(255,255,255,.15);border:none;color:#fff;
+  width:30px;height:30px;border-radius:50%;cursor:pointer;
+  font-size:16px;display:flex;align-items:center;justify-content:center;
+}
+@media(max-width:760px){
+  .nav-tabs{ display:none !important }
+  .bottom-nav{ display:block }
+  .app{ padding-bottom: calc(90px + var(--safe-bottom)) !important }
+  .topbar{
+    border-radius:0 !important;
+    margin: 0 -20px 16px;
+    padding:calc(16px + var(--safe-top)) 18px 16px !important;
+  }
+  .brand-mark{width:42px;height:42px;font-size:20px}
+  .brand-text h1{font-size:15px}
+  .brand-text span{font-size:10px}
+  .theme-toggle span#themeLabel{display:none}
+  .theme-toggle{padding:7px 10px}
+  .field input,.field select,.field textarea{padding:13px 14px;}
+  .pill-btn{padding:11px 18px;font-size:14px}
+  .btn{padding:13px 20px;font-size:14px}
+  .cards-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .card-actions{flex-direction:column}
+  .card-actions .btn{width:100%;justify-content:center}
+  .modal{
+    max-height:92vh !important;
+    border-radius:20px 20px 0 0 !important;
+    position:fixed !important;
+    bottom:0 !important;
+    left:0 !important;
+    right:0 !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:20px 18px calc(20px + var(--safe-bottom)) !important;
+  }
+  .modal-overlay{
+    align-items:flex-end !important;
+    padding:0 !important;
+  }
+  .filter-bar{padding:14px}
+  .filter-grid{grid-template-columns:1fr 1fr}
+  .chk-item{padding:9px 16px;font-size:13px}
+  .chk-item input{width:16px;height:16px}
+  .dir-grid{grid-template-columns:repeat(2,1fr)}
+  .modal,.cards-grid,.table-wrap{-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
+  .stat-num{font-size:24px}
+  .stat{padding:14px 12px}
+  .photo-grid{grid-template-columns:repeat(3,1fr)}
+  #previewFields{grid-template-columns:1fr 1fr !important}
+}
+@media(max-width:420px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .filter-grid{grid-template-columns:1fr}
+  #previewFields{grid-template-columns:1fr !important}
+  .brand-text h1{font-size:13px}
+}
+@media(max-width:760px){
+  input[type="text"],input[type="number"],input[type="url"],
+  input[type="password"],input[type="tel"],select,textarea{
+    font-size:16px !important;
+  }
+}
+
+@media(max-width:760px){
+  .range-row{gap:4px}
+  .range-row input{padding:9px 8px;font-size:15px !important}
+  .range-row span{font-size:11px;padding:0 2px}
+  #fPriceSection,#fRentSection{grid-template-columns:1fr !important}
+  .filter-grid > div{min-width:0}
+  #fRentSection{grid-template-columns:1fr !important}
+}
+</style>
+</head>
+<body>
+
+<!-- PWA INSTALL BANNER -->
+<div id="pwa-install-banner">
+  <div class="banner-inner">
+    <div class="banner-icon">🏠</div>
+    <div class="banner-text">
+      <div class="banner-title">نصب اپ ملک مقدم</div>
+      <div class="banner-sub">روی گوشی نصب کنید — بدون اینترنت هم کار می‌کند</div>
+    </div>
+    <button class="banner-btn" onclick="installPWA()">نصب</button>
+    <button class="banner-close" onclick="dismissInstall()">✕</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV (mobile only) -->
+<nav class="bottom-nav" id="bottomNav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" id="bnavForm" onclick="showPage('form');updateBNav('form')">
+      <span class="bnav-icon">➕</span>
+      <span class="bnav-label">ثبت ملک</span>
+    </button>
+    <button class="bnav-btn" id="bnavList" onclick="showPage('list');updateBNav('list')">
+      <span class="bnav-icon">📋</span>
+      <span class="bnav-label">لیست <span class="bnav-badge" id="bnavBadge">0</span></span>
+    </button>
+    <button class="bnav-btn" id="bnavImport" onclick="showPage('import');updateBNav('import')">
+      <span class="bnav-icon">🔗</span>
+      <span class="bnav-label">از لینک</span>
+    </button>
+  </div>
+</nav>
+<div class="app">
+
+<!-- ===================== TOPBAR ===================== -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">🏠</div>
+    <div class="brand-text">
+      <h1>سیستم مدیریت ملک مقدم</h1>
+      <span>ثبت، جستجو و آرشیو فایل‌های ملکی</span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+      <span class="icon" id="themeIcon">🌙</span>
+      <span id="themeLabel">حالت تاریک</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===================== NAV TABS ===================== -->
+<div class="nav-tabs">
+  <button class="tab-btn active" id="navForm" onclick="showPage('form')">➕ ثبت ملک جدید</button>
+  <button class="tab-btn" id="navList" onclick="showPage('list')">📋 لیست ملک‌ها <span class="tab-count" id="totalBadge">0</span></button>
+  <button class="tab-btn" id="navImport" onclick="showPage('import')">🔗 افزودن از لینک</button>
+</div>
+
+<!-- ===================== FORM PAGE ===================== -->
+<div class="page" id="page-form">
+
+  <!-- نوع معامله و ملک -->
+  <div class="card">
+    <div class="card-title"><span class="ic">🏷️</span> نوع معامله و ملک</div>
+    <div style="font-size:12.5px;color:var(--text2);margin-bottom:8px;font-weight:600">نوع معامله *</div>
+    <div class="pill-bar">
+      <button class="pill-btn" id="deal-sale" onclick="setDealType('فروش',this)">فروش</button>
+      <button class="pill-btn" id="deal-rent" onclick="setDealType('اجاره',this)">اجاره</button>
+      <button class="pill-btn" id="deal-mortgage" onclick="setDealType('رهن کامل',this)">رهن کامل</button>
+      <button class="pill-btn" id="deal-presale" onclick="setDealType('پیش‌فروش',this)">پیش‌فروش</button>
+    </div>
+    <input type="hidden" id="dealType" value="">
+    <div class="row g2" style="margin-top:16px">
+      <div class="field"><label>نوع ملک <span class="req">*</span></label>
+        <select id="propertyType">
+          <option value="">انتخاب کنید</option>
+          <option>آپارتمان</option><option>خانه ویلایی</option><option>ویلا</option>
+          <option>پنت‌هاوس</option><option>دوبلکس</option><option>مغازه / تجاری</option>
+          <option>اداری</option><option>صنعتی</option><option>زمین</option>
+          <option>باغ / باغچه</option><option>سوئیت</option>
+        </select>
+      </div>
+      <div class="field"><label>عنوان ملک</label><input id="title" placeholder="مثلاً: آپارتمان ۱۲۰ متری در ولنجک"></div>
+    </div>
+  </div>
+
+  <!-- آدرس -->
+  <div class="card">
+    <div class="card-title"><span class="ic">📍</span> آدرس و موقعیت</div>
+    <div class="row g3">
+      <div class="field"><label>استان</label>
+        <select id="province">
+          <option>تهران</option><option>اصفهان</option><option>فارس</option><option>خراسان رضوی</option>
+          <option>البرز</option><option>مازندران</option><option>گیلان</option><option>آذربایجان شرقی</option>
+          <option>آذربایجان غربی</option><option>کرمان</option><option>خوزستان</option><option>قم</option>
+          <option>سمنان</option><option>یزد</option><option>گلستان</option><option>کرمانشاه</option><option>سایر</option>
+        </select>
+      </div>
+      <div class="field"><label>شهر / منطقه</label><input id="city" placeholder="شهر"></div>
+      <div class="field"><label>محله</label><input id="neighborhood" placeholder="محله"></div>
+    </div>
+    <div class="row g3">
+      <div class="field"><label>خیابان / کوچه</label><input id="alley" placeholder="مثلاً: کوچه گلستان"></div>
+      <div class="field"><label>پلاک</label><input id="houseNum" placeholder="مثلاً: پلاک ۱۲"></div>
+      <div class="field"><label>طبقه</label><input id="floor" placeholder="مثلاً: ۳"></div>
+    </div>
+    <div class="row g1">
+      <div class="field"><label>آدرس کامل</label><input id="fullAddress" placeholder="آدرس کامل ملک برای استفاده داخلی شما..."></div>
+    </div>
+  </div>
+
+  <!-- مشخصات فیزیکی (متراژ بالاتر آمده، قبل از قیمت) -->
+  <div class="card">
+    <div class="card-title"><span class="ic">📐</span> مشخصات فیزیکی</div>
+    <div class="row g4">
+      <div class="field"><label>متراژ زیربنا (m²) <span class="req">*</span></label><input id="area" type="number" placeholder="مثلاً: 120" oninput="calcPPM()"></div>
+      <div class="field"><label>متراژ زمین (m²)</label><input id="landArea" type="number" placeholder="در صورت ویلا/زمین"></div>
+      <div class="field"><label>سال ساخت</label><input id="buildYear" placeholder="مثلاً: ۱۴۰۰"></div>
+      <div class="field"><label>کل طبقات ساختمان</label><input id="totalFloors" placeholder="مثلاً: ۸"></div>
+    </div>
+    <div class="row g4">
+      <div class="field">
+        <label>تعداد اتاق خواب</label>
+        <select id="bedrooms" onchange="updateMasterMax()">
+          <option value="">انتخاب کنید</option>
+          <option value="0">بدون اتاق (استودیو)</option>
+          <option value="1">۱ اتاق</option><option value="2">۲ اتاق</option>
+          <option value="3">۳ اتاق</option><option value="4">۴ اتاق</option>
+          <option value="5">۵ اتاق</option><option value="6">۶ اتاق یا بیشتر</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>مستر بدروم</label>
+        <select id="masterBedrooms"><option value="0">۰</option></select>
+        <span class="sub">اتاق با سرویس بهداشتی اختصاصی</span>
+      </div>
+      <div class="field"><label>سرویس بهداشتی</label>
+        <select id="bathrooms"><option value="">انتخاب کنید</option><option>۱</option><option>۲</option><option>۳</option><option>۴ یا بیشتر</option></select>
+      </div>
+      <div class="field"><label>تعداد واحد در طبقه</label><input id="unitsPerFloor" type="number" placeholder="مثلاً: ۲"></div>
+    </div>
+    <div class="row g4">
+      <div class="field"><label>پارکینگ</label>
+        <select id="parking"><option value="0">ندارد</option><option value="1">۱</option><option value="2">۲</option><option value="3">۳ یا بیشتر</option></select>
+      </div>
+      <div class="field"><label>انباری</label>
+        <select id="storage"><option>ندارد</option><option>دارد</option></select>
+      </div>
+      <div class="field"><label>بالکن / تراس</label>
+        <select id="balcony"><option>ندارد</option><option>بالکن دارد</option><option>تراس دارد</option><option>بالکن و تراس</option></select>
+      </div>
+      <div class="field"><label>نوع سند</label>
+        <select id="deed">
+          <option>سند تک‌برگ</option><option>سند شش‌دانگ</option><option>سند مشاع</option>
+          <option>وکالتی</option><option>قولنامه‌ای</option><option>ندارد</option>
+        </select>
+      </div>
+    </div>
+    <div class="row g2">
+      <div class="field"><label>وضعیت ملک</label>
+        <select id="condition">
+          <option>نوساز / تحویل اول</option><option>بازسازی شده</option>
+          <option>خوب</option><option>نیاز به بازسازی</option><option>کلنگی</option>
+        </select>
+      </div>
+      <div class="field"><label>وضعیت دکوراسیون</label>
+        <select id="interior">
+          <option>فول مبله</option><option>نیمه مبله</option><option>خالی (بدون مبل)</option><option>لوکس / طراحی شده</option>
+        </select>
+      </div>
+    </div>
+    <div class="row g2">
+      <div class="field"><label>نوع کف</label>
+        <select id="flooring"><option>پارکت</option><option>سرامیک</option><option>سنگ</option><option>موکت</option><option>اپوکسی</option><option>ترکیبی</option></select>
+      </div>
+      <div class="field"><label>نوع آشپزخانه</label>
+        <select id="kitchen"><option>اوپن</option><option>بسته</option><option>جزیره‌ای</option><option>ایرانی</option></select>
+      </div>
+    </div>
+    <div class="row g3">
+      <div class="field"><label>نوع توالت</label>
+        <select id="toilet"><option>فرنگی</option><option>ایرانی</option><option>فرنگی و ایرانی</option></select>
+      </div>
+      <div class="field"><label>جنس کابینت</label>
+        <select id="cabinet"><option>MDF</option><option>هایگلاس</option><option>فلزی</option><option>چوبی</option><option>ممبران</option><option>ندارد</option></select>
+      </div>
+      <div class="field"><label>نوع نما</label>
+        <select id="facade"><option>سنگ</option><option>آجر</option><option>سیمان</option><option>کامپوزیت</option><option>شیشه</option><option>رومی</option><option>سایر</option></select>
+      </div>
+    </div>
+    <div class="row g4">
+      <div class="field"><label>تلفن ثابت</label>
+        <select id="hasPhone"><option>دارد</option><option>ندارد</option></select>
+      </div>
+      <div class="field"><label>شوفاژ</label>
+        <select id="hasRadiator"><option>دارد</option><option>ندارد</option></select>
+      </div>
+      <div class="field"><label>کولر آبی</label>
+        <select id="hasCooler"><option>دارد</option><option>ندارد</option></select>
+      </div>
+      <div class="field"><label>وضعیت تخلیه</label>
+        <select id="vacancy"><option>تخلیه است</option><option>تخلیه نیست</option></select>
+      </div>
+    </div>
+  </div>
+
+  <!-- قیمت (بعد از متراژ، با محاسبه خودکار) -->
+  <div class="card">
+    <div class="card-title"><span class="ic">💰</span> قیمت و شرایط مالی</div>
+    <div class="row g3" id="salePriceRow">
+      <div class="field"><label id="priceLabel">قیمت کل (تومان)</label><input id="price" type="number" placeholder="مثلاً: 5000000000" oninput="calcPPM()"></div>
+      <div class="field"><label>قیمت هر متر (تومان)</label><input id="pricePerMeter" placeholder="خودکار محاسبه می‌شود" readonly></div>
+      <div class="field"><label>قابل مذاکره؟</label><select id="negotiable"><option>بله</option><option>خیر</option></select></div>
+    </div>
+    <div class="row g2" id="rentPriceRow" style="display:none">
+      <div class="field"><label>رهن / ودیعه (تومان)</label><input id="deposit" type="number" placeholder="مبلغ رهن"></div>
+      <div class="field" id="monthlyRentField"><label>اجاره ماهانه (تومان)</label><input id="rent" type="number" placeholder="مبلغ اجاره ماهانه"></div>
+    </div>
+    <div class="row g2" style="margin-top:4px">
+      <div class="field"><label>تاریخ تحویل</label><input id="available" placeholder="مثلاً: اول فروردین ۱۴۰۵"></div>
+    </div>
+    <div class="sub" id="ppmHint" style="margin-top:6px">💡 ابتدا متراژ را در بخش «مشخصات فیزیکی» و سپس قیمت کل را وارد کنید تا قیمت هر متر خودکار محاسبه شود.</div>
+    <!-- فوری -->
+    <label class="urgent-toggle" id="urgentToggleLabel">
+      <input type="checkbox" id="isUrgent" onchange="toggleUrgentStyle(this)">
+      <div>
+        <div class="urg-label">⚡ فوری — مالک تخفیف می‌دهد</div>
+        <div class="urg-sub">مالک آماده تخفیف به خریدار / مستاجر واقعی است</div>
+      </div>
+    </label>
+  </div>
+
+  <!-- جهت و نور -->
+  <div class="card">
+    <div class="card-title"><span class="ic">🧭</span> جهت و نورگیری</div>
+    <div style="font-size:12.5px;color:var(--text2);margin-bottom:10px;font-weight:600">جهت اصلی واحد (نما / پنجره اصلی)</div>
+    <div class="dir-grid">
+      <button class="dir-btn" onclick="selDir(this,'شمالی')">⬆ شمالی</button>
+      <button class="dir-btn" onclick="selDir(this,'جنوبی')">⬇ جنوبی</button>
+      <button class="dir-btn" onclick="selDir(this,'شرقی')">➡ شرقی</button>
+      <button class="dir-btn" onclick="selDir(this,'غربی')">⬅ غربی</button>
+      <button class="dir-btn" onclick="selDir(this,'شمال شرقی')">↗ شمال شرقی</button>
+      <button class="dir-btn" onclick="selDir(this,'شمال غربی')">↖ شمال غربی</button>
+      <button class="dir-btn" onclick="selDir(this,'جنوب شرقی')">↘ جنوب شرقی</button>
+      <button class="dir-btn" onclick="selDir(this,'جنوب غربی')">↙ جنوب غربی</button>
+    </div>
+    <input type="hidden" id="orientation">
+    <div style="font-size:12.5px;color:var(--text2);margin:16px 0 8px;font-weight:600">کیفیت نور طبیعی</div>
+    <div class="light-bar">
+      <button class="light-btn" onclick="selLight(this,'عالی – آفتابگیر تمام روز')">☀ عالی – آفتاب تمام روز</button>
+      <button class="light-btn" onclick="selLight(this,'خوب – آفتابگیر نیمروز')">🌤 خوب – نیمروز</button>
+      <button class="light-btn" onclick="selLight(this,'متوسط – نور کافی')">⛅ متوسط</button>
+      <button class="light-btn" onclick="selLight(this,'کم نور')">🌥 کم نور</button>
+      <button class="light-btn" onclick="selLight(this,'تاریک / سایه')">☁ تاریک</button>
+    </div>
+    <input type="hidden" id="lighting">
+    <div class="row g2" style="margin-top:16px">
+      <div class="field"><label>منظره / چشم‌انداز</label>
+        <select id="view"><option>کوه</option><option>دریا / دریاچه</option><option>پارک / فضای سبز</option><option>خیابان اصلی</option><option>حیاط</option><option>ساختمان روبرو</option><option>ندارد</option></select>
+      </div>
+      <div class="field"><label>موقعیت در ساختمان</label>
+        <select id="position"><option>گوشه (دو نما)</option><option>وسط (یک نما)</option><option>سه نما</option><option>چهار نما</option></select>
+      </div>
+    </div>
+  </div>
+
+  <!-- امکانات -->
+  <div class="card">
+    <div class="card-title"><span class="ic">✅</span> امکانات و دسترسی</div>
+    <div class="chk-grid" id="amenitiesGroup">
+      <label class="chk-item"><input type="checkbox" value="آسانسور"> آسانسور</label>
+      <label class="chk-item"><input type="checkbox" value="پارکینگ اختصاصی"> پارکینگ اختصاصی</label>
+      <label class="chk-item"><input type="checkbox" value="انباری"> انباری</label>
+      <label class="chk-item"><input type="checkbox" value="استخر"> استخر</label>
+      <label class="chk-item"><input type="checkbox" value="سونا"> سونا</label>
+      <label class="chk-item"><input type="checkbox" value="جکوزی"> جکوزی</label>
+      <label class="chk-item"><input type="checkbox" value="سالن ورزشی"> سالن ورزشی</label>
+      <label class="chk-item"><input type="checkbox" value="لابی مجلل"> لابی مجلل</label>
+      <label class="chk-item"><input type="checkbox" value="نگهبانی ۲۴ ساعته"> نگهبانی ۲۴ ساعته</label>
+      <label class="chk-item"><input type="checkbox" value="دوربین مداربسته"> دوربین مداربسته</label>
+      <label class="chk-item"><input type="checkbox" value="دربازکن تصویری"> دربازکن تصویری</label>
+      <label class="chk-item"><input type="checkbox" value="خانه هوشمند"> خانه هوشمند</label>
+      <label class="chk-item"><input type="checkbox" value="روف‌گاردن"> روف‌گاردن</label>
+      <label class="chk-item"><input type="checkbox" value="حیاط اختصاصی"> حیاط اختصاصی</label>
+      <label class="chk-item"><input type="checkbox" value="سالن اجتماعات"> سالن اجتماعات</label>
+      <label class="chk-item"><input type="checkbox" value="گاز شهری"> گاز شهری</label>
+      <label class="chk-item"><input type="checkbox" value="گرمایش مرکزی"> گرمایش مرکزی</label>
+      <label class="chk-item"><input type="checkbox" value="سرمایش مرکزی"> سرمایش مرکزی</label>
+      <label class="chk-item"><input type="checkbox" value="کف‌گرم"> کف‌گرم</label>
+      <label class="chk-item"><input type="checkbox" value="پکیج دیواری"> پکیج دیواری</label>
+      <label class="chk-item"><input type="checkbox" value="کولر گازی"> کولر گازی</label>
+      <label class="chk-item"><input type="checkbox" value="فن کوئل"> فن کوئل</label>
+      <label class="chk-item"><input type="checkbox" value="چیلر"> چیلر</label>
+      <label class="chk-item"><input type="checkbox" value="پنل خورشیدی"> پنل خورشیدی</label>
+      <label class="chk-item"><input type="checkbox" value="حیوان خانگی مجاز"> حیوان خانگی مجاز</label>
+    </div>
+    <div class="chk-section-label">دسترسی و موقعیت اطراف</div>
+    <div class="chk-grid" id="accessGroup">
+      <label class="chk-item"><input type="checkbox" value="مترو نزدیک"> مترو نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="BRT نزدیک"> BRT نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="بزرگراه نزدیک"> بزرگراه نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="مدرسه نزدیک"> مدرسه نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="بیمارستان نزدیک"> بیمارستان نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="مرکز خرید نزدیک"> مرکز خرید نزدیک</label>
+      <label class="chk-item"><input type="checkbox" value="پارک نزدیک"> پارک نزدیک</label>
+    </div>
+  </div>
+
+  <!-- مالک -->
+  <div class="card">
+    <div class="card-title"><span class="ic">👤</span> اطلاعات مالک / مشاور</div>
+    <div class="row g3">
+      <div class="field"><label>نام و نام خانوادگی <span class="req">*</span></label><input id="ownerName" placeholder="نام کامل"></div>
+      <div class="field"><label>شماره موبایل</label><input id="ownerPhone" placeholder="۰۹۱۲۱۲۳۴۵۶۷" dir="ltr" oninput="checkDuplicatePhone()"></div>
+      <div class="field"><label>نقش</label><select id="role"><option>مالک</option><option>مشاور املاک</option><option>وکیل مالک</option></select></div>
+    </div>
+    <!-- هشدار تکراری بودن شماره -->
+    <div class="dup-alert" id="dupAlert">
+      <div class="dup-title">⚠️ این شماره موبایل قبلاً در ملک‌های زیر ثبت شده — بررسی کنید تکراری نباشد:</div>
+      <div class="dup-list" id="dupList"></div>
+    </div>
+    <div class="row g1" style="margin-top:12px">
+      <div class="field"><label>کد ملک (اختیاری)</label><input id="fileCode" placeholder="کد داخلی شما، اگر خالی بماند خودکار ساخته می‌شود"></div>
+    </div>
+  </div>
+
+  <!-- عکس و پوشه خودکار -->
+  <div class="card">
+    <div class="card-title"><span class="ic">📸</span> عکس‌های ملک و پوشه فایل</div>
+    <p style="font-size:12.5px;color:var(--text2);margin-bottom:14px">یک نام پوشه به‌صورت خودکار برای این ملک ساخته می‌شود تا عکس‌ها را در آن نگه دارید (عکس‌ها داخل برنامه ذخیره نمی‌شوند تا حجم برنامه سبک بماند). در صورت تمایل می‌توانید یکی از عکس‌ها را همین‌جا برای پیش‌نمایش / تامبنیل انتخاب کنید.</p>
+    <div class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
+      <input type="file" id="photoInput" multiple accept="image/*" onchange="handlePhotos(this)">
+      <div style="font-size:34px;margin-bottom:8px">🖼️</div>
+      <p style="font-size:14px;font-weight:700;color:var(--ink)">برای انتخاب عکس تامبنیل کلیک کنید</p>
+      <p style="font-size:12px;color:var(--text2);margin-top:4px">فقط برای پیش‌نمایش در کارت ملک استفاده می‌شود؛ اصل عکس‌ها در پوشه پیشنهادی نگه‌داری شوند</p>
+    </div>
+    <div class="photo-grid" id="photoPreviewGrid"></div>
+    <div class="folder-box">
+      <div class="folder-ic">📁</div>
+      <div>
+        <div class="folder-label">نام پوشه‌ای که برای این ملک ساخته می‌شود (به‌صورت خودکار):</div>
+        <div class="folder-name" id="folderPreview">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- توضیحات -->
+  <div class="card">
+    <div class="card-title"><span class="ic">📝</span> توضیحات تکمیلی</div>
+    <div class="row g1">
+      <div class="field"><textarea id="description" placeholder="هر اطلاعات اضافه‌ای مثل شرایط خاص، نزدیکی به جاذبه‌ها..."></textarea></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="saveProperty()">✅ ثبت ملک</button>
+      <button class="btn btn-secondary" onclick="exportCSV()">⬇ خروجی CSV</button>
+      <button class="btn btn-secondary" onclick="exportJSON()">💾 پشتیبان‌گیری JSON</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📂 بارگذاری پشتیبان</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(this)">
+      <button class="btn btn-danger" onclick="clearForm()">پاک کردن فرم</button>
+    </div>
+  </div>
+
+</div><!-- end form page -->
+
+<!-- ===================== LIST PAGE ===================== -->
+<div class="page" id="page-list" style="display:none">
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="filter-bar">
+    <h3>🔍 فیلتر و جستجو</h3>
+    <div class="filter-grid">
+      <div><label>جستجوی آزاد</label><input id="fSearch" placeholder="نام، آدرس، کد ملک..." oninput="applyFilters()"></div>
+      <div><label>نوع معامله</label>
+        <select id="fDeal" onchange="onFilterDealChange()">
+          <option value="">همه</option><option>فروش</option><option>اجاره</option><option>رهن کامل</option><option>پیش‌فروش</option>
+        </select>
+      </div>
+      <div><label>نوع ملک</label>
+        <select id="fType" onchange="applyFilters()">
+          <option value="">همه</option><option>آپارتمان</option><option>خانه ویلایی</option><option>ویلا</option>
+          <option>پنت‌هاوس</option><option>دوبلکس</option><option>مغازه / تجاری</option><option>اداری</option>
+          <option>صنعتی</option><option>زمین</option><option>باغ / باغچه</option><option>سوئیت</option>
+        </select>
+      </div>
+      <div><label>استان</label>
+        <select id="fProvince" onchange="applyFilters()">
+          <option value="">همه</option><option>تهران</option><option>اصفهان</option><option>فارس</option>
+          <option>خراسان رضوی</option><option>البرز</option><option>مازندران</option><option>گیلان</option><option>سایر</option>
+        </select>
+      </div>
+      <div><label>جستجو و فیلتر مالک</label>
+        <div class="owner-filter-wrap" id="ownerFilterWrap">
+          <input type="text" id="fOwnerInput" placeholder="نام مالک را تایپ کنید..." autocomplete="off"
+            oninput="onOwnerFilterInput()" onfocus="openOwnerDropdown()" onkeydown="ownerDropdownKey(event)">
+          <div class="owner-dropdown" id="ownerDropdown"></div>
+        </div>
+        <input type="hidden" id="fOwner" onchange="applyFilters()">
+      </div>
+      <div><label>شهر / محله</label><input id="fCity" placeholder="شهر یا محله..." oninput="applyFilters()"></div>
+      <div><label>اتاق خواب</label>
+        <select id="fBed" onchange="applyFilters()">
+          <option value="">همه</option><option value="0">استودیو</option><option value="1">۱ اتاق</option>
+          <option value="2">۲ اتاق</option><option value="3">۳ اتاق</option><option value="4">۴ اتاق</option><option value="5">۵+ اتاق</option>
+        </select>
+      </div>
+      <div><label>جهت</label>
+        <select id="fDirection" onchange="applyFilters()">
+          <option value="">همه</option><option>شمالی</option><option>جنوبی</option><option>شرقی</option><option>غربی</option>
+          <option>شمال شرقی</option><option>شمال غربی</option><option>جنوب شرقی</option><option>جنوب غربی</option>
+        </select>
+      </div>
+      <div><label>قابل مذاکره</label>
+        <select id="fNegotiable" onchange="applyFilters()"><option value="">همه</option><option>بله</option><option>خیر</option></select>
+      </div>
+      <div><label>متراژ (از - تا)</label>
+        <div class="range-row">
+          <input type="number" id="fAreaMin" placeholder="از" oninput="applyFilters()">
+          <span>تا</span>
+          <input type="number" id="fAreaMax" placeholder="تا" oninput="applyFilters()">
+        </div>
+      </div>
+    </div>
+
+    <div id="fPriceSection" style="margin-top:12px;">
+      <div>
+        <label style="font-size:11.5px;color:var(--text2);font-weight:600">قیمت کل (میلیون تومان)</label>
+        <div class="range-row">
+          <input type="number" id="fPriceMin" placeholder="از" oninput="applyFilters()">
+          <span>تا</span>
+          <input type="number" id="fPriceMax" placeholder="تا" oninput="applyFilters()">
+        </div>
+      </div>
+    </div>
+    <div id="fRentSection" style="display:none;margin-top:12px;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="font-size:11.5px;color:var(--text2);font-weight:600">رهن / ودیعه (میلیون تومان)</label>
+        <div class="range-row">
+          <input type="number" id="fDepositMin" placeholder="از" oninput="applyFilters()">
+          <span>تا</span>
+          <input type="number" id="fDepositMax" placeholder="تا" oninput="applyFilters()">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11.5px;color:var(--text2);font-weight:600">اجاره ماهانه (میلیون تومان)</label>
+        <div class="range-row">
+          <input type="number" id="fRentMin" placeholder="از" oninput="applyFilters()">
+          <span>تا</span>
+          <input type="number" id="fRentMax" placeholder="تا" oninput="applyFilters()">
+        </div>
+      </div>
+    </div>
+
+    <!-- دکمه باز/بسته کردن فیلترهای پیشرفته -->
+    <button type="button" class="adv-toggle" id="advToggleBtn" onclick="toggleAdvancedFilters()">
+      <span id="advToggleIcon">▾</span> فیلترهای پیشرفته (سند، وضعیت، تجهیزات و موارد دیگر)
+    </button>
+
+    <div id="advancedFilters" style="display:none">
+      <div class="filter-grid" style="margin-top:12px">
+        <div><label>کل طبقات</label>
+          <div class="range-row">
+            <input type="number" id="fTotalFloorsMin" placeholder="از" oninput="applyFilters()">
+            <span>تا</span>
+            <input type="number" id="fTotalFloorsMax" placeholder="تا" oninput="applyFilters()">
+          </div>
+        </div>
+        <div><label>طبقه واحد</label>
+          <div class="range-row">
+            <input type="number" id="fFloorMin" placeholder="از" oninput="applyFilters()">
+            <span>تا</span>
+            <input type="number" id="fFloorMax" placeholder="تا" oninput="applyFilters()">
+          </div>
+        </div>
+        <div><label>تعداد واحد در طبقه</label>
+          <select id="fUnitsPerFloor" onchange="applyFilters()">
+            <option value="">همه</option><option value="1">۱</option><option value="2">۲</option><option value="3">۳</option><option value="4">۴ یا بیشتر</option>
+          </select>
+        </div>
+        <div><label>سال ساخت (از - تا)</label>
+          <div class="range-row">
+            <input type="text" id="fYearMin" placeholder="از" oninput="applyFilters()">
+            <span>تا</span>
+            <input type="text" id="fYearMax" placeholder="تا" oninput="applyFilters()">
+          </div>
+        </div>
+        <div><label>پارکینگ</label>
+          <select id="fParking" onchange="applyFilters()">
+            <option value="">همه</option><option value="0">ندارد</option><option value="1">۱</option><option value="2">۲</option><option value="3">۳ یا بیشتر</option>
+          </select>
+        </div>
+        <div><label>انباری</label>
+          <select id="fStorage" onchange="applyFilters()"><option value="">همه</option><option>ندارد</option><option>دارد</option></select>
+        </div>
+        <div><label>بالکن / تراس</label>
+          <select id="fBalcony" onchange="applyFilters()">
+            <option value="">همه</option><option>ندارد</option><option>بالکن دارد</option><option>تراس دارد</option><option>بالکن و تراس</option>
+          </select>
+        </div>
+        <div><label>نوع سند</label>
+          <select id="fDeed" onchange="applyFilters()">
+            <option value="">همه</option><option>سند تک‌برگ</option><option>سند شش‌دانگ</option><option>سند مشاع</option>
+            <option>وکالتی</option><option>قولنامه‌ای</option><option>ندارد</option>
+          </select>
+        </div>
+        <div><label>وضعیت ملک</label>
+          <select id="fCondition" onchange="applyFilters()">
+            <option value="">همه</option><option>نوساز / تحویل اول</option><option>بازسازی شده</option>
+            <option>خوب</option><option>نیاز به بازسازی</option><option>کلنگی</option>
+          </select>
+        </div>
+        <div><label>وضعیت دکوراسیون</label>
+          <select id="fInterior" onchange="applyFilters()">
+            <option value="">همه</option><option>فول مبله</option><option>نیمه مبله</option><option>خالی (بدون مبل)</option><option>لوکس / طراحی شده</option>
+          </select>
+        </div>
+        <div><label>نوع کف</label>
+          <select id="fFlooring" onchange="applyFilters()">
+            <option value="">همه</option><option>پارکت</option><option>سرامیک</option><option>سنگ</option><option>موکت</option><option>اپوکسی</option><option>ترکیبی</option>
+          </select>
+        </div>
+        <div><label>نوع آشپزخانه</label>
+          <select id="fKitchen" onchange="applyFilters()">
+            <option value="">همه</option><option>اوپن</option><option>بسته</option><option>جزیره‌ای</option><option>ایرانی</option>
+          </select>
+        </div>
+        <div><label>نوع توالت</label>
+          <select id="fToilet" onchange="applyFilters()">
+            <option value="">همه</option><option>فرنگی</option><option>ایرانی</option><option>فرنگی و ایرانی</option>
+          </select>
+        </div>
+        <div><label>جنس کابینت</label>
+          <select id="fCabinet" onchange="applyFilters()">
+            <option value="">همه</option><option>MDF</option><option>هایگلاس</option><option>فلزی</option><option>چوبی</option><option>ممبران</option><option>ندارد</option>
+          </select>
+        </div>
+        <div><label>نوع نما</label>
+          <select id="fFacade" onchange="applyFilters()">
+            <option value="">همه</option><option>سنگ</option><option>آجر</option><option>سیمان</option><option>کامپوزیت</option><option>شیشه</option><option>رومی</option><option>سایر</option>
+          </select>
+        </div>
+        <div><label>تلفن ثابت</label>
+          <select id="fHasPhone" onchange="applyFilters()"><option value="">همه</option><option>دارد</option><option>ندارد</option></select>
+        </div>
+        <div><label>شوفاژ</label>
+          <select id="fHasRadiator" onchange="applyFilters()"><option value="">همه</option><option>دارد</option><option>ندارد</option></select>
+        </div>
+        <div><label>کولر آبی</label>
+          <select id="fHasCooler" onchange="applyFilters()"><option value="">همه</option><option>دارد</option><option>ندارد</option></select>
+        </div>
+        <div><label>وضعیت تخلیه</label>
+          <select id="fVacancy" onchange="applyFilters()"><option value="">همه</option><option>تخلیه است</option><option>تخلیه نیست</option></select>
+        </div>
+        <div><label>کیفیت نور طبیعی</label>
+          <select id="fLighting" onchange="applyFilters()">
+            <option value="">همه</option><option>عالی – آفتابگیر تمام روز</option><option>خوب – آفتابگیر نیمروز</option>
+            <option>متوسط – نور کافی</option><option>کم نور</option><option>تاریک / سایه</option>
+          </select>
+        </div>
+        <div><label>منظره / چشم‌انداز</label>
+          <select id="fView" onchange="applyFilters()">
+            <option value="">همه</option><option>کوه</option><option>دریا / دریاچه</option><option>پارک / فضای سبز</option>
+            <option>خیابان اصلی</option><option>حیاط</option><option>ساختمان روبرو</option><option>ندارد</option>
+          </select>
+        </div>
+        <div><label>موقعیت در ساختمان</label>
+          <select id="fPosition" onchange="applyFilters()">
+            <option value="">همه</option><option>گوشه (دو نما)</option><option>وسط (یک نما)</option><option>سه نما</option><option>چهار نما</option>
+          </select>
+        </div>
+        <div><label>سرویس بهداشتی</label>
+          <select id="fBathrooms" onchange="applyFilters()">
+            <option value="">همه</option><option>۱</option><option>۲</option><option>۳</option><option>۴ یا بیشتر</option>
+          </select>
+        </div>
+        <div><label>نقش ثبت‌کننده</label>
+          <select id="fRole" onchange="applyFilters()"><option value="">همه</option><option>مالک</option><option>مشاور املاک</option><option>وکیل مالک</option></select>
+        </div>
+      </div>
+
+      <div class="chk-section-label" style="margin-top:16px">امکانات (انتخاب چندتایی)</div>
+      <div class="chk-grid" id="fAmenitiesGroup">
+        <label class="chk-item"><input type="checkbox" value="آسانسور"> آسانسور</label>
+        <label class="chk-item"><input type="checkbox" value="پارکینگ اختصاصی"> پارکینگ اختصاصی</label>
+        <label class="chk-item"><input type="checkbox" value="انباری"> انباری</label>
+        <label class="chk-item"><input type="checkbox" value="استخر"> استخر</label>
+        <label class="chk-item"><input type="checkbox" value="سونا"> سونا</label>
+        <label class="chk-item"><input type="checkbox" value="جکوزی"> جکوزی</label>
+        <label class="chk-item"><input type="checkbox" value="سالن ورزشی"> سالن ورزشی</label>
+        <label class="chk-item"><input type="checkbox" value="لابی مجلل"> لابی مجلل</label>
+        <label class="chk-item"><input type="checkbox" value="نگهبانی ۲۴ ساعته"> نگهبانی ۲۴ ساعته</label>
+        <label class="chk-item"><input type="checkbox" value="دوربین مداربسته"> دوربین مداربسته</label>
+        <label class="chk-item"><input type="checkbox" value="دربازکن تصویری"> دربازکن تصویری</label>
+        <label class="chk-item"><input type="checkbox" value="خانه هوشمند"> خانه هوشمند</label>
+        <label class="chk-item"><input type="checkbox" value="روف‌گاردن"> روف‌گاردن</label>
+        <label class="chk-item"><input type="checkbox" value="حیاط اختصاصی"> حیاط اختصاصی</label>
+        <label class="chk-item"><input type="checkbox" value="سالن اجتماعات"> سالن اجتماعات</label>
+        <label class="chk-item"><input type="checkbox" value="گاز شهری"> گاز شهری</label>
+        <label class="chk-item"><input type="checkbox" value="گرمایش مرکزی"> گرمایش مرکزی</label>
+        <label class="chk-item"><input type="checkbox" value="سرمایش مرکزی"> سرمایش مرکزی</label>
+        <label class="chk-item"><input type="checkbox" value="کف‌گرم"> کف‌گرم</label>
+        <label class="chk-item"><input type="checkbox" value="پکیج دیواری"> پکیج دیواری</label>
+        <label class="chk-item"><input type="checkbox" value="کولر گازی"> کولر گازی</label>
+        <label class="chk-item"><input type="checkbox" value="فن کوئل"> فن کوئل</label>
+        <label class="chk-item"><input type="checkbox" value="چیلر"> چیلر</label>
+        <label class="chk-item"><input type="checkbox" value="پنل خورشیدی"> پنل خورشیدی</label>
+        <label class="chk-item"><input type="checkbox" value="حیوان خانگی مجاز"> حیوان خانگی مجاز</label>
+      </div>
+      <div class="chk-section-label">دسترسی و موقعیت اطراف</div>
+      <div class="chk-grid" id="fAccessGroup">
+        <label class="chk-item"><input type="checkbox" value="مترو نزدیک"> مترو نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="BRT نزدیک"> BRT نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="بزرگراه نزدیک"> بزرگراه نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="مدرسه نزدیک"> مدرسه نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="بیمارستان نزدیک"> بیمارستان نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="مرکز خرید نزدیک"> مرکز خرید نزدیک</label>
+        <label class="chk-item"><input type="checkbox" value="پارک نزدیک"> پارک نزدیک</label>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn btn-primary btn-sm" onclick="applyFilters()">🔍 اعمال فیلتر</button>
+      <button class="btn btn-sm btn-secondary" onclick="clearFilters()">✖ پاک کردن فیلترها</button>
+      <span class="result-count" id="resultCount"></span>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btnCard" onclick="setView('card')">🟦 کارت</button>
+        <button class="view-btn" id="btnList" onclick="setView('list')">📄 جدول</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cardsContainer" class="cards-grid"></div>
+  <div id="listContainer" class="list-view"><div class="table-wrap"><table id="listTable"></table></div></div>
+  <div class="empty" id="emptyState" style="display:none">
+    <span class="icon">🏚️</span>
+    <p>هیچ ملکی یافت نشد</p>
+    <small>فیلترها را تغییر دهید یا ملک جدید ثبت کنید</small>
+  </div>
+
+</div><!-- end list page -->
+
+<!-- ===================== DETAIL MODAL ===================== -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">جزئیات ملک</h2>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===================== IMPORT FROM URL PAGE ===================== -->
+<div class="page" id="page-import" style="display:none">
+  <div class="card" style="max-width:800px;margin:0 auto">
+    <div class="card-title"><span class="ic">🔗</span> افزودن ملک از لینک آگهی</div>
+
+    <div style="background:var(--ink-bg);border:1.5px solid var(--ink-light);border-radius:12px;padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--text2);line-height:1.8">
+      <strong style="color:var(--navy);display:block;margin-bottom:8px">📌 نحوه استفاده:</strong>
+      <ol style="margin-right:18px;font-size:12.5px">
+        <li>لینک آگهی ملک را در کادر زیر وارد کنید</li>
+        <li>دکمه «استخراج اطلاعات» را بزنید — هوش مصنوعی متن صفحه را تحلیل می‌کند</li>
+        <li>اطلاعات شناسایی‌شده را بررسی کنید و در صورت نیاز ویرایش کنید</li>
+        <li>دکمه «افزودن به لیست» برای ذخیره‌ی خودکار است</li>
+      </ol>
+      <div style="margin-top:10px;font-size:12px;color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-light);border-radius:8px;padding:8px 12px">
+        ⚠️ این قابلیت از Claude API استفاده می‌کند. برای استفاده رایگان، کلید API خود را از
+        <a href="https://console.anthropic.com" target="_blank" style="color:var(--navy);font-weight:700">console.anthropic.com</a>
+        دریافت و یک بار در کادر زیر وارد کنید (به صورت محلی ذخیره می‌شود و جایی ارسال نمی‌شود).
+      </div>
+    </div>
+
+    <!-- API Key -->
+    <div class="field" style="margin-bottom:14px">
+      <label>🔑 کلید API کلود (یک بار وارد کنید — در مرورگر شما ذخیره می‌شود)</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-..." style="flex:1;font-family:monospace;direction:ltr;text-align:left">
+        <button class="btn" style="white-space:nowrap;padding:10px 18px" onclick="saveApiKey()">💾 ذخیره کلید</button>
+        <button class="btn" style="white-space:nowrap;padding:10px 18px;background:var(--red-bg);color:var(--red);border:1.5px solid var(--red)" onclick="clearApiKey()">🗑 پاک</button>
+      </div>
+      <div id="apiKeyStatus" style="margin-top:6px;font-size:11.5px"></div>
+    </div>
+
+    <!-- URL Input -->
+    <div class="field" style="margin-bottom:14px">
+      <label>🌐 لینک آگهی ملک</label>
+      <div style="display:flex;gap:8px">
+        <input type="url" id="importUrlInput" placeholder="https://divar.ir/v/..." style="flex:1;direction:ltr;text-align:left" onkeydown="if(event.key==='Enter')extractFromUrl()">
+        <button class="btn" id="btnExtract" onclick="extractFromUrl()" style="white-space:nowrap;padding:10px 22px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);color:#fff;box-shadow:var(--shadow-gold)">
+          🤖 استخراج اطلاعات
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="importProgress" style="display:none;margin-bottom:16px">
+      <div style="background:var(--surface3);border-radius:10px;padding:14px 18px;text-align:center">
+        <div style="font-size:24px;animation:spin 1s linear infinite;display:inline-block" id="importSpinner">⚙️</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:8px" id="importProgressMsg">در حال دریافت و تحلیل صفحه...</div>
+      </div>
+    </div>
+
+    <!-- Extracted Data Preview -->
+    <div id="importPreview" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="font-size:14px;font-weight:700;color:var(--green)">✅ اطلاعات استخراج شد — بررسی و تأیید کنید</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" onclick="addExtractedProperty()" style="background:var(--green);color:#fff;padding:10px 20px;font-size:13px">
+            ➕ افزودن به لیست
+          </button>
+          <button class="btn" onclick="resetImport()" style="background:var(--surface3);color:var(--text2);padding:10px 16px;font-size:13px">
+            🔄 بازنشانی
+          </button>
+        </div>
+      </div>
+
+      <!-- Preview Fields -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px" id="previewFields"></div>
+
+      <div class="field" style="margin-top:14px">
+        <label>توضیحات کامل آگهی</label>
+        <textarea id="previewDescription" rows="4" style="width:100%;resize:vertical"></textarea>
+      </div>
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-top:12px;font-size:12px;color:var(--text2)">
+        📋 <strong>JSON خام:</strong> می‌توانید این JSON را کپی کنید و از طریق «بارگذاری پشتیبان» در صفحه لیست نیز وارد کنید.
+        <textarea id="previewJson" rows="5" style="width:100%;resize:vertical;font-family:monospace;font-size:11px;margin-top:8px;direction:ltr;text-align:left"></textarea>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div id="importError" style="display:none;background:var(--red-bg);border:1.5px solid var(--red);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--red)"></div>
+
+    <!-- Batch import section -->
+    <div style="margin-top:28px;border-top:1.5px solid var(--border);padding-top:20px">
+      <div class="card-title" style="font-size:13px"><span class="ic">📦</span> افزودن چند ملک به یکباره از JSON</div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:10px">
+        اگر قبلاً JSON استخراج شده دارید یا من (Claude) JSON برایتان فرستادم، اینجا paste کنید:
+      </div>
+      <textarea id="batchJsonInput" rows="5" placeholder='[{"dealType":"فروش","propertyType":"آپارتمان",...}]' style="width:100%;resize:vertical;font-family:monospace;font-size:11.5px;direction:ltr;text-align:left"></textarea>
+      <button class="btn" onclick="batchImportJson()" style="margin-top:10px;background:var(--gold);color:#fff;padding:10px 22px">
+        📥 وارد کردن JSON به لیست
+      </button>
+      <div id="batchResult" style="margin-top:8px;font-size:12.5px"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end app -->
+
+<script>
+/* =====================================================================
+   سیستم مدیریت ملک مقدم — منطق برنامه
+   ===================================================================== */
+
+let properties = JSON.parse(localStorage.getItem('moghaddam_properties') || '[]');
+let editingId = null;
+let currentPhotos = []; // {dataUrl, name, isThumb} -- فقط برای پیش‌نمایش، در ملک ذخیره نمی‌شود مگر تامبنیل
+let currentView = 'card';
+
+/* ===================== تم (دارک/لایت) ===================== */
+function initTheme(){
+  const saved = localStorage.getItem('moghaddam_theme') || 'light';
+  applyTheme(saved);
+}
+function applyTheme(mode){
+  if(mode === 'dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+    document.getElementById('themeIcon').textContent = '☀️';
+    document.getElementById('themeLabel').textContent = 'حالت روشن';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    document.getElementById('themeIcon').textContent = '🌙';
+    document.getElementById('themeLabel').textContent = 'حالت تاریک';
+  }
+  localStorage.setItem('moghaddam_theme', mode);
+}
+function toggleTheme(){
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  applyTheme(isDark ? 'light' : 'dark');
+}
+
+/* ===================== تب‌ها ===================== */
+function showPage(name){
+  document.getElementById('page-form').style.display = name === 'form' ? 'block' : 'none';
+  document.getElementById('page-list').style.display = name === 'list' ? 'block' : 'none';
+  document.getElementById('page-import').style.display = name === 'import' ? 'block' : 'none';
+  document.getElementById('navForm').classList.toggle('active', name === 'form');
+  document.getElementById('navList').classList.toggle('active', name === 'list');
+  document.getElementById('navImport').classList.toggle('active', name === 'import');
+  if(name === 'list') renderList();
+  if(name === 'import') checkApiKeyOnLoad();
+}
+
+/* ===================== نوع معامله ===================== */
+function setDealType(val, btn){
+  document.getElementById('dealType').value = val;
+  document.querySelectorAll('.pill-bar .pill-btn').forEach(b => b.className = 'pill-btn');
+  const cls = val === 'فروش' ? 'sel-sale' : val === 'اجاره' ? 'sel-rent' : val === 'رهن کامل' ? 'sel-mortgage' : 'sel-presale';
+  btn.classList.add(cls);
+
+  const saleRow = document.getElementById('salePriceRow');
+  const rentRow = document.getElementById('rentPriceRow');
+  const monthlyField = document.getElementById('monthlyRentField');
+  const priceLabel = document.getElementById('priceLabel');
+
+  if(val === 'اجاره'){
+    saleRow.style.display = 'none'; rentRow.style.display = 'grid'; monthlyField.style.display = 'block';
+  } else if(val === 'رهن کامل'){
+    saleRow.style.display = 'none'; rentRow.style.display = 'grid'; monthlyField.style.display = 'none';
+  } else {
+    saleRow.style.display = 'grid'; rentRow.style.display = 'none';
+    priceLabel.textContent = val === 'پیش‌فروش' ? 'قیمت پیش‌فروش (تومان)' : 'قیمت کل (تومان)';
+  }
+  updateFolderPreview();
+}
+
+/* ===================== محاسبه خودکار قیمت هر متر ===================== */
+function calcPPM(){
+  const area = parseFloat(document.getElementById('area').value);
+  const price = parseFloat(document.getElementById('price').value);
+  const ppmField = document.getElementById('pricePerMeter');
+  if(area > 0 && price > 0){
+    const ppm = Math.round(price / area);
+    ppmField.value = ppm.toLocaleString('fa-IR');
+    document.getElementById('ppmHint').textContent = '✅ قیمت هر متر بر اساس متراژ و قیمت کل محاسبه شد.';
+  } else {
+    ppmField.value = '';
+    document.getElementById('ppmHint').textContent = '💡 ابتدا متراژ را در بخش «مشخصات فیزیکی» و سپس قیمت کل را وارد کنید تا قیمت هر متر خودکار محاسبه شود.';
+  }
+  updateFolderPreview();
+}
+
+/* ===================== مستر بدروم بر اساس تعداد اتاق ===================== */
+function updateMasterMax(){
+  const total = parseInt(document.getElementById('bedrooms').value) || 0;
+  const ms = document.getElementById('masterBedrooms');
+  const cur = parseInt(ms.value) || 0;
+  ms.innerHTML = '';
+  for(let i = 0; i <= Math.min(total, 4); i++){
+    const o = document.createElement('option');
+    o.value = i; o.textContent = i + ' مستر';
+    if(i === Math.min(cur, total)) o.selected = true;
+    ms.appendChild(o);
+  }
+}
+
+/* ===================== جهت و نور ===================== */
+function selDir(btn, val){
+  document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('orientation').value = val;
+}
+function selLight(btn, val){
+  document.querySelectorAll('.light-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('lighting').value = val;
+}
+
+/* ===================== نام پوشه خودکار ===================== */
+function buildFolderName(){
+  const owner = (document.getElementById('ownerName').value || 'بدون‌نام').trim();
+  const ptype = document.getElementById('propertyType').value || 'ملک';
+  const deal = document.getElementById('dealType').value || 'نامشخص';
+  const area = document.getElementById('area').value;
+  const place = (document.getElementById('neighborhood').value || document.getElementById('city').value || 'بدون‌محل').trim();
+  const code = document.getElementById('fileCode').value.trim();
+  let name = `${owner}_${ptype}(${deal})_${place}` + (area ? `_${area}متر` : '') + (code ? `_${code}` : '');
+  return name.replace(/[\\/:"*?<>|]/g, '-').replace(/\s+/g,'_');
+}
+function updateFolderPreview(){
+  const el = document.getElementById('folderPreview');
+  if(!el) return;
+  el.textContent = '📁 ' + buildFolderName();
+}
+['ownerName','propertyType','area','neighborhood','city','fileCode'].forEach(id => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updateFolderPreview);
+    if(el && el.tagName === 'SELECT') el.addEventListener('change', updateFolderPreview);
+  });
+});
+
+/* ===================== عکس‌ها (فقط پیش‌نمایش/تامبنیل، بدون ذخیره حجیم) ===================== */
+function handlePhotos(input){
+  const files = Array.from(input.files);
+  files.forEach(f => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      currentPhotos.push({ dataUrl: e.target.result, name: f.name, isThumb: currentPhotos.length === 0 });
+      renderPhotoGrid();
+    };
+    reader.readAsDataURL(f);
+  });
+  input.value = '';
+}
+function renderPhotoGrid(){
+  const grid = document.getElementById('photoPreviewGrid');
+  grid.innerHTML = '';
+  currentPhotos.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'photo-thumb' + (p.isThumb ? ' is-thumb' : '');
+    div.innerHTML = `<img src="${p.dataUrl}" alt="">
+      <button class="remove-photo" onclick="removePhoto(${i})">✕</button>
+      <span class="thumb-badge" onclick="setThumb(${i})">${p.isThumb ? '✓ تامبنیل' : 'تامبنیل'}</span>`;
+    grid.appendChild(div);
+  });
+}
+function removePhoto(idx){
+  const wasThumb = currentPhotos[idx].isThumb;
+  currentPhotos.splice(idx, 1);
+  if(wasThumb && currentPhotos.length > 0) currentPhotos[0].isThumb = true;
+  renderPhotoGrid();
+}
+function setThumb(idx){
+  currentPhotos.forEach((p, i) => p.isThumb = (i === idx));
+  renderPhotoGrid();
+}
+
+/* ===================== ذخیره ملک ===================== */
+function getChecked(groupId){
+  return Array.from(document.querySelectorAll('#' + groupId + ' input:checked')).map(c => c.value);
+}
+
+function saveProperty(){
+  const ownerName = document.getElementById('ownerName').value.trim();
+  const dealType = document.getElementById('dealType').value;
+  const propertyType = document.getElementById('propertyType').value;
+  const area = document.getElementById('area').value;
+
+  if(!ownerName || !dealType || !propertyType || !area){
+    showToast('لطفاً نوع معامله، نوع ملک، متراژ و نام مالک را پر کنید', true);
+    return;
+  }
+
+  const folderName = buildFolderName();
+  const thumb = currentPhotos.find(p => p.isThumb) || currentPhotos[0] || null;
+
+  const prop = {
+    id: editingId || Date.now().toString(),
+    title: document.getElementById('title').value,
+    dealType, propertyType,
+    province: document.getElementById('province').value,
+    city: document.getElementById('city').value,
+    neighborhood: document.getElementById('neighborhood').value,
+    alley: document.getElementById('alley').value,
+    houseNum: document.getElementById('houseNum').value,
+    floor: document.getElementById('floor').value,
+    totalFloors: document.getElementById('totalFloors').value,
+    unitsPerFloor: document.getElementById('unitsPerFloor').value,
+    fullAddress: document.getElementById('fullAddress').value,
+    area: parseFloat(area) || 0,
+    landArea: parseFloat(document.getElementById('landArea').value) || 0,
+    buildYear: document.getElementById('buildYear').value,
+    bedrooms: document.getElementById('bedrooms').value,
+    masterBedrooms: document.getElementById('masterBedrooms').value,
+    bathrooms: document.getElementById('bathrooms').value,
+    parking: document.getElementById('parking').value,
+    storage: document.getElementById('storage').value,
+    balcony: document.getElementById('balcony').value,
+    deed: document.getElementById('deed').value,
+    condition: document.getElementById('condition').value,
+    interior: document.getElementById('interior').value,
+    flooring: document.getElementById('flooring').value,
+    kitchen: document.getElementById('kitchen').value,
+    toilet: document.getElementById('toilet').value,
+    cabinet: document.getElementById('cabinet').value,
+    facade: document.getElementById('facade').value,
+    hasPhone: document.getElementById('hasPhone').value,
+    hasRadiator: document.getElementById('hasRadiator').value,
+    hasCooler: document.getElementById('hasCooler').value,
+    vacancy: document.getElementById('vacancy').value,
+    orientation: document.getElementById('orientation').value,
+    lighting: document.getElementById('lighting').value,
+    view: document.getElementById('view').value,
+    position: document.getElementById('position').value,
+    amenities: getChecked('amenitiesGroup'),
+    access: getChecked('accessGroup'),
+    price: parseFloat(document.getElementById('price').value) || 0,
+    pricePerMeter: (document.getElementById('pricePerMeter').value || '').replace(/[^\d]/g,''),
+    negotiable: document.getElementById('negotiable').value,
+    deposit: parseFloat(document.getElementById('deposit').value) || 0,
+    rent: parseFloat(document.getElementById('rent').value) || 0,
+    available: document.getElementById('available').value,
+    ownerName, ownerPhone: document.getElementById('ownerPhone').value,
+    role: document.getElementById('role').value,
+    fileCode: document.getElementById('fileCode').value,
+    isUrgent: document.getElementById('isUrgent').checked,
+    description: document.getElementById('description').value,
+    thumbDataUrl: thumb ? thumb.dataUrl : '',
+    folderName,
+    createdAt: editingId ? (properties.find(p => p.id === editingId) || {}).createdAt : new Date().toLocaleDateString('fa-IR'),
+    updatedAt: new Date().toLocaleDateString('fa-IR'),
+  };
+
+  if(editingId){
+    const idx = properties.findIndex(p => p.id === editingId);
+    if(idx >= 0) properties[idx] = prop;
+    editingId = null;
+  } else {
+    properties.unshift(prop);
+  }
+
+  saveToStorage();
+  updateBadge();
+  showToast('ملک با موفقیت ثبت شد و پوشه آن آماده شد ✓');
+  clearForm();
+}
+
+function saveToStorage(){
+  try{
+    localStorage.setItem('moghaddam_properties', JSON.stringify(properties));
+  } catch(err){
+    showToast('حافظه مرورگر پر شده؛ از خروجی JSON برای پشتیبان‌گیری و پاک‌سازی استفاده کنید', true);
+  }
+}
+
+function clearForm(){
+  document.querySelectorAll('#page-form input, #page-form select, #page-form textarea').forEach(el => {
+    if(el.type === 'checkbox') el.checked = false;
+    else if(el.type !== 'file') el.value = '';
+  });
+  currentPhotos = [];
+  renderPhotoGrid();
+  editingId = null;
+  document.querySelectorAll('.pill-bar .pill-btn').forEach(b => b.className = 'pill-btn');
+  document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('sel'));
+  document.querySelectorAll('.light-btn').forEach(b => b.classList.remove('sel'));
+  document.getElementById('masterBedrooms').innerHTML = '<option value="0">۰</option>';
+  document.getElementById('salePriceRow').style.display = 'grid';
+  document.getElementById('rentPriceRow').style.display = 'none';
+  document.getElementById('pricePerMeter').value = '';
+  document.getElementById('ppmHint').textContent = '💡 ابتدا متراژ را در بخش «مشخصات فیزیکی» و سپس قیمت کل را وارد کنید تا قیمت هر متر خودکار محاسبه شود.';
+  document.getElementById('isUrgent').checked = false;
+  document.getElementById('urgentToggleLabel').style.border = '2px solid var(--red)';
+  document.getElementById('dupAlert').style.display = 'none';
+  updateFolderPreview();
+}
+
+/* ===================== فیلتر ===================== */
+function onFilterDealChange(){
+  const v = document.getElementById('fDeal').value;
+  if(v === 'اجاره' || v === 'رهن کامل'){
+    document.getElementById('fRentSection').style.display = 'grid';
+    document.getElementById('fPriceSection').style.display = 'none';
+  } else {
+    document.getElementById('fRentSection').style.display = 'none';
+    document.getElementById('fPriceSection').style.display = 'grid';
+  }
+  applyFilters();
+}
+
+function toggleAdvancedFilters(){
+  const box = document.getElementById('advancedFilters');
+  const icon = document.getElementById('advToggleIcon');
+  const isOpen = box.style.display === 'block';
+  box.style.display = isOpen ? 'none' : 'block';
+  icon.textContent = isOpen ? '▾' : '▴';
+}
+
+function applyFilters(){
+  const val = id => (document.getElementById(id) || {}).value || '';
+  const fSearch = val('fSearch').toLowerCase();
+  const fDeal = val('fDeal');
+  const fType = val('fType');
+  const fProvince = val('fProvince');
+  const fCity = val('fCity').toLowerCase();
+  const fOwnerKey = val('fOwner'); // "name||phone"
+  const fBed = val('fBed');
+  const fDirection = val('fDirection');
+  const fNegotiable = val('fNegotiable');
+  const fAreaMin = parseFloat(val('fAreaMin')) || 0;
+  const fAreaMax = parseFloat(val('fAreaMax')) || Infinity;
+  const fPriceMin = (parseFloat(val('fPriceMin')) || 0) * 1e6;
+  const fPriceMax = (parseFloat(val('fPriceMax')) || Infinity) * 1e6;
+  const fDepositMin = (parseFloat(val('fDepositMin')) || 0) * 1e6;
+  const fDepositMax = (parseFloat(val('fDepositMax')) || Infinity) * 1e6;
+  const fRentMin = (parseFloat(val('fRentMin')) || 0) * 1e6;
+  const fRentMax = (parseFloat(val('fRentMax')) || Infinity) * 1e6;
+
+  // فیلترهای پیشرفته
+  const fTotalFloorsMin = parseFloat(val('fTotalFloorsMin')) || 0;
+  const fTotalFloorsMax = parseFloat(val('fTotalFloorsMax')) || Infinity;
+  const fFloorMin = parseFloat(val('fFloorMin')) || -Infinity;
+  const fFloorMax = parseFloat(val('fFloorMax')) || Infinity;
+  const fUnitsPerFloor = val('fUnitsPerFloor');
+  const fYearMin = parseFloat(val('fYearMin')) || 0;
+  const fYearMax = parseFloat(val('fYearMax')) || Infinity;
+  const fParking = val('fParking');
+  const fStorage = val('fStorage');
+  const fBalcony = val('fBalcony');
+  const fDeed = val('fDeed');
+  const fCondition = val('fCondition');
+  const fInterior = val('fInterior');
+  const fFlooring = val('fFlooring');
+  const fKitchen = val('fKitchen');
+  const fToilet = val('fToilet');
+  const fCabinet = val('fCabinet');
+  const fFacade = val('fFacade');
+  const fHasPhone = val('fHasPhone');
+  const fHasRadiator = val('fHasRadiator');
+  const fHasCooler = val('fHasCooler');
+  const fVacancy = val('fVacancy');
+  const fLighting = val('fLighting');
+  const fView = val('fView');
+  const fPosition = val('fPosition');
+  const fBathrooms = val('fBathrooms');
+  const fRole = val('fRole');
+  const fAmenities = getChecked('fAmenitiesGroup');
+  const fAccess = getChecked('fAccessGroup');
+
+  const filtered = properties.filter(p => {
+    const searchStr = [p.ownerName, p.fullAddress, p.alley, p.neighborhood, p.fileCode, p.city, p.title].join(' ').toLowerCase();
+    if(fSearch && !searchStr.includes(fSearch)) return false;
+    if(fOwnerKey){
+      const [owName, owPhone] = fOwnerKey.split('||');
+      if((p.ownerName||'').trim() !== owName || (p.ownerPhone||'').replace(/\s/g,'') !== owPhone) return false;
+    }
+    if(fDeal && p.dealType !== fDeal) return false;
+    if(fType && p.propertyType !== fType) return false;
+    if(fProvince && p.province !== fProvince) return false;
+    if(fCity && !((p.city||'')+' '+(p.neighborhood||'')).toLowerCase().includes(fCity)) return false;
+    if(fBed && String(p.bedrooms) !== fBed) return false;
+    if(fDirection && p.orientation !== fDirection) return false;
+    if(fNegotiable && p.negotiable !== fNegotiable) return false;
+    if(p.area < fAreaMin || p.area > fAreaMax) return false;
+    if(p.dealType === 'اجاره' || p.dealType === 'رهن کامل'){
+      if(p.deposit < fDepositMin || p.deposit > fDepositMax) return false;
+      if(p.dealType === 'اجاره' && (p.rent < fRentMin || p.rent > fRentMax)) return false;
+    } else {
+      if(p.price < fPriceMin || p.price > fPriceMax) return false;
+    }
+
+    // فیلترهای پیشرفته
+    const totalFloorsNum = parseFloat(p.totalFloors);
+    if(!isNaN(totalFloorsNum) && (totalFloorsNum < fTotalFloorsMin || totalFloorsNum > fTotalFloorsMax)) return false;
+    if(isNaN(totalFloorsNum) && (fTotalFloorsMin > 0 || fTotalFloorsMax < Infinity)) return false;
+    const floorNum = parseFloat(p.floor);
+    if(!isNaN(floorNum) && (floorNum < fFloorMin || floorNum > fFloorMax)) return false;
+    if(isNaN(floorNum) && (fFloorMin > -Infinity || fFloorMax < Infinity)) return false;
+    if(fUnitsPerFloor){
+      const upf = parseFloat(p.unitsPerFloor) || 0;
+      if(fUnitsPerFloor === '4' ? upf < 4 : String(upf) !== fUnitsPerFloor) return false;
+    }
+    const yearNum = parseFloat(p.buildYear);
+    if(!isNaN(yearNum) && (yearNum < fYearMin || yearNum > fYearMax)) return false;
+    if(isNaN(yearNum) && (fYearMin > 0 || fYearMax < Infinity)) return false;
+    if(fParking !== '' && fParking !== undefined && fParking !== null){
+      if(fParking === '3' ? (parseFloat(p.parking)||0) < 3 : String(p.parking) !== fParking) return false;
+    }
+    if(fStorage && p.storage !== fStorage) return false;
+    if(fBalcony && p.balcony !== fBalcony) return false;
+    if(fDeed && p.deed !== fDeed) return false;
+    if(fCondition && p.condition !== fCondition) return false;
+    if(fInterior && p.interior !== fInterior) return false;
+    if(fFlooring && p.flooring !== fFlooring) return false;
+    if(fKitchen && p.kitchen !== fKitchen) return false;
+    if(fToilet && p.toilet !== fToilet) return false;
+    if(fCabinet && p.cabinet !== fCabinet) return false;
+    if(fFacade && p.facade !== fFacade) return false;
+    if(fHasPhone && p.hasPhone !== fHasPhone) return false;
+    if(fHasRadiator && p.hasRadiator !== fHasRadiator) return false;
+    if(fHasCooler && p.hasCooler !== fHasCooler) return false;
+    if(fVacancy && p.vacancy !== fVacancy) return false;
+    if(fLighting && p.lighting !== fLighting) return false;
+    if(fView && p.view !== fView) return false;
+    if(fPosition && p.position !== fPosition) return false;
+    if(fBathrooms && p.bathrooms !== fBathrooms) return false;
+    if(fRole && p.role !== fRole) return false;
+    if(fAmenities.length && !fAmenities.every(a => (p.amenities||[]).includes(a))) return false;
+    if(fAccess.length && !fAccess.every(a => (p.access||[]).includes(a))) return false;
+
+    return true;
+  });
+
+  document.getElementById('resultCount').textContent = `${filtered.length} ملک یافت شد`;
+  renderCards(filtered);
+  renderStats(filtered);
+}
+
+function clearFilters(){
+  ['fSearch','fCity','fAreaMin','fAreaMax','fPriceMin','fPriceMax','fDepositMin','fDepositMax','fRentMin','fRentMax',
+   'fTotalFloorsMin','fTotalFloorsMax','fFloorMin','fFloorMax','fYearMin','fYearMax'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.value = '';
+  });
+  // پاک کردن فیلتر مالک
+  const ownerInput = document.getElementById('fOwnerInput');
+  const ownerHidden = document.getElementById('fOwner');
+  if(ownerInput) ownerInput.value = '';
+  if(ownerHidden) ownerHidden.value = '';
+  ['fDeal','fType','fProvince','fBed','fDirection','fNegotiable','fUnitsPerFloor','fParking','fStorage','fBalcony',
+   'fDeed','fCondition','fInterior','fFlooring','fKitchen','fToilet','fCabinet','fFacade','fHasPhone','fHasRadiator',
+   'fHasCooler','fVacancy','fLighting','fView','fPosition','fBathrooms','fRole'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.value = '';
+  });
+  document.querySelectorAll('#fAmenitiesGroup input, #fAccessGroup input').forEach(cb => { cb.checked = false; });
+  document.getElementById('fRentSection').style.display = 'none';
+  document.getElementById('fPriceSection').style.display = 'grid';
+  applyFilters();
+}
+
+/* ===================== قیمت‌نمایی ===================== */
+const badgeClass = { 'فروش': 'badge-sale', 'اجاره': 'badge-rent', 'رهن کامل': 'badge-mortgage', 'پیش‌فروش': 'badge-presale' };
+
+function formatPrice(n){
+  if(!n) return '—';
+  if(n >= 1e9) return (n/1e9).toFixed(1).replace(/\.0$/,'') + ' میلیارد تومان';
+  if(n >= 1e6) return (n/1e6).toFixed(0) + ' میلیون تومان';
+  return n.toLocaleString('fa-IR') + ' تومان';
+}
+function getPriceDisplay(p){
+  if(p.dealType === 'اجاره') return `رهن ${formatPrice(p.deposit)} / اجاره ${formatPrice(p.rent)}`;
+  if(p.dealType === 'رهن کامل') return `رهن ${formatPrice(p.deposit)}`;
+  return formatPrice(p.price);
+}
+
+/* ===================== آمار ===================== */
+function renderStats(list){
+  const bar = document.getElementById('statsBar');
+  const total = list.length;
+  const sale = list.filter(p => p.dealType === 'فروش').length;
+  const rent = list.filter(p => p.dealType === 'اجاره').length;
+  const mortgage = list.filter(p => p.dealType === 'رهن کامل').length;
+  const presale = list.filter(p => p.dealType === 'پیش‌فروش').length;
+  bar.innerHTML = `
+    <div class="stat"><div class="stat-num">${total}</div><div class="stat-lbl">کل نتایج</div></div>
+    <div class="stat"><div class="stat-num">${sale}</div><div class="stat-lbl">فروش</div></div>
+    <div class="stat"><div class="stat-num">${rent}</div><div class="stat-lbl">اجاره</div></div>
+    <div class="stat"><div class="stat-num">${mortgage}</div><div class="stat-lbl">رهن کامل</div></div>
+    <div class="stat"><div class="stat-num">${presale}</div><div class="stat-lbl">پیش‌فروش</div></div>
+  `;
+}
+
+/* ===================== رندر کارت / جدول ===================== */
+function renderList(){
+  applyFilters();
+  updateBadge();
+}
+
+function renderCards(list){
+  const cont = document.getElementById('cardsContainer');
+  const listCont = document.getElementById('listContainer');
+  const empty = document.getElementById('emptyState');
+
+  if(!list.length){
+    cont.innerHTML = ''; listCont.querySelector('table').innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  cont.innerHTML = list.map(p => {
+    const thumbHtml = p.thumbDataUrl ? `<img src="${p.thumbDataUrl}" alt="">` : '🏠';
+    const bedroomStr = (p.bedrooms !== '' && p.bedrooms != null) ? `${p.bedrooms} اتاق` : '';
+    const badge = badgeClass[p.dealType] || 'badge-sale';
+    return `<div class="property-card">
+      <div class="card-thumb">${thumbHtml}<div class="card-thumb-overlay"></div>
+        <span class="card-badge ${badge}">${p.dealType||''}</span>
+        ${p.orientation ? `<span class="card-direction">${p.orientation}</span>` : ''}
+        ${p.isUrgent ? `<span style="position:absolute;bottom:10px;right:10px"><span class="urgent-badge">⚡ فوری</span></span>` : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-title2">${p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
+        ${p.ownerName ? `<div class="owner-tag">👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</div>` : ''}
+        <div class="card-meta">
+          ${p.area ? `<span class="meta-tag">📐 ${p.area} متر</span>` : ''}
+          ${bedroomStr ? `<span class="meta-tag">🛏 ${bedroomStr}</span>` : ''}
+          ${p.floor ? `<span class="meta-tag">🏢 طبقه ${p.floor}${p.totalFloors?' از '+p.totalFloors:''}</span>` : ''}
+          ${p.negotiable ? `<span class="meta-tag">🤝 ${p.negotiable==='بله'?'قابل مذاکره':'غیرقابل مذاکره'}</span>` : ''}
+          ${p.isUrgent ? `<span class="urgent-badge" style="font-size:11px;padding:3px 8px">⚡ فوری – با تخفیف</span>` : ''}
+        </div>
+        <div class="card-price">${getPriceDisplay(p)}</div>
+        <div class="card-actions">
+          <button class="btn btn-sm btn-primary" onclick="openDetail('${p.id}')">🔍 جزئیات</button>
+          <button class="btn btn-sm btn-accent" onclick="editProperty('${p.id}')">✏️ ویرایش</button>
+          <button class="card-folder" onclick="showFolder('${p.id}')">📁 پوشه</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteProperty('${p.id}')">🗑</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('listTable').innerHTML = `
+    <thead><tr>
+      <th>مالک</th><th>نوع</th><th>معامله</th><th>آدرس</th><th>متراژ</th><th>قیمت</th><th>اتاق</th><th>عملیات</th>
+    </tr></thead>
+    <tbody>${list.map(p => `<tr>
+      <td>${getOwnerDisplayName(p.ownerName, p.ownerPhone)||''}</td>
+      <td>${p.propertyType||''}</td>
+      <td><span class="card-badge ${badgeClass[p.dealType]||''}" style="position:static;display:inline-block">${p.dealType||''}</span>${p.isUrgent?' <span class="urgent-badge">⚡</span>':''}</td>
+      <td>${[p.city,p.neighborhood,p.alley].filter(Boolean).join('، ')}</td>
+      <td>${p.area||0} م²</td>
+      <td style="font-weight:800;color:var(--bronze)">${getPriceDisplay(p)}</td>
+      <td>${p.bedrooms ?? '-'}</td>
+      <td>
+        <button class="btn btn-sm btn-primary" onclick="openDetail('${p.id}')">جزئیات</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteProperty('${p.id}')">🗑</button>
+      </td>
+    </tr>`).join('')}</tbody>
+  `;
+}
+
+function setView(v){
+  currentView = v;
+  document.getElementById('cardsContainer').style.display = v === 'card' ? 'grid' : 'none';
+  document.getElementById('listContainer').classList.toggle('active', v === 'list');
+  document.getElementById('btnCard').classList.toggle('active', v === 'card');
+  document.getElementById('btnList').classList.toggle('active', v === 'list');
+}
+
+/* ===================== جزئیات / مودال ===================== */
+function openDetail(id){
+  const p = properties.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('modalTitle').textContent = `${p.propertyType||''} - ${p.ownerName||''}`;
+  const amenStr = (p.amenities||[]).concat(p.access||[]).join(' | ') || '—';
+
+  document.getElementById('modalContent').innerHTML = `
+    ${p.thumbDataUrl ? `<div class="detail-photos"><img src="${p.thumbDataUrl}" onclick="openLightbox('${p.thumbDataUrl}')" title="کلیک برای بزرگ‌نمایی"></div>` : ''}
+    <div class="detail-grid" style="margin-top:14px">
+      <div class="detail-item"><label>نوع معامله</label><span>${p.dealType||'-'}</span></div>
+      <div class="detail-item"><label>نوع ملک</label><span>${p.propertyType||'-'}</span></div>
+      <div class="detail-item"><label>استان / شهر</label><span>${[p.province,p.city].filter(Boolean).join(' – ')||'-'}</span></div>
+      <div class="detail-item"><label>محله / کوچه</label><span>${[p.neighborhood,p.alley].filter(Boolean).join(' – ')||'-'}</span></div>
+      <div class="detail-item"><label>طبقه</label><span>${p.floor||'-'}${p.totalFloors?' از '+p.totalFloors:''}</span></div>
+      <div class="detail-item"><label>تعداد واحد در طبقه</label><span>${p.unitsPerFloor||'-'}</span></div>
+      <div class="detail-item"><label>متراژ زیربنا</label><span>${p.area||0} متر مربع</span></div>
+      <div class="detail-item"><label>متراژ زمین</label><span>${p.landArea||'-'}</span></div>
+      <div class="detail-item"><label>اتاق خواب</label><span>${p.bedrooms||'-'} (مستر: ${p.masterBedrooms||0})</span></div>
+      <div class="detail-item"><label>سرویس بهداشتی</label><span>${p.bathrooms||'-'}</span></div>
+      <div class="detail-item"><label>پارکینگ / انباری</label><span>${p.parking||0} پارکینگ، انباری ${p.storage||'-'}</span></div>
+      <div class="detail-item"><label>بالکن</label><span>${p.balcony||'-'}</span></div>
+      <div class="detail-item"><label>نوع سند</label><span>${p.deed||'-'}</span></div>
+      <div class="detail-item"><label>وضعیت ملک</label><span>${p.condition||'-'}</span></div>
+      <div class="detail-item"><label>دکوراسیون</label><span>${p.interior||'-'}</span></div>
+      <div class="detail-item"><label>نوع کف</label><span>${p.flooring||'-'}</span></div>
+      <div class="detail-item"><label>نوع آشپزخانه</label><span>${p.kitchen||'-'}</span></div>
+      <div class="detail-item"><label>نوع توالت</label><span>${p.toilet||'-'}</span></div>
+      <div class="detail-item"><label>جنس کابینت</label><span>${p.cabinet||'-'}</span></div>
+      <div class="detail-item"><label>نوع نما</label><span>${p.facade||'-'}</span></div>
+      <div class="detail-item"><label>تلفن ثابت</label><span>${p.hasPhone||'-'}</span></div>
+      <div class="detail-item"><label>شوفاژ</label><span>${p.hasRadiator||'-'}</span></div>
+      <div class="detail-item"><label>کولر آبی</label><span>${p.hasCooler||'-'}</span></div>
+      <div class="detail-item"><label>وضعیت تخلیه</label><span>${p.vacancy||'-'}</span></div>
+      <div class="detail-item"><label>جهت ساختمان</label><span>${p.orientation||'-'}</span></div>
+      <div class="detail-item"><label>نور طبیعی</label><span>${p.lighting||'-'}</span></div>
+      <div class="detail-item"><label>موقعیت در ساختمان</label><span>${p.position||'-'}</span></div>
+      <div class="detail-item"><label>منظره</label><span>${p.view||'-'}</span></div>
+      <div class="detail-item"><label>قیمت هر متر</label><span>${p.pricePerMeter?Number(p.pricePerMeter).toLocaleString('fa-IR')+' تومان':'-'}</span></div>
+      <div class="detail-item"><label>قیمت / شرایط مالی</label><span style="color:var(--bronze)">${getPriceDisplay(p)}</span></div>
+      <div class="detail-item"><label>قابل مذاکره</label><span>${p.negotiable||'-'}</span></div>
+      <div class="detail-item"><label>سال ساخت</label><span>${p.buildYear||'-'}</span></div>
+      <div class="detail-item"><label>تاریخ تحویل</label><span>${p.available||'-'}</span></div>
+      <div class="detail-item"><label>مالک / نقش</label><span>${p.ownerName||'-'} (${p.role||'-'})</span></div>
+      <div class="detail-item"><label>تلفن مالک</label><span dir="ltr">${p.ownerPhone||'-'}</span></div>
+      <div class="detail-item"><label>کد فایل</label><span>${p.fileCode||'-'}</span></div>
+      <div class="detail-item"><label>تاریخ ثبت</label><span>${p.createdAt||'-'}</span></div>
+      ${p.isUrgent ? `<div class="detail-item" style="grid-column:1/-1;background:var(--red-bg);border:1.5px solid var(--red);border-radius:8px"><label style="color:var(--red)">وضعیت فروش</label><span style="color:var(--red);font-weight:800">⚡ فوری — مالک تخفیف می‌دهد</span></div>` : ''}
+    </div>
+    <div class="detail-block"><label>امکانات و دسترسی</label><span style="font-size:13px">${amenStr}</span></div>
+    ${p.description ? `<div class="detail-block"><label>توضیحات</label><span style="font-size:13px;font-weight:400">${p.description}</span></div>` : ''}
+    <div class="detail-block accent">
+      <label>📁 پوشه فایل این ملک</label>
+      <span class="mono">${p.folderName||'-'}</span>
+      <div style="font-size:11.5px;color:var(--text2);margin-top:6px">این پوشه را در سیستم خود (کامپیوتر یا فضای ابری) با همین نام بسازید و عکس‌های ملک را داخل آن قرار دهید.</div>
+    </div>
+  `;
+  document.getElementById('detailModal').classList.add('open');
+}
+function closeModal(){ document.getElementById('detailModal').classList.remove('open'); }
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+/* ===================== ویرایش / حذف ===================== */
+function editProperty(id){
+  const p = properties.find(x => x.id === id);
+  if(!p) return;
+  editingId = id;
+  showPage('form');
+  setTimeout(() => {
+    const setVal = (vid, val) => { const el = document.getElementById(vid); if(el) el.value = val ?? ''; };
+    setVal('title', p.title);
+    if(p.dealType){
+      const map = {'فروش':'deal-sale','اجاره':'deal-rent','رهن کامل':'deal-mortgage','پیش‌فروش':'deal-presale'};
+      const btn = document.getElementById(map[p.dealType]);
+      if(btn) setDealType(p.dealType, btn);
+    }
+    setVal('propertyType', p.propertyType);
+    setVal('province', p.province); setVal('city', p.city); setVal('neighborhood', p.neighborhood);
+    setVal('alley', p.alley); setVal('houseNum', p.houseNum); setVal('floor', p.floor); setVal('totalFloors', p.totalFloors);
+    setVal('unitsPerFloor', p.unitsPerFloor);
+    setVal('fullAddress', p.fullAddress);
+    setVal('area', p.area); setVal('landArea', p.landArea); setVal('buildYear', p.buildYear);
+    setVal('bedrooms', p.bedrooms); updateMasterMax(); setVal('masterBedrooms', p.masterBedrooms);
+    setVal('bathrooms', p.bathrooms); setVal('parking', p.parking); setVal('storage', p.storage); setVal('balcony', p.balcony);
+    setVal('deed', p.deed); setVal('condition', p.condition); setVal('interior', p.interior);
+    setVal('flooring', p.flooring); setVal('kitchen', p.kitchen);
+    setVal('toilet', p.toilet); setVal('cabinet', p.cabinet); setVal('facade', p.facade);
+    setVal('hasPhone', p.hasPhone); setVal('hasRadiator', p.hasRadiator); setVal('hasCooler', p.hasCooler);
+    setVal('vacancy', p.vacancy);
+    setVal('price', p.price); calcPPM();
+    if(p.pricePerMeter) document.getElementById('pricePerMeter').value = Number(p.pricePerMeter).toLocaleString('fa-IR');
+    setVal('negotiable', p.negotiable); setVal('deposit', p.deposit); setVal('rent', p.rent); setVal('available', p.available);
+    if(p.orientation){
+      document.querySelectorAll('.dir-btn').forEach(b => {
+        const m = b.getAttribute('onclick').match(/selDir\(this,'([^']+)'\)/);
+        if(m && m[1] === p.orientation) b.classList.add('sel');
+      });
+      document.getElementById('orientation').value = p.orientation;
+    }
+    if(p.lighting){
+      document.querySelectorAll('.light-btn').forEach(b => {
+        const m = b.getAttribute('onclick').match(/selLight\(this,'([^']+)'\)/);
+        if(m && m[1] === p.lighting) b.classList.add('sel');
+      });
+      document.getElementById('lighting').value = p.lighting;
+    }
+    setVal('view', p.view); setVal('position', p.position);
+    document.querySelectorAll('#amenitiesGroup input').forEach(cb => { cb.checked = (p.amenities||[]).includes(cb.value); });
+    document.querySelectorAll('#accessGroup input').forEach(cb => { cb.checked = (p.access||[]).includes(cb.value); });
+    setVal('ownerName', p.ownerName); setVal('ownerPhone', p.ownerPhone); setVal('role', p.role); setVal('fileCode', p.fileCode);
+    document.getElementById('isUrgent').checked = !!p.isUrgent;
+    setVal('description', p.description);
+    currentPhotos = p.thumbDataUrl ? [{dataUrl: p.thumbDataUrl, name: 'تامبنیل', isThumb: true}] : [];
+    renderPhotoGrid();
+    updateFolderPreview();
+    window.scrollTo(0, 0);
+  }, 30);
+}
+
+function deleteProperty(id){
+  if(!confirm('آیا از حذف این ملک مطمئن هستید؟')) return;
+  properties = properties.filter(p => p.id !== id);
+  saveToStorage();
+  updateBadge();
+  renderList();
+  showToast('ملک حذف شد');
+}
+
+function showFolder(id){
+  const p = properties.find(x => x.id === id);
+  if(!p) return;
+  alert(`نام پوشه‌ای که باید برای این ملک بسازید:\n\n📁 ${p.folderName}\n\nاین پوشه را در کامپیوتر یا فضای ابری خود بسازید و تمام عکس‌ها و فیلم‌های این ملک را داخل آن قرار دهید.`);
+}
+
+/* ===================== خروجی / ورودی ===================== */
+function exportCSV(){
+  if(!properties.length){ showToast('هنوز ملکی ثبت نشده', true); return; }
+  const keys = Object.keys(properties[0]).filter(k => !['id','thumbDataUrl'].includes(k));
+  const labels = {
+    title:'عنوان',dealType:'نوع معامله',propertyType:'نوع ملک',province:'استان',city:'شهر',neighborhood:'محله',
+    alley:'کوچه',houseNum:'پلاک',floor:'طبقه',totalFloors:'کل طبقات',unitsPerFloor:'تعداد واحد در طبقه',fullAddress:'آدرس کامل',
+    area:'متراژ',landArea:'متراژ زمین',buildYear:'سال ساخت',bedrooms:'اتاق',masterBedrooms:'مستر',
+    bathrooms:'سرویس',parking:'پارکینگ',storage:'انباری',balcony:'بالکن',deed:'نوع سند',condition:'وضعیت ملک',
+    interior:'دکوراسیون',flooring:'نوع کف',kitchen:'نوع آشپزخانه',toilet:'نوع توالت',cabinet:'جنس کابینت',
+    facade:'نوع نما',hasPhone:'تلفن ثابت',hasRadiator:'شوفاژ',hasCooler:'کولر آبی',vacancy:'وضعیت تخلیه',
+    orientation:'جهت',lighting:'نورگیری',
+    view:'منظره',position:'موقعیت',amenities:'امکانات',access:'دسترسی',price:'قیمت کل',pricePerMeter:'قیمت هر متر',
+    negotiable:'قابل مذاکره',deposit:'رهن',rent:'اجاره ماهانه',available:'تاریخ تحویل',ownerName:'مالک',
+    ownerPhone:'موبایل مالک',role:'نقش',fileCode:'کد ملک',description:'توضیحات',folderName:'نام پوشه',
+    createdAt:'تاریخ ثبت',updatedAt:'تاریخ به‌روزرسانی'
+  };
+  const header = '\uFEFF' + keys.map(k => labels[k]||k).join(',');
+  const rows = properties.map(p => keys.map(k => {
+    let v = p[k];
+    if(Array.isArray(v)) v = v.join(' | ');
+    return '"' + String(v ?? '').replace(/"/g,'""') + '"';
+  }).join(','));
+  const blob = new Blob([[header].concat(rows).join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'لیست_املاک_مقدم.csv'; a.click();
+  showToast('فایل CSV دانلود شد');
+}
+
+function exportJSON(){
+  if(!properties.length){ showToast('هنوز ملکی ثبت نشده', true); return; }
+  const blob = new Blob([JSON.stringify(properties, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'پشتیبان_املاک_مقدم.json'; a.click();
+  showToast('فایل پشتیبان JSON ذخیره شد');
+}
+
+function importJSON(input){
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try{
+      const data = JSON.parse(e.target.result);
+      if(!Array.isArray(data)) throw new Error();
+      properties = properties.concat(data);
+      saveToStorage();
+      updateBadge();
+      renderList();
+      showToast('پشتیبان بارگذاری شد — ' + data.length + ' ملک اضافه شد');
+    } catch(err){
+      showToast('فایل نامعتبر است', true);
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+/* ===================== توست و بج ===================== */
+function showToast(msg, isErr){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isErr ? ' err' : '') + ' show';
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+function updateBadge(){
+  document.getElementById('totalBadge').textContent = properties.length;
+}
+
+document.getElementById('detailModal').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+
+/* ===================== بررسی تکراری بودن شماره موبایل ===================== */
+function checkDuplicatePhone(){
+  const phone = (document.getElementById('ownerPhone').value || '').trim().replace(/\s/g,'');
+  const alertBox = document.getElementById('dupAlert');
+  const dupList = document.getElementById('dupList');
+  if(phone.length < 8){ alertBox.style.display = 'none'; return; }
+  const matches = properties.filter(p => {
+    if(editingId && p.id === editingId) return false; // حذف ملک در حال ویرایش از نتایج
+    return (p.ownerPhone || '').replace(/\s/g,'') === phone;
+  });
+  if(!matches.length){ alertBox.style.display = 'none'; return; }
+  alertBox.style.display = 'block';
+  dupList.innerHTML = matches.map(p => {
+    const code = p.fileCode || p.id.slice(-6);
+    const info = [p.dealType, p.propertyType, p.city||p.neighborhood].filter(Boolean).join(' · ');
+    return `<div class="dup-item">
+      <div>
+        <span class="dup-code">🗂 کد: ${code}</span>
+        <span class="dup-meta"> — ${p.ownerName||''} — ${info}</span>
+      </div>
+      <button class="dup-btn" onclick="openDetail('${p.id}');showPage('list')">مشاهده ملک</button>
+    </div>`;
+  }).join('');
+}
+
+/* ===================== استایل فوری ===================== */
+function toggleUrgentStyle(cb){
+  // فقط برای جلوه بصری، border label تغییر می‌کند
+}
+
+/* ===================== نمایش نام مالک (مدیریت اسامی تکراری) ===================== */
+/**
+ * اگر دو مالک اسم یکسان ولی موبایل متفاوت داشتند،
+ * نفر دوم به صورت "مهرشاد 1" نمایش داده می‌شه.
+ * نفر اول همان اسم اصلی می‌مونه.
+ */
+function buildOwnerMap(){
+  const map = {}; // key: name -> [{phone, index}]
+  properties.forEach(p => {
+    const name = (p.ownerName||'').trim();
+    const phone = (p.ownerPhone||'').replace(/\s/g,'');
+    if(!name) return;
+    if(!map[name]) map[name] = [];
+    const existing = map[name].find(e => e.phone === phone);
+    if(!existing) map[name].push({phone, index: map[name].length});
+  });
+  return map;
+}
+
+function getOwnerDisplayName(ownerName, ownerPhone){
+  const name = (ownerName||'').trim();
+  const phone = (ownerPhone||'').replace(/\s/g,'');
+  const map = buildOwnerMap();
+  const group = map[name] || [];
+  if(group.length <= 1) return name;
+  const idx = group.findIndex(e => e.phone === phone);
+  if(idx <= 0) return name; // نفر اول همان اسم اصلی
+  return `${name} ${idx}`; // نفر دوم به بعد: "مهرشاد 1"
+}
+
+/* ===================== فیلتر مالک — لیست کشویی با جستجو ===================== */
+function getUniqueOwners(){
+  const seen = {};
+  const result = [];
+  const map = buildOwnerMap();
+  properties.forEach(p => {
+    const name = (p.ownerName||'').trim();
+    const phone = (p.ownerPhone||'').replace(/\s/g,'');
+    if(!name) return;
+    const key = name + '||' + phone;
+    if(seen[key]) return;
+    seen[key] = true;
+    const group = map[name] || [];
+    let displayName = name;
+    if(group.length > 1){
+      const idx = group.findIndex(e => e.phone === phone);
+      if(idx > 0) displayName = `${name} ${idx}`;
+    }
+    result.push({name, phone, displayName});
+  });
+  return result.sort((a,b) => a.displayName.localeCompare(b.displayName, 'fa'));
+}
+
+let ownerDropdownFocusIdx = -1;
+
+function openOwnerDropdown(){
+  renderOwnerDropdown(document.getElementById('fOwnerInput').value.trim());
+}
+
+function onOwnerFilterInput(){
+  ownerDropdownFocusIdx = -1;
+  renderOwnerDropdown(document.getElementById('fOwnerInput').value.trim());
+  // اگر input خالی شد، فیلتر را پاک کن
+  if(!document.getElementById('fOwnerInput').value.trim()){
+    document.getElementById('fOwner').value = '';
+    applyFilters();
+  }
+}
+
+function renderOwnerDropdown(query){
+  const dd = document.getElementById('ownerDropdown');
+  const owners = getUniqueOwners();
+  const filtered = query
+    ? owners.filter(o => o.displayName.includes(query) || o.name.includes(query) || o.phone.includes(query))
+    : owners;
+
+  if(!filtered.length && !query){
+    dd.classList.remove('open'); return;
+  }
+
+  let html = '<div class="owner-dropdown-item clear-opt" onclick="clearOwnerFilter()">✖ همه مالکین</div>';
+  filtered.forEach((o, i) => {
+    html += `<div class="owner-dropdown-item" data-name="${o.name}" data-phone="${o.phone}" data-display="${o.displayName}"
+      onclick="selectOwner('${o.name}','${o.phone}','${o.displayName}')"
+      >${o.displayName}<span class="owner-phone">${o.phone||''}</span></div>`;
+  });
+  dd.innerHTML = html;
+  dd.classList.add('open');
+}
+
+function selectOwner(name, phone, displayName){
+  document.getElementById('fOwnerInput').value = displayName;
+  document.getElementById('fOwner').value = name + '||' + phone;
+  document.getElementById('ownerDropdown').classList.remove('open');
+  applyFilters();
+}
+
+function clearOwnerFilter(){
+  document.getElementById('fOwnerInput').value = '';
+  document.getElementById('fOwner').value = '';
+  document.getElementById('ownerDropdown').classList.remove('open');
+  applyFilters();
+}
+
+function ownerDropdownKey(e){
+  const dd = document.getElementById('ownerDropdown');
+  const items = dd.querySelectorAll('.owner-dropdown-item:not(.clear-opt)');
+  if(e.key === 'ArrowDown'){ e.preventDefault(); ownerDropdownFocusIdx = Math.min(ownerDropdownFocusIdx+1, items.length-1); }
+  else if(e.key === 'ArrowUp'){ e.preventDefault(); ownerDropdownFocusIdx = Math.max(ownerDropdownFocusIdx-1, -1); }
+  else if(e.key === 'Enter' && ownerDropdownFocusIdx >= 0){ e.preventDefault(); items[ownerDropdownFocusIdx]?.click(); return; }
+  else if(e.key === 'Escape'){ dd.classList.remove('open'); return; }
+  items.forEach((it,i) => it.classList.toggle('focused', i === ownerDropdownFocusIdx));
+}
+
+// بستن dropdown با کلیک خارج
+document.addEventListener('click', e => {
+  if(!document.getElementById('ownerFilterWrap')?.contains(e.target)){
+    document.getElementById('ownerDropdown')?.classList.remove('open');
+  }
+});
+
+/* ===================== Init ===================== */
+initTheme();
+updateBadge();
+updateFolderPreview();
+['ownerName','propertyType','area','neighborhood','city','fileCode'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el){
+    el.addEventListener('input', updateFolderPreview);
+    if(el.tagName === 'SELECT') el.addEventListener('change', updateFolderPreview);
+  }
+});
+
+/* =====================================================================
+   صفحه استخراج از لینک
+   ===================================================================== */
+
+let extractedProp = null;
+
+function saveApiKey(){
+  const k = document.getElementById('apiKeyInput').value.trim();
+  if(!k){ showToast('کلید API خالی است', true); return; }
+  localStorage.setItem('moghaddam_api_key', k);
+  document.getElementById('apiKeyInput').value = '';
+  showApiKeyStatus();
+  showToast('کلید API ذخیره شد ✓');
+}
+
+function clearApiKey(){
+  localStorage.removeItem('moghaddam_api_key');
+  document.getElementById('apiKeyInput').value = '';
+  showApiKeyStatus();
+  showToast('کلید API پاک شد');
+}
+
+function showApiKeyStatus(){
+  const el = document.getElementById('apiKeyStatus');
+  const k = localStorage.getItem('moghaddam_api_key');
+  if(k){
+    const masked = k.slice(0,8) + '••••••••' + k.slice(-4);
+    el.innerHTML = `<span style="color:var(--green);font-weight:700">✅ کلید ذخیره شده: ${masked}</span>`;
+  } else {
+    el.innerHTML = `<span style="color:var(--text3)">❌ هنوز کلیدی ذخیره نشده</span>`;
+  }
+}
+
+function checkApiKeyOnLoad(){ showApiKeyStatus(); }
+
+function resetImport(){
+  document.getElementById('importUrlInput').value = '';
+  document.getElementById('importPreview').style.display = 'none';
+  document.getElementById('importError').style.display = 'none';
+  document.getElementById('importProgress').style.display = 'none';
+  extractedProp = null;
+}
+
+async function extractFromUrl(){
+  const url = (document.getElementById('importUrlInput').value || '').trim();
+  if(!url){ showToast('لطفاً لینک آگهی را وارد کنید', true); return; }
+
+  const apiKey = localStorage.getItem('moghaddam_api_key');
+  if(!apiKey){
+    showToast('ابتدا کلید API را وارد و ذخیره کنید', true);
+    return;
+  }
+
+  document.getElementById('importPreview').style.display = 'none';
+  document.getElementById('importError').style.display = 'none';
+  document.getElementById('importProgress').style.display = 'block';
+  document.getElementById('importProgressMsg').textContent = 'در حال دریافت محتوای صفحه...';
+  document.getElementById('btnExtract').disabled = true;
+
+  try {
+    // Step 1: fetch page via CORS proxy
+    document.getElementById('importProgressMsg').textContent = 'در حال خواندن صفحه آگهی...';
+    let pageText = '';
+    const proxyUrls = [
+      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+      `https://corsproxy.io/?${encodeURIComponent(url)}`
+    ];
+
+    let fetched = false;
+    for(const proxy of proxyUrls){
+      try{
+        const r = await fetch(proxy, {signal: AbortSignal.timeout(15000)});
+        if(!r.ok) continue;
+        const d = await r.json().catch(() => null);
+        if(d && d.contents){
+          // strip HTML tags
+          const tmp = document.createElement('div');
+          tmp.innerHTML = d.contents;
+          // remove scripts/styles
+          tmp.querySelectorAll('script,style,nav,header,footer').forEach(e=>e.remove());
+          pageText = tmp.innerText || tmp.textContent || '';
+          fetched = true;
+          break;
+        }
+        // corsproxy returns raw html
+        const txt = await r.text();
+        if(txt && txt.length > 100){
+          const tmp = document.createElement('div');
+          tmp.innerHTML = txt;
+          tmp.querySelectorAll('script,style,nav,header,footer').forEach(e=>e.remove());
+          pageText = tmp.innerText || tmp.textContent || '';
+          fetched = true;
+          break;
+        }
+      } catch(e){ continue; }
+    }
+
+    if(!fetched || pageText.length < 50){
+      throw new Error('نتوانستم محتوای صفحه را دریافت کنم. لطفاً متن آگهی را کپی کنید و در کادر JSON زیر paste کنید، یا لینک را در همین چت برای من (Claude) بفرستید.');
+    }
+
+    // truncate to ~6000 chars to keep tokens reasonable
+    if(pageText.length > 6000) pageText = pageText.slice(0,6000);
+
+    document.getElementById('importProgressMsg').textContent = 'در حال تحلیل اطلاعات با هوش مصنوعی...';
+
+    // Step 2: send to Claude API
+    const systemPrompt = `تو یک دستیار تخصصی در استخراج اطلاعات آگهی‌های ملکی ایران هستی.
+متن آگهی ملک داده می‌شود. اطلاعات را استخراج کن و دقیقاً یک JSON خالص برگردان (بدون کد بلاک، بدون توضیح اضافه).
+فیلدهای JSON باید از این لیست باشند:
+title, dealType, propertyType, province, city, neighborhood, alley, houseNum, floor, totalFloors,
+unitsPerFloor, fullAddress, area, landArea, buildYear, bedrooms, masterBedrooms, bathrooms,
+parking, storage, balcony, deed, condition, interior, flooring, kitchen, toilet, cabinet, facade,
+hasPhone, hasRadiator, hasCooler, vacancy, orientation, lighting, view, position,
+amenities, access, price, pricePerMeter, negotiable, deposit, rent, available,
+ownerName, ownerPhone, role, fileCode, isUrgent, description
+
+قوانین:
+- dealType: یکی از: فروش / اجاره / رهن کامل / پیش‌فروش
+- propertyType: یکی از: آپارتمان / خانه ویلایی / ویلا / پنت‌هاوس / دوبلکس / مغازه / تجاری / اداری / صنعتی / زمین / باغ / باغچه / سوئیت
+- price, deposit, rent: عدد به تومان (بدون ویرگول)
+- amenities و access: آرایه رشته
+- isUrgent: boolean
+- اگر اطلاعاتی نیست فیلد مربوطه را حذف کن یا null بذار
+- فقط JSON خالص برگردان`;
+
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 2000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: `متن آگهی:\n\nURL: ${url}\n\n${pageText}` }]
+      })
+    });
+
+    if(!resp.ok){
+      const err = await resp.json().catch(()=>({}));
+      throw new Error(`خطای API: ${err.error?.message || resp.status}`);
+    }
+
+    const data = await resp.json();
+    const rawText = (data.content || []).map(c => c.text || '').join('').trim();
+
+    // clean possible markdown code blocks
+    let jsonStr = rawText.replace(/^```json\s*/i,'').replace(/^```\s*/,'').replace(/```\s*$/,'').trim();
+    const prop = JSON.parse(jsonStr);
+
+    extractedProp = {
+      ...prop,
+      id: Date.now().toString(),
+      createdAt: new Date().toLocaleDateString('fa-IR'),
+      updatedAt: new Date().toLocaleDateString('fa-IR'),
+      thumbDataUrl: '',
+      folderName: buildImportFolderName(prop)
+    };
+
+    document.getElementById('importProgress').style.display = 'none';
+    renderImportPreview(extractedProp);
+
+  } catch(err){
+    document.getElementById('importProgress').style.display = 'none';
+    const errEl = document.getElementById('importError');
+    errEl.style.display = 'block';
+    errEl.innerHTML = `❌ خطا: ${err.message}<br><br>
+    <strong>راه‌حل جایگزین رایگان:</strong> لینک را در همین صفحه در چت Claude بفرستید. من اطلاعات را استخراج می‌کنم و JSON می‌دهم که از کادر «افزودن چند ملک» در پایین همین صفحه وارد کنید.`;
+  } finally {
+    document.getElementById('btnExtract').disabled = false;
+  }
+}
+
+function buildImportFolderName(p){
+  const owner = (p.ownerName || 'بدون‌نام').trim();
+  const ptype = p.propertyType || 'ملک';
+  const deal = p.dealType || 'نامشخص';
+  const area = p.area || '';
+  const place = (p.neighborhood || p.city || 'بدون‌محل').trim();
+  const code = (p.fileCode || '').trim();
+  let name = `${owner}_${ptype}(${deal})_${place}` + (area ? `_${area}متر` : '') + (code ? `_${code}` : '');
+  return name.replace(/[\\/:"*?<>|]/g, '-').replace(/\s+/g,'_');
+}
+
+const PREVIEW_FIELD_DEFS = [
+  {key:'dealType', label:'نوع معامله', type:'select', opts:['فروش','اجاره','رهن کامل','پیش‌فروش']},
+  {key:'propertyType', label:'نوع ملک', type:'select', opts:['آپارتمان','خانه ویلایی','ویلا','پنت‌هاوس','دوبلکس','مغازه / تجاری','اداری','صنعتی','زمین','باغ / باغچه','سوئیت']},
+  {key:'title', label:'عنوان', type:'text'},
+  {key:'province', label:'استان', type:'text'},
+  {key:'city', label:'شهر', type:'text'},
+  {key:'neighborhood', label:'محله', type:'text'},
+  {key:'area', label:'متراژ (متر)', type:'number'},
+  {key:'buildYear', label:'سال ساخت', type:'text'},
+  {key:'floor', label:'طبقه', type:'text'},
+  {key:'totalFloors', label:'کل طبقات', type:'text'},
+  {key:'bedrooms', label:'اتاق خواب', type:'number'},
+  {key:'bathrooms', label:'سرویس بهداشتی', type:'text'},
+  {key:'parking', label:'پارکینگ', type:'text'},
+  {key:'storage', label:'انباری', type:'text'},
+  {key:'price', label:'قیمت کل (تومان)', type:'number'},
+  {key:'pricePerMeter', label:'قیمت هر متر (تومان)', type:'number'},
+  {key:'deposit', label:'رهن (تومان)', type:'number'},
+  {key:'rent', label:'اجاره ماهانه (تومان)', type:'number'},
+  {key:'negotiable', label:'قابل مذاکره', type:'select', opts:['بله','خیر']},
+  {key:'ownerName', label:'نام مالک', type:'text'},
+  {key:'ownerPhone', label:'موبایل مالک', type:'text'},
+  {key:'role', label:'نقش', type:'text'},
+  {key:'deed', label:'نوع سند', type:'text'},
+  {key:'condition', label:'وضعیت ملک', type:'text'},
+  {key:'orientation', label:'جهت', type:'text'},
+  {key:'available', label:'تاریخ تحویل', type:'text'},
+  {key:'fileCode', label:'کد ملک', type:'text'},
+];
+
+function renderImportPreview(prop){
+  const container = document.getElementById('previewFields');
+  container.innerHTML = PREVIEW_FIELD_DEFS.map(f => {
+    const val = prop[f.key] != null ? prop[f.key] : '';
+    if(f.type === 'select'){
+      const opts = f.opts.map(o => `<option${o===val?' selected':''}>${o}</option>`).join('');
+      return `<div class="pf-item"><label>${f.label}</label><select id="pf_${f.key}" onchange="updateExtracted('${f.key}',this.value)">${opts}</select></div>`;
+    }
+    return `<div class="pf-item"><label>${f.label}</label><input type="${f.type||'text'}" id="pf_${f.key}" value="${String(val).replace(/"/g,'&quot;')}" oninput="updateExtracted('${f.key}',this.value)"></div>`;
+  }).join('');
+
+  document.getElementById('previewDescription').value = prop.description || '';
+  document.getElementById('previewJson').value = JSON.stringify([prop], null, 2);
+  document.getElementById('importPreview').style.display = 'block';
+}
+
+function updateExtracted(key, val){
+  if(!extractedProp) return;
+  const numKeys = ['area','price','pricePerMeter','deposit','rent','bedrooms'];
+  extractedProp[key] = numKeys.includes(key) ? (parseFloat(val)||0) : val;
+  document.getElementById('previewJson').value = JSON.stringify([extractedProp], null, 2);
+}
+
+function addExtractedProperty(){
+  if(!extractedProp){ showToast('ابتدا اطلاعات را استخراج کنید', true); return; }
+  // sync description
+  extractedProp.description = document.getElementById('previewDescription').value;
+  extractedProp.folderName = buildImportFolderName(extractedProp);
+  // sync all preview fields
+  PREVIEW_FIELD_DEFS.forEach(f => {
+    const el = document.getElementById('pf_' + f.key);
+    if(el){
+      const numKeys = ['area','price','pricePerMeter','deposit','rent','bedrooms'];
+      extractedProp[f.key] = numKeys.includes(f.key) ? (parseFloat(el.value)||0) : el.value;
+    }
+  });
+  properties.unshift(extractedProp);
+  saveToStorage();
+  updateBadge();
+  showToast('✅ ملک با موفقیت به لیست اضافه شد');
+  resetImport();
+  showPage('list');
+}
+
+function batchImportJson(){
+  const txt = (document.getElementById('batchJsonInput').value || '').trim();
+  if(!txt){ showToast('JSON خالی است', true); return; }
+  try{
+    let data = JSON.parse(txt);
+    if(!Array.isArray(data)) data = [data];
+    // ensure each item has id and dates
+    data = data.map(p => ({
+      ...p,
+      id: p.id || Date.now().toString() + Math.random().toString(36).slice(2,6),
+      createdAt: p.createdAt || new Date().toLocaleDateString('fa-IR'),
+      updatedAt: p.updatedAt || new Date().toLocaleDateString('fa-IR'),
+      thumbDataUrl: p.thumbDataUrl || '',
+      folderName: p.folderName || buildImportFolderName(p)
+    }));
+    properties = data.concat(properties);
+    saveToStorage();
+    updateBadge();
+    document.getElementById('batchResult').innerHTML = `<span style="color:var(--green);font-weight:700">✅ ${data.length} ملک با موفقیت اضافه شد</span>`;
+    document.getElementById('batchJsonInput').value = '';
+    showToast(`${data.length} ملک اضافه شد`);
+  } catch(e){
+    document.getElementById('batchResult').innerHTML = `<span style="color:var(--red)">❌ JSON نامعتبر: ${e.message}</span>`;
+    showToast('JSON نامعتبر است', true);
+  }
+}
+
+/* ═══════════════════ PWA: Register Service Worker ═══════════════════ */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+
+/* ── Install prompt ── */
+let _deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  if(!localStorage.getItem('pwa-dismissed')){
+    document.getElementById('pwa-install-banner').style.display = 'block';
+  }
+});
+window.installPWA = function(){
+  if(_deferredPrompt){ _deferredPrompt.prompt(); _deferredPrompt.userChoice.then(()=>{ _deferredPrompt=null; document.getElementById('pwa-install-banner').style.display='none'; }); }
+};
+window.dismissInstall = function(){
+  document.getElementById('pwa-install-banner').style.display='none';
+  localStorage.setItem('pwa-dismissed','1');
+};
+window.addEventListener('appinstalled', ()=>{ document.getElementById('pwa-install-banner').style.display='none'; });
+
+/* ── Bottom Nav sync ── */
+function updateBNav(page){
+  ['form','list','import'].forEach(p=>{
+    const btn = document.getElementById('bnav' + p.charAt(0).toUpperCase() + p.slice(1));
+    if(btn) btn.classList.toggle('active', p===page);
+  });
+  // also sync badge
+  const badge = document.getElementById('bnavBadge');
+  const topBadge = document.getElementById('totalBadge');
+  if(badge && topBadge) badge.textContent = topBadge.textContent;
+}
+
+// Patch showPage to also update bottom nav
+(function(){
+  const _orig = typeof showPage === 'function' ? showPage : null;
+  if(_orig){
+    window.showPage = function(p){
+      _orig(p);
+      updateBNav(p);
+    };
+  }
+})();
+
+// Sync badge on load
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(()=>{
+    const badge = document.getElementById('bnavBadge');
+    const topBadge = document.getElementById('totalBadge');
+    if(badge && topBadge) badge.textContent = topBadge.textContent;
+  }, 300);
+});
+
+// Also patch updateBadge to keep bottom nav in sync
+(function(){
+  const _orig = typeof updateBadge === 'function' ? updateBadge : null;
+  if(typeof updateBadge !== 'undefined'){
+    const origUpdate = window.updateBadge;
+    window.updateBadge = function(){
+      origUpdate();
+      setTimeout(()=>{
+        const badge = document.getElementById('bnavBadge');
+        const topBadge = document.getElementById('totalBadge');
+        if(badge && topBadge) badge.textContent = topBadge.textContent;
+      }, 50);
+    };
+  }
+})();
+</script>
+</body>
+</html>
