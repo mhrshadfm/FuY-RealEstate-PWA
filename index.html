@@ -973,6 +973,28 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
 }
 #newPropNotif.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+
+/* ─── EXPERT BADGE ───────────────────────────────────────── */
+.badge-expert{background:#e53e3e;color:#fff}
+/* ─── CALL BUTTON ────────────────────────────────────────── */
+.call-btn{
+  display:inline-flex;align-items:center;gap:4px;
+  background:none;border:none;cursor:pointer;padding:0;
+  font-family:inherit;font-size:inherit;color:inherit;
+}
+.call-btn .call-icon{
+  font-size:13px;background:#22c55e;color:#fff;
+  border-radius:50%;width:20px;height:20px;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:.15s;flex-shrink:0;
+}
+.call-btn:hover .call-icon{background:#16a34a;transform:scale(1.1)}
+.call-tooltip{
+  position:fixed;background:#1e293b;color:#fff;
+  padding:6px 12px;border-radius:8px;font-size:12px;
+  z-index:9999;pointer-events:none;white-space:nowrap;
+  box-shadow:0 2px 10px rgba(0,0,0,.3);direction:ltr;
+}
 </style>
 </head>
 <body>
@@ -2201,7 +2223,7 @@ function clearFilters(){
 }
 
 /* ===================== قیمت‌نمایی ===================== */
-const badgeClass = { 'فروش': 'badge-sale', 'اجاره': 'badge-rent', 'رهن کامل': 'badge-mortgage', 'پیش‌فروش': 'badge-presale' };
+const badgeClass = { 'فروش': 'badge-sale', 'اجاره': 'badge-rent', 'رهن کامل': 'badge-mortgage', 'پیش‌فروش': 'badge-presale', 'کارشناسی': 'badge-expert' };
 
 function formatPrice(n){
   if(!n) return '—';
@@ -2223,12 +2245,14 @@ function renderStats(list){
   const rent = list.filter(p => p.dealType === 'اجاره').length;
   const mortgage = list.filter(p => p.dealType === 'رهن کامل').length;
   const presale = list.filter(p => p.dealType === 'پیش‌فروش').length;
+  const expert = list.filter(p => p.isExpert).length;
   bar.innerHTML = `
     <div class="stat"><div class="stat-num">${total}</div><div class="stat-lbl">کل نتایج</div></div>
     <div class="stat"><div class="stat-num">${sale}</div><div class="stat-lbl">فروش</div></div>
     <div class="stat"><div class="stat-num">${rent}</div><div class="stat-lbl">اجاره</div></div>
     <div class="stat"><div class="stat-num">${mortgage}</div><div class="stat-lbl">رهن کامل</div></div>
     <div class="stat"><div class="stat-num">${presale}</div><div class="stat-lbl">پیش‌فروش</div></div>
+    <div class="stat"><div class="stat-num" style="color:#e53e3e">${expert}</div><div class="stat-lbl">کارشناسی</div></div>
   `;
 }
 
@@ -2257,12 +2281,20 @@ function renderCards(list){
     return `<div class="property-card">
       <div class="card-thumb">${thumbHtml}<div class="card-thumb-overlay"></div>
         <span class="card-badge ${badge}">${p.dealType||''}</span>
+        ${p.isExpert ? `<span class="card-badge badge-expert" style="margin-right:4px">کارشناسی</span>` : ''}
         ${p.orientation ? `<span class="card-direction">${p.orientation}</span>` : ''}
         ${p.isUrgent ? `<span style="position:absolute;bottom:10px;right:10px"><span class="urgent-badge">⚡ فوری</span></span>` : ''}
       </div>
       <div class="card-body">
         <div class="card-title2">${p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
-        ${p.ownerName ? `<div class="owner-tag">👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</div>` : ''}
+        ${p.ownerName ? `<div class="owner-tag">
+          ${p.ownerPhone
+            ? `<button class="call-btn" onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}')">
+                <span class="call-icon">📞</span>
+                <span>👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</span>
+               </button>`
+            : '👤 ' + getOwnerDisplayName(p.ownerName, p.ownerPhone)
+          }</div>` : ''}
         <div class="card-meta">
           ${p.area ? `<span class="meta-tag">📐 ${p.area} متر</span>` : ''}
           ${bedroomStr ? `<span class="meta-tag">🛏 ${bedroomStr}</span>` : ''}
@@ -3080,8 +3112,9 @@ function mapAlborzToProperty(a){
   // deal type
   const orderType = (a.orderType || '').trim();
   let dealType = 'فروش';
-  if(orderType.includes('رهن') || orderType.includes('اجاره')) dealType = 'اجاره';
-  else if(orderType.includes('رهن')) dealType = 'رهن';
+  if(orderType.includes('رهن') && orderType.includes('اجاره')) dealType = 'اجاره';
+  else if(orderType.includes('رهن کامل') || (orderType.includes('رهن') && !orderType.includes('اجاره'))) dealType = 'رهن کامل';
+  else if(orderType.includes('اجاره')) dealType = 'اجاره';
   else if(orderType.includes('تهاتر')) dealType = 'فروش تهاتر';
   else if(orderType.includes('پیش')) dealType = 'پیش‌فروش';
 
@@ -3123,6 +3156,15 @@ function mapAlborzToProperty(a){
 
   // floor
   const floorRaw = ifields['Floor'] || null;
+
+  // check if rent is 0/null → رهن کامل
+  if(dealType === 'اجاره' && (!rent || rent === 0)){
+    dealType = 'رهن کامل';
+  }
+
+  // check if expert
+  const desc = (a.description || '').toLowerCase();
+  const isExpert = desc.includes('کارشناسی') || desc.includes('قیمت کارشناسی');
 
   return {
     id: a.id || String(Date.now() + Math.random()),
@@ -3182,6 +3224,7 @@ function mapAlborzToProperty(a){
     ownerPhone: a.phone1 || null,
     role: null,
     isUrgent: false,
+    isExpert,
     description: a.description || '',
     folderName: '',
     thumbDataUrl: '',
@@ -3294,6 +3337,32 @@ if(checkSession()){
   });
 }
 
+
+/* ═══════════════════════════════════════════════════════
+   CALL HANDLER
+════════════════════════════════════════════════════════ */
+function handleCall(e, phone, name){
+  e.stopPropagation();
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(isMobile){
+    window.location.href = 'tel:' + phone;
+  } else {
+    // show tooltip near cursor
+    let tip = document.getElementById('callTooltip');
+    if(!tip){
+      tip = document.createElement('div');
+      tip.id = 'callTooltip';
+      tip.className = 'call-tooltip';
+      document.body.appendChild(tip);
+    }
+    tip.textContent = '📞 ' + phone;
+    tip.style.left = (e.clientX + 10) + 'px';
+    tip.style.top = (e.clientY - 30) + 'px';
+    tip.style.display = 'block';
+    setTimeout(()=>{ tip.style.display = 'none'; }, 3000);
+    document.addEventListener('click', ()=>{ tip.style.display = 'none'; }, {once:true});
+  }
+}
 </script>
 </body>
 </html>
