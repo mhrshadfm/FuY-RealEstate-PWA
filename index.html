@@ -922,9 +922,78 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
   .filter-grid > div{min-width:0}
   #fRentSection{grid-template-columns:1fr !important}
 }
+
+/* ─── LOGIN PAGE ─────────────────────────────────────────── */
+#loginOverlay{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#0d2137 0%,#16324f 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-box{
+  background:var(--surface,#fff);border-radius:20px;
+  padding:48px 40px;width:340px;max-width:90vw;
+  box-shadow:0 8px 40px rgba(0,0,0,.35);text-align:center;
+}
+.login-logo{font-size:44px;margin-bottom:8px}
+.login-title{font-size:18px;font-weight:800;color:var(--navy,#0d2137);margin-bottom:4px}
+.login-sub{font-size:12px;color:#888;margin-bottom:28px}
+.login-box input{
+  width:100%;padding:12px 16px;border:1.5px solid var(--border,#e2e8f0);
+  border-radius:10px;font-size:14px;font-family:inherit;
+  margin-bottom:14px;box-sizing:border-box;outline:none;
+  background:var(--bg,#f8fafc);color:var(--text,#1e293b);
+  transition:border-color .2s;
+}
+.login-box input:focus{border-color:var(--gold,#b8860b)}
+.login-btn{
+  width:100%;padding:13px;background:linear-gradient(135deg,#b8860b,#d4a017);
+  color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;
+  font-family:inherit;cursor:pointer;transition:.2s;
+}
+.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+.login-error{color:#e53e3e;font-size:12px;margin-top:8px;display:none}
+
+/* ─── CARD SOURCE/DATE FOOTER ────────────────────────────── */
+.card-source-info{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:6px;border-top:1px solid var(--border,#e2e8f0);
+}
+.card-source-name{font-size:9.5px;color:#aaa;font-weight:600;letter-spacing:.3px}
+.card-date-tag{font-size:9.5px;color:#aaa;direction:ltr}
+
+/* ─── NOTIFICATION TOAST ─────────────────────────────────── */
+#newPropNotif{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:linear-gradient(135deg,#0d2137,#16324f);
+  color:#fff;padding:14px 24px;border-radius:14px;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:8888;
+  font-size:13px;font-weight:600;text-align:center;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s;
+  opacity:0;pointer-events:none;
+}
+#newPropNotif.show{transform:translateX(-50%) translateY(0);opacity:1}
+
 </style>
 </head>
 <body>
+
+<!-- ═══════ LOGIN OVERLAY ═══════ -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">🏠</div>
+    <div class="login-title">سیستم مدیریت ملک مقدم</div>
+    <div class="login-sub">برای ادامه وارد شوید</div>
+    <input type="text" id="loginUser" placeholder="نام کاربری" autocomplete="username">
+    <input type="password" id="loginPass" placeholder="رمز عبور" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">ورود</button>
+    <div class="login-error" id="loginErr">نام کاربری یا رمز اشتباه است</div>
+  </div>
+</div>
+
+<!-- ═══════ NEW PROPERTY NOTIFICATION ═══════ -->
+<div id="newPropNotif">🔔 <span id="newPropNotifText">ملک جدید اضافه شد</span></div>
+
 
 <!-- PWA INSTALL BANNER -->
 <div id="pwa-install-banner">
@@ -2208,6 +2277,10 @@ function renderCards(list){
           <button class="card-folder" onclick="showFolder('${p.id}')">📁 پوشه</button>
           <button class="btn btn-sm btn-danger" onclick="deleteProperty('${p.id}')">🗑</button>
         </div>
+        ${(p.source||p.fileDate) ? `<div class="card-source-info">
+          <span class="card-source-name">${p.source ? p.source.toUpperCase() : ''}</span>
+          <span class="card-date-tag">${p.fileDate||p.createdAt||''}</span>
+        </div>` : ''}
       </div>
     </div>`;
   }).join('');
@@ -2600,7 +2673,6 @@ document.addEventListener('click', e => {
 
 /* ===================== Init ===================== */
 initTheme();
-updateBadge();
 updateFolderPreview();
 ['ownerName','propertyType','area','neighborhood','city','fileCode'].forEach(id => {
   const el = document.getElementById(id);
@@ -2971,6 +3043,257 @@ document.addEventListener('DOMContentLoaded', function(){
     };
   }
 })();
+
+
+/* ═══════════════════════════════════════════════════════
+   LOGIN
+════════════════════════════════════════════════════════ */
+const LOGIN_USER = 'ChaosCrow';
+const LOGIN_PASS = '23@@23';
+const SESSION_KEY = 'moghaddam_session';
+
+function checkSession(){
+  return sessionStorage.getItem(SESSION_KEY) === '1';
+}
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if(u === LOGIN_USER && p === LOGIN_PASS){
+    sessionStorage.setItem(SESSION_KEY,'1');
+    document.getElementById('loginOverlay').style.display = 'none';
+    initApp();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ALBORZFILING → SITE FORMAT MAPPER
+════════════════════════════════════════════════════════ */
+function mapAlborzToProperty(a){
+  const gf  = a.generalFields || {};
+  const build = gf['مشخصات ساختمان'] || {};
+  const item  = (a.items && a.items[0]) ? a.items[0] : {};
+  const ifields = item.fields || {};
+
+  // deal type
+  const orderType = (a.orderType || '').trim();
+  let dealType = 'فروش';
+  if(orderType.includes('رهن') || orderType.includes('اجاره')) dealType = 'اجاره';
+  else if(orderType.includes('رهن')) dealType = 'رهن';
+  else if(orderType.includes('تهاتر')) dealType = 'فروش تهاتر';
+  else if(orderType.includes('پیش')) dealType = 'پیش‌فروش';
+
+  // address parts
+  const districtFull = a.districtFull || a.district || '';
+  const address = a.address || '';
+
+  // area
+  const area = item.propertyArea
+    || parseInt(build['PropertyArea']) || null;
+
+  // price
+  const priceObj = a.price || {};
+  const itemPrice = item.priceTotal || priceObj.priceTotal || null;
+  const ppm = item.pricePerMeter || priceObj.pricePerMeter || null;
+  const deposit = item.deposit ?? priceObj.deposit ?? null;
+  const rent = item.rent ?? priceObj.rent ?? null;
+
+  // boolStr helper
+  const bool = v => {
+    if(v === null || v === undefined) return null;
+    if(v === 'True' || v === true) return 'دارد';
+    if(v === 'False' || v === false) return 'ندارد';
+    return v;
+  };
+
+  // amenities from the unnamed group
+  const amenGroup = gf[''] || {};
+  const amenities = [];
+  const amenMap = {
+    'Elevator':'آسانسور','RemoteDoor':'درب ریموت','iPhoneVideo':'آیفون تصویری',
+    'CentralAntenna':'آنتن مرکزی','Lobby':'لابی','Security':'نگهبان',
+    'Camera':'دوربین مدار بسته','Yard':'حیاط','GuestParking':'پارکینگ مهمان',
+    'Sauna':'سونا','Jacuzzi':'جکوزی'
+  };
+  for(const [k,v] of Object.entries(amenGroup)){
+    if(v === 'True' && amenMap[k]) amenities.push(amenMap[k]);
+  }
+
+  // floor
+  const floorRaw = ifields['Floor'] || null;
+
+  return {
+    id: a.id || String(Date.now() + Math.random()),
+    serial: a.serial,
+    fileCode: a.fileCode || '',
+    source: 'alborzfiling',
+    fileDate: a.fileDate || '',
+    createdAt: a.fileDate || '',
+    updatedAt: a.updateDate || a.fileDate || '',
+
+    title: `${a.orderType||dealType} ${a.propertyType||''} - ${districtFull}`,
+    dealType,
+    propertyType: a.propertyType || '',
+    province: 'تهران',
+    city: 'تهران',
+    neighborhood: districtFull,
+    alley: null,
+    fullAddress: address,
+
+    area,
+    landArea: parseInt(build['LandArea']) || null,
+    buildYear: build['AgeBuilding'] || null,
+    totalFloors: build['NumberOfFloors'] || null,
+    unitsPerFloor: build['NumberOfUnitsInFloors'] || null,
+    floor: floorRaw,
+    bedrooms: parseInt(ifields['Rooms']) || null,
+    masterBedrooms: parseInt(ifields['NumberOfMaster']) || null,
+    bathrooms: ifields['WC'] || null,
+    parking: bool(ifields['Parking']),
+    storage: bool(ifields['Cellar']),
+    balcony: bool(ifields['Balcony']),
+    deed: build['DocumentStatus'] || null,
+    condition: ifields['EmptyStatus'] || null,
+    interior: ifields['RenovatedStatus'] || null,
+    flooring: ifields['FloorCovering'] || null,
+    kitchen: ifields['Cabinet'] ? null : null,
+    cabinet: ifields['Cabinet'] || null,
+    facade: build['Facing'] || null,
+    hasPhone: bool(ifields['Phone']),
+    hasRadiator: build['ThermalSystem'] || null,
+    hasCooler: build['RefrigerationSystem'] || null,
+    orientation: build['BuildingDirection'] || ifields['UnitDirection'] || null,
+    vacancy: null,
+    lighting: null,
+    view: null,
+    position: null,
+    amenities,
+    access: [],
+
+    price: itemPrice,
+    pricePerMeter: ppm,
+    negotiable: null,
+    deposit,
+    rent,
+
+    ownerName: a.owner || null,
+    ownerPhone: a.phone1 || null,
+    role: null,
+    isUrgent: false,
+    description: a.description || '',
+    folderName: '',
+    thumbDataUrl: '',
+    availableRaw: a.isAvailable,
+  };
+}
+
+/* ═══════════════════════════════════════════════════════
+   AUTO FETCH FROM GITHUB REPO (daily folder)
+════════════════════════════════════════════════════════ */
+const REPO_RAW = 'https://raw.githubusercontent.com/mhrshadfm/FuY-RealEstate-PWA/main/daily/';
+const REPO_API = 'https://api.github.com/repos/mhrshadfm/FuY-RealEstate-PWA/contents/daily';
+const FETCHED_KEY = 'moghaddam_fetched_files';
+
+function getFetchedFiles(){
+  try{ return JSON.parse(localStorage.getItem(FETCHED_KEY) || '[]'); }
+  catch(e){ return []; }
+}
+function markFetched(name){
+  const arr = getFetchedFiles();
+  if(!arr.includes(name)){ arr.push(name); localStorage.setItem(FETCHED_KEY, JSON.stringify(arr)); }
+}
+
+async function autoFetchDaily(){
+  try{
+    const res = await fetch(REPO_API, {headers:{'Accept':'application/vnd.github.v3+json'}});
+    if(!res.ok) return;
+    const files = await res.json();
+    if(!Array.isArray(files)) return;
+
+    const fetched = getFetchedFiles();
+    const newFiles = files.filter(f => f.name.endsWith('.json') && !fetched.includes(f.name));
+    if(!newFiles.length) return;
+
+    let added = 0;
+    for(const file of newFiles){
+      try{
+        const r = await fetch(REPO_RAW + file.name);
+        if(!r.ok) continue;
+        const items = await r.json();
+        if(!Array.isArray(items)) continue;
+        for(const item of items){
+          const mapped = mapAlborzToProperty(item);
+          const exists = properties.find(p =>
+            p.serial === mapped.serial || p.id === mapped.id
+          );
+          if(!exists){
+            properties.unshift(mapped);
+            added++;
+          } else {
+            // update if changed
+            const idx = properties.indexOf(exists);
+            if(exists.updatedAt !== mapped.updatedAt){
+              properties[idx] = {...exists, ...mapped};
+            }
+          }
+        }
+        markFetched(file.name);
+      } catch(e){ console.warn('fetch error', file.name, e); }
+    }
+
+    if(added > 0){
+      localStorage.setItem('moghaddam_properties', JSON.stringify(properties));
+      applyFilters();
+      updateBadge();
+      showNewPropNotif(added);
+    }
+  } catch(e){ console.warn('autoFetch error', e); }
+}
+
+function showNewPropNotif(count){
+  const el = document.getElementById('newPropNotif');
+  const txt = document.getElementById('newPropNotifText');
+  if(!el) return;
+  txt.textContent = count === 1 ? '۱ ملک جدید از AlborzFiling اضافه شد' : `${count} ملک جدید از AlborzFiling اضافه شد`;
+  el.classList.add('show');
+  setTimeout(()=> el.classList.remove('show'), 5000);
+  if('Notification' in window && Notification.permission === 'granted'){
+    new Notification('ملک مقدم', {body: txt.textContent, icon:'./icon-192.png'});
+  }
+}
+
+function requestNotifPermission(){
+  if('Notification' in window && Notification.permission === 'default'){
+    Notification.requestPermission();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT APP (called after login)
+════════════════════════════════════════════════════════ */
+function initApp(){
+  requestNotifPermission();
+  applyFilters();
+  updateBadge();
+  // fetch every 5 minutes
+  autoFetchDaily();
+  setInterval(autoFetchDaily, 5 * 60 * 1000);
+}
+
+/* startup */
+if(checkSession()){
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('loginOverlay').style.display = 'none';
+    initApp();
+  });
+} else {
+  document.addEventListener('DOMContentLoaded', ()=>{
+    // overlay already visible, wait for login
+  });
+}
+
 </script>
 </body>
 </html>
