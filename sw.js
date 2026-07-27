@@ -1,9 +1,11 @@
-const CACHE_NAME = 'molkmoghdam-v2';
-const ASSETS = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png'];
+const CACHE_NAME = 'FuY-v23';
+const ASSETS = ['./manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).catch(err => console.log('Cache error:', err))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS))
+      .catch(err => console.log('Cache error:', err))
   );
   self.skipWaiting();
 });
@@ -19,16 +21,36 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      const fetchPromise = fetch(e.request).then(resp => {
+
+  const url = new URL(e.request.url);
+  const isHTML = e.request.destination === 'document' || url.pathname.endsWith('.html');
+  const isJSON = url.pathname.endsWith('.json');
+
+  // HTML و JSON: همیشه از شبکه بگیر، cache رو فقط fallback بذار
+  if (isHTML || isJSON) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
         if (resp && resp.status === 200) {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
         }
         return resp;
-      }).catch(() => cached);
-      return cached || fetchPromise;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // بقیه فایل‌ها (آیکون‌ها و...): cache-first
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      if (cached) return cached;
+      return fetch(e.request).then(resp => {
+        if (resp && resp.status === 200) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
+        }
+        return resp;
+      });
     })
   );
 });
