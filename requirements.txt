@@ -1,0 +1,56 @@
+﻿# ==========================
+# Alborz Filing Monitor
+# ==========================
+
+# Browser
+playwright
+
+# HTTP
+httpx==0.28.1
+requests==2.32.4
+
+# Logging
+loguru==0.7.3
+
+# Jalali Date
+jdatetime
+persiantools
+
+# Scheduler
+APScheduler
+
+# Retry
+tenacity
+
+# JSON
+orjson
+
+# Environment
+python-dotenv
+
+# Git Sync
+GitPython
+
+# Config Validation
+pydantic
+
+# JWT
+PyJWT
+
+# Windows Startup
+pywin32
+
+# Notifications
+win10toast
+
+# Progress
+tqdm
+
+# SSL / HTTP
+urllib3
+
+# Timezone
+tzdata
+
+# Async Support
+anyio

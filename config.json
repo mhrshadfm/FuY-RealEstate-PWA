@@ -1,0 +1,223 @@
+{
+    "app": {
+
+        "name": "Alborz Filing Monitor",
+
+        "version": "2.0.0",
+
+        "language": "fa",
+
+        "debug": false
+
+    },
+
+    "website": {
+
+        "base_url": "http://www.alborzfiling.ir",
+
+        "login_url": "http://www.alborzfiling.ir/#/login",
+
+        "list_url": "http://www.alborzfiling.ir/#/filing/file/list",
+
+        "username": "09195368812",
+
+        "password": "aran123",
+
+        "client_name": "Iceberg_Web",
+
+        "headless": true,
+
+        "timeout": 30000,
+
+        "slow_mo": 0,
+
+        "save_token": true,
+
+        "token_file": "state/token.json",
+
+        "retry_login": true,
+
+        "max_login_retry": 5
+
+    },
+
+    "monitor": {
+
+        "enabled": true,
+
+        "interval_minutes": 5,
+
+        "max_pages": 100,
+
+        "page_size": 100,
+
+        "scan_all_pages": true,
+
+        "stop_when_last_serial_found": true,
+
+        "reload_each_cycle": false,
+
+        "parallel_detail_requests": 3,
+
+        "save_updates": true
+
+    },
+
+    "cache": {
+
+        "enabled": true,
+
+        "last_serial_file": "state/last_serial.json",
+
+        "state_file": "state/state.json",
+
+        "remember_last_serial": true,
+
+        "remember_all_serials": true
+
+    },
+
+    "output": {
+
+        "daily_folder": "daily",
+
+        "single_property_folder": "daily/properties",
+
+        "properties_output": "properties_output.json",
+
+        "pretty_json": true,
+
+        "utf8": true,
+
+        "overwrite_output": true,
+
+        "create_daily_file": true,
+
+        "create_single_files": true,
+
+        "save_full_response": true,
+
+        "jalali_date": true,
+
+        "date_format": "YYYY-MM-DD",
+
+        "time_format": "HH:mm:ss"
+
+    },
+
+    "github": {
+
+        "enabled": true,
+
+        "repository": "https://github.com/mhrshadfm/FuY-RealEstate-PWA",
+
+        "repo_path": "C:\\Users\\ARKA\\OneDrive\\Desktop\\AlborzMonitor\\FuY\\FuY-RealEstate-PWA",
+
+        "branch": "main",
+
+        "remote": "origin",
+
+        "auto_commit": true,
+
+        "auto_push": true,
+
+        "commit_message": "Auto Update Properties"
+
+    },
+
+    "logging": {
+
+        "enabled": true,
+
+        "folder": "logs",
+
+        "file_name": "monitor.log",
+
+        "level": "INFO",
+
+        "rotation": "10 MB",
+
+        "retention": "30 days",
+
+        "compression": "zip"
+
+    },
+
+    "network": {
+
+        "retry_count": 5,
+
+        "retry_delay": 5,
+
+        "request_timeout": 30,
+
+        "use_http2": true,
+
+        "verify_ssl": false
+
+    },
+
+    "windows": {
+
+        "auto_start": true,
+
+        "run_hidden": true,
+
+        "create_shortcut": true,
+
+        "run_as_background": true
+
+    },
+
+    "notification": {
+
+        "enabled": false,
+
+        "telegram": {
+
+            "enabled": false,
+
+            "bot_token": "",
+
+            "chat_id": ""
+
+        },
+
+        "sound": false
+
+    },
+
+    "filters": {
+
+        "enabled": false,
+
+        "only_new_files": true,
+
+        "regions": [],
+
+        "property_types": [],
+
+        "order_types": [],
+
+        "min_price": 0,
+
+        "max_price": 0
+
+    },
+
+    "images": {
+
+        "download": false,
+
+        "folder": "images"
+
+    },
+
+    "database": {
+
+        "enabled": false,
+
+        "sqlite": "database.db"
+
+    }
+}
