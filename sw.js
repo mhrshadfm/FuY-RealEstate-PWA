@@ -1,4 +1,4 @@
-const CACHE_NAME = 'FuY-v23';
+const CACHE_NAME = 'FuY-v24';
 const ASSETS = ['./manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
@@ -24,18 +24,14 @@ self.addEventListener('fetch', e => {
 
   const url = new URL(e.request.url);
   const isHTML = e.request.destination === 'document' || url.pathname.endsWith('.html');
-  const isJSON = url.pathname.endsWith('.json');
+  const isJSON = url.pathname.endsWith('.json') || url.hostname === 'api.github.com' || url.hostname === 'raw.githubusercontent.com';
 
-  // HTML و JSON: همیشه از شبکه بگیر، cache رو فقط fallback بذار
+  // HTML، JSON و همه درخواست‌های GitHub: همیشه از شبکه، هیچ‌وقت cache نشن
   if (isHTML || isJSON) {
     e.respondWith(
-      fetch(e.request).then(resp => {
-        if (resp && resp.status === 200) {
-          const clone = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
-        }
-        return resp;
-      }).catch(() => caches.match(e.request))
+      fetch(e.request, { cache: 'no-store' })
+        .then(resp => resp)
+        .catch(() => caches.match(e.request))
     );
     return;
   }
