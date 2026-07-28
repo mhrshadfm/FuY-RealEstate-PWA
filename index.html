@@ -994,28 +994,29 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
 }
 .call-modal-overlay.open{display:flex;animation:fadeIn .18s ease}
 .call-modal{
-  background:var(--surface);border-radius:20px;padding:28px 32px;
+  background:linear-gradient(135deg,#16a34a,#15803d);
+  border-radius:20px;padding:28px 32px;
   min-width:300px;max-width:400px;width:90%;
-  box-shadow:0 24px 60px rgba(13,33,55,.25);
-  border:1px solid var(--border);text-align:center;
+  box-shadow:0 24px 60px rgba(22,163,74,.4);
+  border:none;text-align:center;color:#fff;
   animation:fadeUp .25s cubic-bezier(.34,1.36,.64,1);
   position:relative;
 }
 .call-modal-close{
-  position:absolute;top:14px;left:14px;background:var(--surface3);
+  position:absolute;top:14px;left:14px;background:rgba(255,255,255,.2);
   border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;
   font-size:15px;display:flex;align-items:center;justify-content:center;
-  color:var(--text2);transition:.15s;
+  color:#fff;transition:.15s;ion:.15s;
 }
 .call-modal-close:hover{background:var(--border2)}
-.call-modal-name{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}
-[data-theme="dark"] .call-modal-name{color:var(--ink)}
-.call-modal-addr{font-size:12.5px;color:var(--text2);margin-bottom:18px;line-height:1.6}
+.call-modal-name{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
+
+.call-modal-addr{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:16px;line-height:1.5}
 .call-modal-phone{
-  font-size:24px;font-weight:900;color:#000;direction:ltr;
-  background:#22c55e;border-radius:14px;padding:14px 20px;
-  margin-bottom:12px;display:block;text-decoration:none;
-  transition:.15s;
+  display:block;font-size:28px;font-weight:900;color:#16a34a;
+  text-decoration:none;background:#fff;
+  border-radius:14px;padding:14px;margin-top:12px;
+  letter-spacing:2px;transition:.15s;direction:ltr;
 }
 .call-modal-phone:hover{background:#16a34a;color:#fff}
 
@@ -1037,6 +1038,35 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
   padding:6px 12px;border-radius:8px;font-size:12px;
   z-index:9999;pointer-events:none;white-space:nowrap;
   box-shadow:0 2px 10px rgba(0,0,0,.3);direction:ltr;
+}
+
+/* ─── DATE PAGINATION ────────────────────────────────────── */
+#datePagination{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;flex-wrap:wrap;margin:16px 0 8px;
+}
+.date-page-btn{
+  padding:7px 14px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--surface);color:var(--text);font-family:inherit;
+  font-size:12px;cursor:pointer;transition:.15s;font-weight:600;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.date-page-btn:hover{border-color:var(--gold);background:var(--ink-bg)}
+.date-page-btn.active{
+  background:linear-gradient(135deg,#b8860b,#d4a017);
+  color:#fff;border-color:transparent;
+  box-shadow:0 2px 8px rgba(184,134,11,.35);
+}
+.date-page-count{font-size:10px;opacity:.8;font-weight:400}
+.date-page-nav{
+  padding:7px 12px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--surface);cursor:pointer;font-size:16px;
+  transition:.15s;color:var(--text);
+}
+.date-page-nav:hover{border-color:var(--gold)}
+.date-page-nav:disabled{opacity:.3;cursor:default}
+#datePageInfo{
+  font-size:12px;color:#888;text-align:center;margin-bottom:8px;
 }
 </style>
 </head>
@@ -1720,6 +1750,8 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
     </div>
   </div>
 
+  <div id="datePagination"></div>
+  <div id="datePageInfo"></div>
   <div id="cardsContainer" class="cards-grid"></div>
   <div id="listContainer" class="list-view"><div class="table-wrap"><table id="listTable"></table></div></div>
   <div class="empty" id="emptyState" style="display:none">
@@ -1847,7 +1879,6 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
 <div class="call-modal-overlay" id="callModal" onclick="if(event.target===this)closeCallModal()">
   <div class="call-modal">
     <button class="call-modal-close" onclick="closeCallModal()">✕</button>
-    <div style="font-size:32px;margin-bottom:10px">📞</div>
     <div class="call-modal-name" id="callModalName"></div>
     <div class="call-modal-addr" id="callModalAddr"></div>
     <a class="call-modal-phone" id="callModalPhone" href="#"></a>
@@ -2295,8 +2326,8 @@ function applyFilters(){
   });
 
   document.getElementById('resultCount').textContent = `${filtered.length} ملک یافت شد`;
-  renderCards(filtered);
   renderStats(filtered);
+  buildDatePages(filtered);
 }
 
 function clearFilters(){
@@ -2380,12 +2411,12 @@ function renderCards(list){
     return `<div class="property-card">
       <div class="card-thumb">${thumbHtml}<div class="card-thumb-overlay"></div>
         <span class="card-badge ${badge}">${p.dealType||''}</span>
-        ${p.isExpert ? `<span class="card-badge badge-expert" style="margin-right:4px;background:rgba(192,57,43,.9)">کارشناسی</span>` : ''}
+        ${p.isExpert ? `<span class="card-badge badge-expert" style="margin-right:12px;background:rgba(192,57,43,.9)">کارشناسی</span>` : ''}
         ${p.orientation ? `<span class="card-direction">${p.orientation}</span>` : ''}
         ${p.isUrgent ? `<span style="position:absolute;bottom:10px;right:10px"><span class="urgent-badge">⚡ فوری</span></span>` : ''}
       </div>
       <div class="card-body">
-        <div class="card-title2">${p.fullAddress || p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
+        <div class="card-title2">${(p.dealType ? p.dealType+' '+p.propertyType : p.propertyType||'')}${p.fullAddress ? ' — '+p.fullAddress : (p.title ? ' — '+p.title : '')}</div>
         ${p.ownerName ? `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
           <div class="owner-tag" style="margin-bottom:0">👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</div>
           ${p.ownerPhone ? `<button class="call-btn-big" onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}','${[p.neighborhood,p.alley,p.fullAddress].filter(Boolean)[0]||p.city||''}')">
@@ -2497,7 +2528,7 @@ function openDetail(id){
           ${p.ownerPhone
             ? (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
                 ? '<a href="tel:'+p.ownerPhone+'" style="color:inherit;text-decoration:none">'+p.ownerPhone+' &nbsp;<span style=\"background:#22c55e;color:#fff;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer\">تماس</span></a>'
-                : '<span style="cursor:pointer" onclick="openCallModal(\''+p.ownerPhone+'\',\''+p.ownerName+'\',\''+( p.fullAddress || [p.neighborhood,p.alley].filter(Boolean).join(' - ') || p.city || '')+'\')">'
+                : '<span style="cursor:pointer" onclick="openCallModal(\''+p.ownerPhone+'\',\''+p.ownerName+'\',\''+(p.fullAddress || p.title || [p.neighborhood,p.alley].filter(Boolean).join(' - ') || p.city || '')+'\')">'
                     +p.ownerPhone
                     +' &nbsp;<span style=\"background:#22c55e;color:#fff;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700\">تماس</span></span>'
               )
@@ -3521,6 +3552,101 @@ function openCallModal(phone, name, addr){
 
 function closeCallModal(){
   document.getElementById('callModal').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════════════
+   DATE-BASED PAGINATION
+════════════════════════════════════════════════════════ */
+let _allFiltered = [];
+let _currentDateIdx = 0;
+
+function getDateKey(p){
+  return p.fileDate || p.createdAt || '';
+}
+
+function buildDatePages(filtered){
+  _allFiltered = filtered;
+
+  // group by date - sorted newest first
+  const dateMap = {};
+  for(const p of filtered){
+    const d = getDateKey(p) || 'نامشخص';
+    if(!dateMap[d]) dateMap[d] = [];
+    dateMap[d].push(p);
+  }
+
+  const dates = Object.keys(dateMap).sort((a,b) => b.localeCompare(a));
+  window._dateMap = dateMap;
+  window._dates = dates;
+
+  // reset to first page if needed
+  if(_currentDateIdx >= dates.length) _currentDateIdx = 0;
+
+  renderDatePagination(dates, dateMap);
+  showDatePage(_currentDateIdx);
+}
+
+function renderDatePagination(dates, dateMap){
+  const pag = document.getElementById('datePagination');
+  if(!pag) return;
+
+  if(dates.length <= 1){
+    pag.innerHTML = '';
+    return;
+  }
+
+  // show up to 7 dates, with prev/next if more
+  const maxVisible = 7;
+  const start = Math.max(0, _currentDateIdx - 3);
+  const end = Math.min(dates.length, start + maxVisible);
+
+  let html = '';
+
+  // prev button
+  html += `<button class="date-page-nav" onclick="goDatePage(${_currentDateIdx - 1})"
+    ${_currentDateIdx === 0 ? 'disabled' : ''}>›</button>`;
+
+  for(let i = start; i < end; i++){
+    const d = dates[i];
+    const count = dateMap[d].length;
+    const active = i === _currentDateIdx ? 'active' : '';
+    html += `<button class="date-page-btn ${active}" onclick="goDatePage(${i})">
+      <span>${d}</span>
+      <span class="date-page-count">${count} ملک</span>
+    </button>`;
+  }
+
+  // next button
+  html += `<button class="date-page-nav" onclick="goDatePage(${_currentDateIdx + 1})"
+    ${_currentDateIdx === dates.length - 1 ? 'disabled' : ''}>‹</button>`;
+
+  pag.innerHTML = html;
+}
+
+function goDatePage(idx){
+  if(!window._dates) return;
+  if(idx < 0 || idx >= window._dates.length) return;
+  _currentDateIdx = idx;
+  renderDatePagination(window._dates, window._dateMap);
+  showDatePage(idx);
+  // scroll to top of list
+  document.getElementById('page-list').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function showDatePage(idx){
+  if(!window._dates || !window._dates.length) return;
+  const date = window._dates[idx];
+  const items = (window._dateMap[date] || []);
+
+  // sort newest serial first within day
+  const sorted = [...items].sort((a,b) => (b.serial||0) - (a.serial||0));
+
+  renderCards(sorted);
+
+  const info = document.getElementById('datePageInfo');
+  if(info){
+    info.textContent = `${date} — ${items.length} ملک`;
+  }
 }
 </script>
 </body>
