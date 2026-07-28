@@ -2385,7 +2385,7 @@ function renderCards(list){
         ${p.isUrgent ? `<span style="position:absolute;bottom:10px;right:10px"><span class="urgent-badge">⚡ فوری</span></span>` : ''}
       </div>
       <div class="card-body">
-        <div class="card-title2">${p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
+        <div class="card-title2">${p.fullAddress || p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
         ${p.ownerName ? `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
           <div class="owner-tag" style="margin-bottom:0">👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</div>
           ${p.ownerPhone ? `<button class="call-btn-big" onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}','${[p.neighborhood,p.alley,p.fullAddress].filter(Boolean)[0]||p.city||''}')">
@@ -2496,10 +2496,10 @@ function openDetail(id){
         <span dir="ltr" style="display:block;font-size:15px;font-weight:900;color:var(--text);margin-top:4px">
           ${p.ownerPhone
             ? (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-                ? '<a href="tel:'+p.ownerPhone+'" style="color:inherit;text-decoration:none">'+p.ownerPhone+' &nbsp;<span style=\"background:var(--green);color:#fff;padding:3px 12px;border-radius:20px;font-size:12px;cursor:pointer\">تماس</span></a>'
-                : '<span style="cursor:pointer" onclick="openCallModal(\''+p.ownerPhone+'\',\''+p.ownerName+'\',\''+([p.neighborhood,p.alley,p.fullAddress].filter(Boolean)[0]||p.city||'')+'\')">'
+                ? '<a href="tel:'+p.ownerPhone+'" style="color:inherit;text-decoration:none">'+p.ownerPhone+' &nbsp;<span style=\"background:#22c55e;color:#fff;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer\">تماس</span></a>'
+                : '<span style="cursor:pointer" onclick="openCallModal(\''+p.ownerPhone+'\',\''+p.ownerName+'\',\''+( p.fullAddress || [p.neighborhood,p.alley].filter(Boolean).join(' - ') || p.city || '')+'\')">'
                     +p.ownerPhone
-                    +' &nbsp;<span style=\"background:var(--green);color:#fff;padding:3px 12px;border-radius:20px;font-size:12px\">تماس</span></span>'
+                    +' &nbsp;<span style=\"background:#22c55e;color:#fff;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700\">تماس</span></span>'
               )
             : '-'}
         </span>
