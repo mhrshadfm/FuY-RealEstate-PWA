@@ -976,7 +976,50 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
 
 /* ─── EXPERT BADGE ───────────────────────────────────────── */
 .badge-expert{background:#e53e3e;color:#fff}
-/* ─── CALL BUTTON ────────────────────────────────────────── */
+/* ─── CALL BTN BIG ─────────────────────────────────────── */
+.call-btn-big{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#22c55e;color:#000;border:none;border-radius:10px;
+  padding:7px 12px;cursor:pointer;font-family:inherit;
+  box-shadow:0 2px 8px rgba(34,197,94,.3);transition:.18s;
+  flex-shrink:0;
+}
+.call-btn-big:hover{background:#16a34a;color:#fff;box-shadow:0 4px 14px rgba(34,197,94,.4)}
+
+/* ─── CALL MODAL ────────────────────────────────────────── */
+.call-modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(13,33,55,.55);backdrop-filter:blur(6px);
+  z-index:5000;align-items:center;justify-content:center;
+}
+.call-modal-overlay.open{display:flex;animation:fadeIn .18s ease}
+.call-modal{
+  background:var(--surface);border-radius:20px;padding:28px 32px;
+  min-width:300px;max-width:400px;width:90%;
+  box-shadow:0 24px 60px rgba(13,33,55,.25);
+  border:1px solid var(--border);text-align:center;
+  animation:fadeUp .25s cubic-bezier(.34,1.36,.64,1);
+  position:relative;
+}
+.call-modal-close{
+  position:absolute;top:14px;left:14px;background:var(--surface3);
+  border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;
+  font-size:15px;display:flex;align-items:center;justify-content:center;
+  color:var(--text2);transition:.15s;
+}
+.call-modal-close:hover{background:var(--border2)}
+.call-modal-name{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}
+[data-theme="dark"] .call-modal-name{color:var(--ink)}
+.call-modal-addr{font-size:12.5px;color:var(--text2);margin-bottom:18px;line-height:1.6}
+.call-modal-phone{
+  font-size:24px;font-weight:900;color:#000;direction:ltr;
+  background:#22c55e;border-radius:14px;padding:14px 20px;
+  margin-bottom:12px;display:block;text-decoration:none;
+  transition:.15s;
+}
+.call-modal-phone:hover{background:#16a34a;color:#fff}
+
+/* ─── CALL BUTTON (old small) ────────────────────────────── */
 .call-btn{
   display:inline-flex;align-items:center;gap:4px;
   background:none;border:none;cursor:pointer;padding:0;
@@ -1235,6 +1278,37 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
     </div>
     <div class="row g2" style="margin-top:4px">
       <div class="field"><label>تاریخ تحویل</label><input id="available" placeholder="مثلاً: اول فروردین ۱۴۰۵"></div>
+    </div>
+    <div class="row g1" style="margin-top:10px">
+      <div class="field">
+        <label>📅 روز و ساعت بازدید</label>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;margin-top:4px">
+          <div>
+            <div style="font-size:11.5px;color:var(--text2);font-weight:600;margin-bottom:5px">روز بازدید</div>
+            <select id="visitDay" multiple style="min-width:135px;height:126px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:inherit;font-size:13px;padding:4px 6px;background:var(--surface2);color:var(--text)">
+              <option value="شنبه">شنبه</option>
+              <option value="یکشنبه">یکشنبه</option>
+              <option value="دوشنبه">دوشنبه</option>
+              <option value="سه‌شنبه">سه‌شنبه</option>
+              <option value="چهارشنبه">چهارشنبه</option>
+              <option value="پنجشنبه">پنجشنبه</option>
+              <option value="جمعه">جمعه</option>
+            </select>
+            <div style="font-size:11px;color:var(--text3);margin-top:4px">Ctrl (یا Cmd) برای چند روز</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:11.5px;color:var(--text2);font-weight:600">ساعت بازدید</div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="text" id="visitTimeFrom" placeholder="از: ۱۰:۰۰" style="width:105px">
+              <span style="color:var(--text3)">تا</span>
+              <input type="text" id="visitTimeTo" placeholder="تا: ۱۸:۰۰" style="width:105px">
+            </div>
+            <label class="chk-item" style="width:fit-content;margin-top:4px">
+              <input type="checkbox" id="visitAnyTime" onchange="toggleVisitAnyTime(this)"> همه ساعته — مهم نیست
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="sub" id="ppmHint" style="margin-top:6px">💡 ابتدا متراژ را در بخش «مشخصات فیزیکی» و سپس قیمت کل را وارد کنید تا قیمت هر متر خودکار محاسبه شود.</div>
     <!-- فوری -->
@@ -1769,6 +1843,17 @@ tr:hover td{background:var(--ink-bg)!important;transition:background .15s}
   </div>
 </div>
 
+<!-- ===================== CALL MODAL ===================== -->
+<div class="call-modal-overlay" id="callModal" onclick="if(event.target===this)closeCallModal()">
+  <div class="call-modal">
+    <button class="call-modal-close" onclick="closeCallModal()">✕</button>
+    <div style="font-size:32px;margin-bottom:10px">📞</div>
+    <div class="call-modal-name" id="callModalName"></div>
+    <div class="call-modal-addr" id="callModalAddr"></div>
+    <a class="call-modal-phone" id="callModalPhone" href="#"></a>
+  </div>
+</div>
+
 </div><!-- end app -->
 
 <script>
@@ -2005,6 +2090,10 @@ function saveProperty(){
     deposit: parseFloat(document.getElementById('deposit').value) || 0,
     rent: parseFloat(document.getElementById('rent').value) || 0,
     available: document.getElementById('available').value,
+    visitDays: getVisitDays(),
+    visitTimeFrom: document.getElementById('visitAnyTime').checked ? 'همه ساعته' : document.getElementById('visitTimeFrom').value,
+    visitTimeTo: document.getElementById('visitAnyTime').checked ? '' : document.getElementById('visitTimeTo').value,
+    visitAnyTime: document.getElementById('visitAnyTime').checked,
     ownerName, ownerPhone: document.getElementById('ownerPhone').value,
     role: document.getElementById('role').value,
     fileCode: document.getElementById('fileCode').value,
@@ -2051,6 +2140,15 @@ function clearForm(){
   document.querySelectorAll('.light-btn').forEach(b => b.classList.remove('sel'));
   document.getElementById('masterBedrooms').innerHTML = '<option value="0">۰</option>';
   document.getElementById('salePriceRow').style.display = 'grid';
+  // پاک کردن فیلدهای بازدید
+  const vdSel = document.getElementById('visitDay');
+  if(vdSel) Array.from(vdSel.options).forEach(o => o.selected = false);
+  const vatCb = document.getElementById('visitAnyTime');
+  if(vatCb){ vatCb.checked = false; toggleVisitAnyTime(vatCb); }
+  const vFrom = document.getElementById('visitTimeFrom');
+  const vTo = document.getElementById('visitTimeTo');
+  if(vFrom){ vFrom.value=''; vFrom.disabled=false; vFrom.placeholder='از مثلاً ۱۰:۰۰'; }
+  if(vTo){ vTo.value=''; vTo.disabled=false; vTo.placeholder='تا مثلاً ۱۸:۰۰'; }
   document.getElementById('rentPriceRow').style.display = 'none';
   document.getElementById('pricePerMeter').value = '';
   document.getElementById('ppmHint').textContent = '💡 ابتدا متراژ را در بخش «مشخصات فیزیکی» و سپس قیمت کل را وارد کنید تا قیمت هر متر خودکار محاسبه شود.';
@@ -2234,6 +2332,7 @@ function formatPrice(n){
 function getPriceDisplay(p){
   if(p.dealType === 'اجاره') return `رهن ${formatPrice(p.deposit)} / اجاره ${formatPrice(p.rent)}`;
   if(p.dealType === 'رهن کامل') return `رهن ${formatPrice(p.deposit)}`;
+  if(p.isExpert && !p.price) return 'قیمت کارشناسی';
   return formatPrice(p.price);
 }
 
@@ -2245,14 +2344,14 @@ function renderStats(list){
   const rent = list.filter(p => p.dealType === 'اجاره').length;
   const mortgage = list.filter(p => p.dealType === 'رهن کامل').length;
   const presale = list.filter(p => p.dealType === 'پیش‌فروش').length;
-  const expert = list.filter(p => p.isExpert).length;
+  const expert = list.filter(p => !!p.isExpert).length;
   bar.innerHTML = `
     <div class="stat"><div class="stat-num">${total}</div><div class="stat-lbl">کل نتایج</div></div>
     <div class="stat"><div class="stat-num">${sale}</div><div class="stat-lbl">فروش</div></div>
     <div class="stat"><div class="stat-num">${rent}</div><div class="stat-lbl">اجاره</div></div>
     <div class="stat"><div class="stat-num">${mortgage}</div><div class="stat-lbl">رهن کامل</div></div>
     <div class="stat"><div class="stat-num">${presale}</div><div class="stat-lbl">پیش‌فروش</div></div>
-    <div class="stat"><div class="stat-num" style="color:#e53e3e">${expert}</div><div class="stat-lbl">کارشناسی</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--red)">${expert}</div><div class="stat-lbl">کارشناسی</div></div>
   `;
 }
 
@@ -2281,20 +2380,19 @@ function renderCards(list){
     return `<div class="property-card">
       <div class="card-thumb">${thumbHtml}<div class="card-thumb-overlay"></div>
         <span class="card-badge ${badge}">${p.dealType||''}</span>
-        ${p.isExpert ? `<span class="card-badge badge-expert" style="margin-right:4px">کارشناسی</span>` : ''}
+        ${p.isExpert ? `<span class="card-badge badge-expert" style="margin-right:4px;background:rgba(192,57,43,.9)">کارشناسی</span>` : ''}
         ${p.orientation ? `<span class="card-direction">${p.orientation}</span>` : ''}
         ${p.isUrgent ? `<span style="position:absolute;bottom:10px;right:10px"><span class="urgent-badge">⚡ فوری</span></span>` : ''}
       </div>
       <div class="card-body">
         <div class="card-title2">${p.title || (p.propertyType+' - '+(p.neighborhood||p.city||''))}</div>
-        ${p.ownerName ? `<div class="owner-tag">
-          ${p.ownerPhone
-            ? `<button class="call-btn" onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}')">
-                <span class="call-icon">📞</span>
-                <span>👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</span>
-               </button>`
-            : '👤 ' + getOwnerDisplayName(p.ownerName, p.ownerPhone)
-          }</div>` : ''}
+        ${p.ownerName ? `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
+          <div class="owner-tag" style="margin-bottom:0">👤 ${getOwnerDisplayName(p.ownerName, p.ownerPhone)}</div>
+          ${p.ownerPhone ? `<button class="call-btn-big" onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}','${[p.neighborhood,p.alley,p.fullAddress].filter(Boolean)[0]||p.city||''}')">
+            <span style="font-size:16px">📞</span>
+            <span style="font-size:12px;font-weight:800">${p.ownerPhone}</span>
+          </button>` : ''}
+        </div>` : ''}
         <div class="card-meta">
           ${p.area ? `<span class="meta-tag">📐 ${p.area} متر</span>` : ''}
           ${bedroomStr ? `<span class="meta-tag">🛏 ${bedroomStr}</span>` : ''}
@@ -2322,7 +2420,7 @@ function renderCards(list){
       <th>مالک</th><th>نوع</th><th>معامله</th><th>آدرس</th><th>متراژ</th><th>قیمت</th><th>اتاق</th><th>عملیات</th>
     </tr></thead>
     <tbody>${list.map(p => `<tr>
-      <td>${getOwnerDisplayName(p.ownerName, p.ownerPhone)||''}</td>
+      <td><div style='display:flex;align-items:center;gap:6px'><span>${getOwnerDisplayName(p.ownerName, p.ownerPhone)||''}</span>${p.ownerPhone?`<button class='call-btn-big' style='padding:4px 8px;font-size:11px' onclick="handleCall(event,'${p.ownerPhone}','${p.ownerName}','${[p.neighborhood,p.alley].filter(Boolean).join(' ')}')"><span>📞</span></button>`:''}</div></td>
       <td>${p.propertyType||''}</td>
       <td><span class="card-badge ${badgeClass[p.dealType]||''}" style="position:static;display:inline-block">${p.dealType||''}</span>${p.isUrgent?' <span class="urgent-badge">⚡</span>':''}</td>
       <td>${[p.city,p.neighborhood,p.alley].filter(Boolean).join('، ')}</td>
@@ -2357,8 +2455,9 @@ function openDetail(id){
     <div class="detail-grid" style="margin-top:14px">
       <div class="detail-item"><label>نوع معامله</label><span>${p.dealType||'-'}</span></div>
       <div class="detail-item"><label>نوع ملک</label><span>${p.propertyType||'-'}</span></div>
-      <div class="detail-item"><label>استان / شهر</label><span>${[p.province,p.city].filter(Boolean).join(' – ')||'-'}</span></div>
-      <div class="detail-item"><label>محله / کوچه</label><span>${[p.neighborhood,p.alley].filter(Boolean).join(' – ')||'-'}</span></div>
+      <div class="detail-item"><label>استان / شهر</label><span>${p.source==='alborzfiling' ? 'البرز – کرج' : [p.province,p.city].filter(Boolean).join(' – ')||'-'}</span></div>
+      <div class="detail-item"><label>منطقه / محله</label><span>${[p.neighborhood,p.alley].filter(Boolean).join(' – ')||'-'}</span></div>
+      <div class="detail-item"><label>آدرس</label><span>${p.fullAddress||'-'}</span></div>
       <div class="detail-item"><label>طبقه</label><span>${p.floor||'-'}${p.totalFloors?' از '+p.totalFloors:''}</span></div>
       <div class="detail-item"><label>تعداد واحد در طبقه</label><span>${p.unitsPerFloor||'-'}</span></div>
       <div class="detail-item"><label>متراژ زیربنا</label><span>${p.area||0} متر مربع</span></div>
@@ -2388,10 +2487,23 @@ function openDetail(id){
       <div class="detail-item"><label>قابل مذاکره</label><span>${p.negotiable||'-'}</span></div>
       <div class="detail-item"><label>سال ساخت</label><span>${p.buildYear||'-'}</span></div>
       <div class="detail-item"><label>تاریخ تحویل</label><span>${p.available||'-'}</span></div>
-      <div class="detail-item"><label>مالک / نقش</label><span>${p.ownerName||'-'} (${p.role||'-'})</span></div>
-      <div class="detail-item"><label>تلفن مالک</label><span dir="ltr">${p.ownerPhone||'-'}</span></div>
+      <div class="detail-item" style="grid-column:1/-1"><label>روز و ساعت بازدید</label><span>${p.visitDays&&p.visitDays.length?p.visitDays.join('، '):'—'}${p.visitAnyTime?' | همه ساعته':p.visitTimeFrom?' | '+p.visitTimeFrom+(p.visitTimeTo?' تا '+p.visitTimeTo:''):''}</span></div>
       <div class="detail-item"><label>کد فایل</label><span>${p.fileCode||'-'}</span></div>
       <div class="detail-item"><label>تاریخ ثبت</label><span>${p.createdAt||'-'}</span></div>
+      <div class="detail-item" style="grid-column:1/-1;background:var(--green-bg);border:1.5px solid var(--green);border-radius:10px">
+        <label style="color:var(--green)">نام و شماره تلفن مالک</label>
+        <span style="display:block;font-size:14px;font-weight:800;color:var(--text);margin-top:3px">${p.ownerName||'-'}${p.role?' ('+p.role+')':''}</span>
+        <span dir="ltr" style="display:block;font-size:15px;font-weight:900;color:var(--text);margin-top:4px">
+          ${p.ownerPhone
+            ? (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+                ? '<a href="tel:'+p.ownerPhone+'" style="color:inherit;text-decoration:none">'+p.ownerPhone+' &nbsp;<span style=\"background:var(--green);color:#fff;padding:3px 12px;border-radius:20px;font-size:12px;cursor:pointer\">تماس</span></a>'
+                : '<span style="cursor:pointer" onclick="openCallModal(\''+p.ownerPhone+'\',\''+p.ownerName+'\',\''+([p.neighborhood,p.alley,p.fullAddress].filter(Boolean)[0]||p.city||'')+'\')">'
+                    +p.ownerPhone
+                    +' &nbsp;<span style=\"background:var(--green);color:#fff;padding:3px 12px;border-radius:20px;font-size:12px\">تماس</span></span>'
+              )
+            : '-'}
+        </span>
+      </div>
       ${p.isUrgent ? `<div class="detail-item" style="grid-column:1/-1;background:var(--red-bg);border:1.5px solid var(--red);border-radius:8px"><label style="color:var(--red)">وضعیت فروش</label><span style="color:var(--red);font-weight:800">⚡ فوری — مالک تخفیف می‌دهد</span></div>` : ''}
     </div>
     <div class="detail-block"><label>امکانات و دسترسی</label><span style="font-size:13px">${amenStr}</span></div>
@@ -2440,6 +2552,12 @@ function editProperty(id){
     setVal('price', p.price); calcPPM();
     if(p.pricePerMeter) document.getElementById('pricePerMeter').value = Number(p.pricePerMeter).toLocaleString('fa-IR');
     setVal('negotiable', p.negotiable); setVal('deposit', p.deposit); setVal('rent', p.rent); setVal('available', p.available);
+    // بازدید
+    const vdSel = document.getElementById('visitDay');
+    if(vdSel && p.visitDays){ Array.from(vdSel.options).forEach(o => { o.selected = (p.visitDays||[]).includes(o.value); }); }
+    const vatCb = document.getElementById('visitAnyTime');
+    if(vatCb){ vatCb.checked = !!p.visitAnyTime; toggleVisitAnyTime(vatCb); }
+    if(!p.visitAnyTime){ setVal('visitTimeFrom', p.visitTimeFrom||''); setVal('visitTimeTo', p.visitTimeTo||''); }
     if(p.orientation){
       document.querySelectorAll('.dir-btn').forEach(b => {
         const m = b.getAttribute('onclick').match(/selDir\(this,'([^']+)'\)/);
@@ -2580,6 +2698,31 @@ function checkDuplicatePhone(){
 /* ===================== استایل فوری ===================== */
 function toggleUrgentStyle(cb){
   // فقط برای جلوه بصری، border label تغییر می‌کند
+}
+
+/* ===================== بازدید ===================== */
+function toggleVisitAnyTime(cb){
+  const fromEl = document.getElementById('visitTimeFrom');
+  const toEl = document.getElementById('visitTimeTo');
+  if(cb.checked){
+    fromEl.value = '';
+    toEl.value = '';
+    fromEl.disabled = true;
+    toEl.disabled = true;
+    fromEl.placeholder = 'همه ساعته';
+    toEl.placeholder = 'همه ساعته';
+  } else {
+    fromEl.disabled = false;
+    toEl.disabled = false;
+    fromEl.placeholder = 'از مثلاً ۱۰:۰۰';
+    toEl.placeholder = 'تا مثلاً ۱۸:۰۰';
+  }
+}
+
+function getVisitDays(){
+  const sel = document.getElementById('visitDay');
+  if(!sel) return [];
+  return Array.from(sel.selectedOptions).map(o => o.value);
 }
 
 /* ===================== نمایش نام مالک (مدیریت اسامی تکراری) ===================== */
@@ -3157,14 +3300,16 @@ function mapAlborzToProperty(a){
   // floor
   const floorRaw = ifields['Floor'] || null;
 
-  // check if rent is 0/null → رهن کامل
-  if(dealType === 'اجاره' && (!rent || rent === 0)){
+  // check if rent is 0/null/dash → رهن کامل
+  const rentNum = parseFloat(rent) || 0;
+  if(dealType === 'اجاره' && rentNum === 0){
     dealType = 'رهن کامل';
   }
 
   // check if expert
   const desc = (a.description || '').toLowerCase();
-  const isExpert = desc.includes('کارشناسی') || desc.includes('قیمت کارشناسی');
+  const titleStr = (a.title || a.orderType || '').toLowerCase();
+  const isExpert = desc.includes('کارشناسی') || desc.includes('قیمت کارشناسی') || titleStr.includes('کارشناسی');
 
   return {
     id: a.id || String(Date.now() + Math.random()),
@@ -3175,11 +3320,11 @@ function mapAlborzToProperty(a){
     createdAt: a.fileDate || '',
     updatedAt: a.updateDate || a.fileDate || '',
 
-    title: `${a.orderType||dealType} ${a.propertyType||''} - ${districtFull}`,
+    title: `${a.orderType||dealType} ${a.propertyType||''} - ${address||districtFull}`,
     dealType,
     propertyType: a.propertyType || '',
-    province: 'تهران',
-    city: 'تهران',
+    province: 'البرز',
+    city: 'کرج',
     neighborhood: districtFull,
     alley: null,
     fullAddress: address,
@@ -3237,7 +3382,7 @@ function mapAlborzToProperty(a){
 ════════════════════════════════════════════════════════ */
 const REPO_RAW = 'https://raw.githubusercontent.com/mhrshadfm/FuY-RealEstate-PWA/main/daily/';
 const REPO_API = 'https://api.github.com/repos/mhrshadfm/FuY-RealEstate-PWA/contents/daily';
-const FETCHED_KEY = 'moghaddam_fetched_files';
+const FETCHED_KEY = 'moghaddam_fetched_files_v2'; // v2: forces re-fetch after expert/mortgate fix
 
 function getFetchedFiles(){
   try{ return JSON.parse(localStorage.getItem(FETCHED_KEY) || '[]'); }
@@ -3318,6 +3463,20 @@ function requestNotifPermission(){
 ════════════════════════════════════════════════════════ */
 function initApp(){
   requestNotifPermission();
+  // recheck isExpert for already-loaded properties
+  properties = properties.map(p => {
+    if(p.source === 'alborzfiling'){
+      const desc = (p.description || '').toLowerCase();
+      const titleStr = (p.title || '').toLowerCase();
+      p.isExpert = desc.includes('کارشناسی') || desc.includes('قیمت کارشناسی') || titleStr.includes('کارشناسی');
+      // recheck رهن کامل: if dealType is اجاره and rent is 0/null
+      if(p.dealType === 'اجاره' && !(parseFloat(p.rent) > 0)){
+        p.dealType = 'رهن کامل';
+      }
+    }
+    return p;
+  });
+  localStorage.setItem('moghaddam_properties', JSON.stringify(properties));
   applyFilters();
   updateBadge();
   // fetch every 5 minutes
@@ -3341,27 +3500,27 @@ if(checkSession()){
 /* ═══════════════════════════════════════════════════════
    CALL HANDLER
 ════════════════════════════════════════════════════════ */
-function handleCall(e, phone, name){
+function handleCall(e, phone, name, addr){
   e.stopPropagation();
   const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if(isMobile){
     window.location.href = 'tel:' + phone;
   } else {
-    // show tooltip near cursor
-    let tip = document.getElementById('callTooltip');
-    if(!tip){
-      tip = document.createElement('div');
-      tip.id = 'callTooltip';
-      tip.className = 'call-tooltip';
-      document.body.appendChild(tip);
-    }
-    tip.textContent = '📞 ' + phone;
-    tip.style.left = (e.clientX + 10) + 'px';
-    tip.style.top = (e.clientY - 30) + 'px';
-    tip.style.display = 'block';
-    setTimeout(()=>{ tip.style.display = 'none'; }, 3000);
-    document.addEventListener('click', ()=>{ tip.style.display = 'none'; }, {once:true});
+    openCallModal(phone, name, addr||'');
   }
+}
+
+function openCallModal(phone, name, addr){
+  document.getElementById('callModalName').textContent = name || '';
+  document.getElementById('callModalAddr').textContent = addr || '';
+  const phoneEl = document.getElementById('callModalPhone');
+  phoneEl.textContent = phone;
+  phoneEl.href = 'tel:' + phone;
+  document.getElementById('callModal').classList.add('open');
+}
+
+function closeCallModal(){
+  document.getElementById('callModal').classList.remove('open');
 }
 </script>
 </body>
