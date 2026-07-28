@@ -3413,15 +3413,16 @@ function mapAlborzToProperty(a){
 ════════════════════════════════════════════════════════ */
 const REPO_RAW = 'https://raw.githubusercontent.com/mhrshadfm/FuY-RealEstate-PWA/main/daily/';
 const REPO_API = 'https://api.github.com/repos/mhrshadfm/FuY-RealEstate-PWA/contents/daily';
-const FETCHED_KEY = 'moghaddam_fetched_files_v2'; // v2: forces re-fetch after expert/mortgate fix
+const FETCHED_KEY = 'moghaddam_fetched_files_v3'; // v3: sha-based re-fetch fix
 
 function getFetchedFiles(){
-  try{ return JSON.parse(localStorage.getItem(FETCHED_KEY) || '[]'); }
-  catch(e){ return []; }
+  try{ return JSON.parse(localStorage.getItem(FETCHED_KEY) || '{}'); }
+  catch(e){ return {}; }
 }
-function markFetched(name){
-  const arr = getFetchedFiles();
-  if(!arr.includes(name)){ arr.push(name); localStorage.setItem(FETCHED_KEY, JSON.stringify(arr)); }
+function markFetched(name, sha){
+  const obj = getFetchedFiles();
+  obj[name] = sha;
+  localStorage.setItem(FETCHED_KEY, JSON.stringify(obj));
 }
 
 async function autoFetchDaily(){
@@ -3432,7 +3433,7 @@ async function autoFetchDaily(){
     if(!Array.isArray(files)) return;
 
     const fetched = getFetchedFiles();
-    const newFiles = files.filter(f => f.name.endsWith('.json') && !fetched.includes(f.name));
+    const newFiles = files.filter(f => f.name.endsWith('.json') && fetched[f.name] !== f.sha);
     if(!newFiles.length) return;
 
     let added = 0;
@@ -3442,6 +3443,7 @@ async function autoFetchDaily(){
         if(!r.ok) continue;
         const items = await r.json();
         if(!Array.isArray(items)) continue;
+        let fileChanged = false;
         for(const item of items){
           const mapped = mapAlborzToProperty(item);
           const exists = properties.find(p =>
@@ -3450,22 +3452,26 @@ async function autoFetchDaily(){
           if(!exists){
             properties.unshift(mapped);
             added++;
+            fileChanged = true;
           } else {
             // update if changed
             const idx = properties.indexOf(exists);
-            if(exists.updatedAt !== mapped.updatedAt){
+            if(exists.updatedAt !== mapped.updatedAt || exists.updateDate !== mapped.updateDate){
               properties[idx] = {...exists, ...mapped};
+              fileChanged = true;
             }
           }
         }
-        markFetched(file.name);
+        if(fileChanged){
+          localStorage.setItem('moghaddam_properties', JSON.stringify(properties));
+          applyFilters();
+          updateBadge();
+        }
+        markFetched(file.name, file.sha);
       } catch(e){ console.warn('fetch error', file.name, e); }
     }
 
     if(added > 0){
-      localStorage.setItem('moghaddam_properties', JSON.stringify(properties));
-      applyFilters();
-      updateBadge();
       showNewPropNotif(added);
     }
   } catch(e){ console.warn('autoFetch error', e); }
