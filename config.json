@@ -45,7 +45,7 @@
 
         "enabled": true,
 
-        "interval_minutes": 5,
+        "interval_minutes": 1,
 
         "max_pages": 100,
 
