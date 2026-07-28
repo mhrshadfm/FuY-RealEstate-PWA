@@ -3427,7 +3427,7 @@ function markFetched(name, sha){
 
 async function autoFetchDaily(){
   try{
-    const res = await fetch(REPO_API + '?t=' + Date.now(), {headers:{'Accept':'application/vnd.github.v3+json','Cache-Control':'no-cache'}});
+    const res = await fetch(REPO_API, {headers:{'Accept':'application/vnd.github.v3+json'}});
     if(!res.ok) return;
     const files = await res.json();
     if(!Array.isArray(files)) return;
@@ -3439,7 +3439,7 @@ async function autoFetchDaily(){
     let added = 0;
     for(const file of newFiles){
       try{
-        const r = await fetch(REPO_RAW + file.name + '?t=' + Date.now(), {cache: 'no-store'});
+        const r = await fetch(REPO_RAW + file.name);
         if(!r.ok) continue;
         const items = await r.json();
         if(!Array.isArray(items)) continue;
@@ -3518,7 +3518,7 @@ function initApp(){
   updateBadge();
   // fetch every 5 minutes
   autoFetchDaily();
-  setInterval(autoFetchDaily, 5 * 60 * 1000);
+  setInterval(autoFetchDaily, 2 * 60 * 1000);
 }
 
 /* startup */
