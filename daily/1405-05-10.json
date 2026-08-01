@@ -1,0 +1,96 @@
+[
+  {
+    "id": "126d55da-2654-5cdb-7b17-de89a7e6dd42",
+    "serial": 772134,
+    "fileCode": "A772134",
+    "fileDate": "1405/05/10",
+    "updateDate": "1405/05/10 13:22",
+    "propertyType": "ویلایی تجاری",
+    "orderType": "رهن و اجاره",
+    "district": "18",
+    "districtFull": "18 (بلوار باغستان، )",
+    "address": "+ اشتراکی جنوبی گلستان 10 پلاک هماهنگی",
+    "description": "املاک محمدی# مجموع بنا 700متر#کلا دارای 14 اتاق ",
+    "owner": "محمدی",
+    "phone1": "09121544130",
+    "phone2": null,
+    "status": "موجود",
+    "statusKey": "Available",
+    "isAvailable": true,
+    "acceptColleague": true,
+    "latitude": null,
+    "longitude": null,
+    "price": {
+      "priceTotal": 0,
+      "pricePerMeter": 0,
+      "deposit": 1000000000,
+      "rent": 300000000
+    },
+    "generalFields": {
+      "مشخصات ساختمان": {
+        "PropertyArea": null,
+        "NumberOfFloors": "3",
+        "NumberOfUnitsInFloors": "1",
+        "Width": null,
+        "AgeBuilding": "20",
+        "Facing": "سنگ",
+        "ThermalSystem": "پکیج",
+        "RefrigerationSystem": "کولر آبی",
+        "Passagewidth": null,
+        "BuildingDirection": "شمالی",
+        "RenovatedStatus": null,
+        "EmptyStatus": "تخلیه"
+      },
+      "واحد": {},
+      "": {
+        "Elevator": "False",
+        "RemoteDoor": "False",
+        "iPhoneVideo": "False",
+        "CentralAntenna": "False",
+        "MeetingRoom": "False",
+        "Security": "False",
+        "استخر": "False",
+        "Sauna": "False",
+        "Jacuzzi": "False",
+        "Camera": "False",
+        "Yard": "True",
+        "Gazebo": "False",
+        "Backyard": "False",
+        "Barbecue": "False",
+        "OwnerResidence": "False"
+      }
+    },
+    "items": [
+      {
+        "fileItemId": "126d55da-2654-5f83-2f58-25da6d52884c",
+        "propertyArea": 700,
+        "priceTotal": 0,
+        "pricePerMeter": 0,
+        "deposit": 0,
+        "rent": 0,
+        "description": null,
+        "fields": {
+          "Floor": "تمام طبقات",
+          "PropertyArea": null,
+          "Rooms": null,
+          "UnitDirection": null,
+          "Parking": null,
+          "Cabinet": "MDF",
+          "FloorCovering": "سرامیک",
+          "WC": "ایرانی، فرنگی",
+          "طرح سازه": null,
+          "نوع فعالیت مناسب": "خوابگاه و مدرسه ",
+          "Signboard": "False",
+          "Balcony": "True",
+          "Cellar": "True",
+          "Phone": "False",
+          "AntiTheftDoor": "False",
+          "Kitchen": "False",
+          "مبله": "False",
+          "RentToSingle": "False",
+          "قابل تبدیل": "False"
+        }
+      }
+    ]
+  }
+]
