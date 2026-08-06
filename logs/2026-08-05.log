@@ -1,0 +1,1234 @@
+2026-08-05 03:44:53.291 | SUCCESS  | logger:setup:41 - Logger Initialized
+2026-08-05 03:44:53.291 | INFO     | __main__:main:28 - Loading Config...
+2026-08-05 03:44:53.559 | SUCCESS  | auth.login:__init__:99 - Login Manager Ready
+2026-08-05 03:44:53.570 | SUCCESS  | monitor:start:51 - Alborz Monitor Started
+2026-08-05 03:44:53.570 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:44:53.576 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:44:53.577 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:44:53.577 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:44:53.588 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:44:53.588 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:45:02.819 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 03:45:02.819 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 03:45:06.237 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 03:45:06.237 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 03:45:09.369 | INFO     | monitor:scan:197 - Checking 772415
+2026-08-05 03:45:09.369 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:45:10.384 | SUCCESS  | monitor:scan:235 - Changed : 772415
+2026-08-05 03:45:10.385 | INFO     | storage:add_property:113 - Added Property 772415
+2026-08-05 03:45:10.385 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.389 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.389 | INFO     | monitor:scan:197 - Checking 772414
+2026-08-05 03:45:10.390 | INFO     | api:get_file:84 - Loading File 126d55f8-3281-78a2-d60d-a48232a3d849
+2026-08-05 03:45:10.515 | SUCCESS  | monitor:scan:235 - Changed : 772414
+2026-08-05 03:45:10.527 | INFO     | storage:add_property:113 - Added Property 772414
+2026-08-05 03:45:10.528 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.532 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.532 | INFO     | monitor:scan:197 - Checking 772412
+2026-08-05 03:45:10.532 | INFO     | api:get_file:84 - Loading File 126d55f8-3218-8dab-a1ec-7634a0752c44
+2026-08-05 03:45:10.625 | SUCCESS  | monitor:scan:235 - Changed : 772412
+2026-08-05 03:45:10.639 | INFO     | storage:add_property:113 - Added Property 772412
+2026-08-05 03:45:10.640 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.644 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.644 | INFO     | monitor:scan:197 - Checking 772410
+2026-08-05 03:45:10.644 | INFO     | api:get_file:84 - Loading File 1b0a45ff-0d42-c864-7c34-313244b9aa4a
+2026-08-05 03:45:10.706 | SUCCESS  | monitor:scan:235 - Changed : 772410
+2026-08-05 03:45:10.718 | INFO     | storage:add_property:113 - Added Property 772410
+2026-08-05 03:45:10.722 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.725 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.726 | INFO     | monitor:scan:197 - Checking 772408
+2026-08-05 03:45:10.726 | INFO     | api:get_file:84 - Loading File 126d55e8-e6d4-383b-4bb9-3e8ff750f4a3
+2026-08-05 03:45:10.782 | SUCCESS  | monitor:scan:235 - Changed : 772408
+2026-08-05 03:45:10.793 | INFO     | storage:add_property:113 - Added Property 772408
+2026-08-05 03:45:10.795 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.798 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.798 | INFO     | monitor:scan:197 - Checking 772399
+2026-08-05 03:45:10.798 | INFO     | api:get_file:84 - Loading File 126d55f8-77a3-5a35-0176-11e7aba92f43
+2026-08-05 03:45:10.855 | SUCCESS  | monitor:scan:235 - Changed : 772399
+2026-08-05 03:45:10.867 | INFO     | storage:add_property:113 - Added Property 772399
+2026-08-05 03:45:10.868 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.871 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.871 | INFO     | monitor:scan:197 - Checking 772391
+2026-08-05 03:45:10.871 | INFO     | api:get_file:84 - Loading File 126d55ea-0219-4ece-36dd-36ee474a2e4a
+2026-08-05 03:45:10.917 | SUCCESS  | monitor:scan:235 - Changed : 772391
+2026-08-05 03:45:10.929 | INFO     | storage:add_property:113 - Added Property 772391
+2026-08-05 03:45:10.930 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:10.934 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:10.934 | INFO     | monitor:scan:197 - Checking 772385
+2026-08-05 03:45:10.934 | INFO     | api:get_file:84 - Loading File 126d55ea-2581-551c-a842-1f8ce9a1c04b
+2026-08-05 03:45:10.991 | SUCCESS  | monitor:scan:235 - Changed : 772385
+2026-08-05 03:45:11.000 | INFO     | storage:add_property:113 - Added Property 772385
+2026-08-05 03:45:11.001 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.005 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.005 | INFO     | monitor:scan:197 - Checking 772384
+2026-08-05 03:45:11.005 | INFO     | api:get_file:84 - Loading File 1b0a45ff-febb-15e0-e93e-2dad616db549
+2026-08-05 03:45:11.065 | SUCCESS  | monitor:scan:235 - Changed : 772384
+2026-08-05 03:45:11.078 | INFO     | storage:add_property:113 - Added Property 772384
+2026-08-05 03:45:11.080 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.083 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.084 | INFO     | monitor:scan:197 - Checking 772382
+2026-08-05 03:45:11.084 | INFO     | api:get_file:84 - Loading File 126d55ea-2900-785d-50ce-c097d112bc43
+2026-08-05 03:45:11.156 | SUCCESS  | monitor:scan:235 - Changed : 772382
+2026-08-05 03:45:11.167 | INFO     | storage:add_property:113 - Added Property 772382
+2026-08-05 03:45:11.169 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.173 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.173 | INFO     | monitor:scan:197 - Checking 772377
+2026-08-05 03:45:11.173 | INFO     | api:get_file:84 - Loading File 126d55f8-78a1-1fc3-d12a-fa39d8abd948
+2026-08-05 03:45:11.236 | SUCCESS  | monitor:scan:235 - Changed : 772377
+2026-08-05 03:45:11.245 | INFO     | storage:add_property:113 - Added Property 772377
+2026-08-05 03:45:11.247 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.251 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.251 | INFO     | monitor:scan:197 - Checking 772376
+2026-08-05 03:45:11.251 | INFO     | api:get_file:84 - Loading File 126d55ea-43ab-5de8-ec5e-63b747c33e40
+2026-08-05 03:45:11.319 | SUCCESS  | monitor:scan:235 - Changed : 772376
+2026-08-05 03:45:11.329 | INFO     | storage:add_property:113 - Added Property 772376
+2026-08-05 03:45:11.331 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.334 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.334 | INFO     | monitor:scan:197 - Checking 772370
+2026-08-05 03:45:11.334 | INFO     | api:get_file:84 - Loading File 126d55ea-420f-7fad-43e0-7c3745d7f647
+2026-08-05 03:45:11.402 | SUCCESS  | monitor:scan:235 - Changed : 772370
+2026-08-05 03:45:11.410 | INFO     | storage:add_property:113 - Added Property 772370
+2026-08-05 03:45:11.412 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.416 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.416 | INFO     | monitor:scan:197 - Checking 772368
+2026-08-05 03:45:11.416 | INFO     | api:get_file:84 - Loading File 126d55f8-4d58-1d0f-41b5-6bc18d07c84f
+2026-08-05 03:45:11.488 | SUCCESS  | monitor:scan:235 - Changed : 772368
+2026-08-05 03:45:11.500 | INFO     | storage:add_property:113 - Added Property 772368
+2026-08-05 03:45:11.502 | SUCCESS  | storage:save_day:81 - 1405-05-12.json Saved
+2026-08-05 03:45:11.505 | INFO     | state_manager:save:61 - State Saved
+2026-08-05 03:45:11.505 | INFO     | api:get_file:84 - Loading File 126d49fe-5e05-9270-9627-e34d92978d47
+2026-08-05 03:45:11.573 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:45:11.576 | SUCCESS  | monitor:scan:295 - Last Serial Saved : 772415
+2026-08-05 03:45:11.576 | SUCCESS  | monitor:scan:315 - Start Git Sync
+2026-08-05 03:45:11.576 | INFO     | git_sync:push:64 - Git Sync Started
+2026-08-05 03:45:14.694 | SUCCESS  | git_sync:push:86 - Git Push Completed
+2026-08-05 03:45:14.694 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:45:14.695 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:46:14.696 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:46:14.725 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:46:14.726 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:46:14.726 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:46:14.735 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:46:14.735 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:46:15.650 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:46:15.719 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:46:15.720 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:46:15.721 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:46:15.721 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:46:15.722 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:47:15.724 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:47:15.729 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:47:15.730 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:47:15.732 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:47:15.733 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:47:15.733 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:47:16.714 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:47:16.771 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:47:16.772 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:47:16.772 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:47:16.774 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:47:16.774 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:48:16.775 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:48:16.781 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:48:16.784 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:48:16.785 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:48:16.787 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:48:16.788 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:48:17.684 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:48:17.739 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:48:17.739 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:48:17.739 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:48:17.739 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:48:17.739 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:49:17.740 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:49:17.746 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:49:17.747 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:49:17.748 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:49:17.750 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:49:17.750 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:49:18.565 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:49:18.620 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:49:18.620 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:49:18.620 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:49:18.620 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:49:18.621 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:50:18.621 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:50:18.622 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:50:18.622 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:50:18.622 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:50:18.623 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:50:18.623 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:50:19.429 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:50:19.484 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:50:19.485 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:50:19.485 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:50:19.485 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:50:19.486 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:51:19.487 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:51:19.492 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:51:19.493 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:51:19.493 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:51:19.493 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:51:19.494 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:51:20.239 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:51:20.297 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:51:20.297 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:51:20.298 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:51:20.298 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:51:20.299 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:52:20.301 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:52:20.305 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:52:20.305 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:52:20.306 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:52:20.307 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:52:20.307 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:52:21.011 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:52:21.054 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:52:21.054 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:52:21.054 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:52:21.054 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:52:21.054 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:53:21.055 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:53:21.058 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:53:21.058 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:53:21.059 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:53:21.061 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:53:21.061 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:53:21.723 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:53:21.778 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:53:21.778 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:53:21.778 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:53:21.778 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:53:21.779 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:54:21.780 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:54:21.785 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:54:21.786 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:54:21.787 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:54:21.791 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:54:21.791 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:54:22.372 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:54:22.424 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:54:22.425 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:54:22.425 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:54:22.426 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:54:22.426 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:55:22.427 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:55:22.430 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:55:22.432 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:55:22.433 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:55:22.434 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:55:22.435 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:55:22.466 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 03:55:22.467 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 03:55:22.816 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 03:55:22.817 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 03:55:23.381 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:55:23.436 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:55:23.436 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:55:23.437 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:55:23.437 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:55:23.438 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:56:23.439 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:56:23.469 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:56:23.469 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:56:23.470 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:56:23.471 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:56:23.471 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:56:23.957 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:56:24.006 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:56:24.007 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:56:24.007 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:56:24.008 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:56:24.008 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:57:24.009 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:57:24.013 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:57:24.014 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:57:24.017 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:57:24.021 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:57:24.022 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:57:24.491 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:57:24.543 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:57:24.544 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:57:24.544 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:57:24.544 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:57:24.545 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:58:24.546 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:58:24.550 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:58:24.552 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:58:24.553 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:58:24.555 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:58:24.556 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:58:24.993 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:58:25.039 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:58:25.039 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:58:25.040 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:58:25.040 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:58:25.041 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 03:59:25.042 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 03:59:25.043 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 03:59:25.043 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 03:59:25.043 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 03:59:25.043 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 03:59:25.044 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 03:59:25.498 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 03:59:25.544 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 03:59:25.544 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 03:59:25.544 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 03:59:25.544 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 03:59:25.545 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:00:25.546 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:00:25.549 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:00:25.549 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:00:25.550 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:00:25.553 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:00:25.554 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:00:26.139 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:00:26.194 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:00:26.194 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:00:26.195 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:00:26.195 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:00:26.196 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:01:26.197 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:01:26.200 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:01:26.200 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:01:26.201 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:01:26.203 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:01:26.203 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:01:26.692 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:01:26.747 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:01:26.748 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:01:26.748 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:01:26.748 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:01:26.749 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:02:26.750 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:02:26.752 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:02:26.753 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:02:26.754 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:02:26.755 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:02:26.755 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:02:27.322 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:02:27.377 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:02:27.378 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:02:27.378 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:02:27.379 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:02:27.379 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:03:27.381 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:03:27.382 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:03:27.383 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:03:27.383 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:03:27.384 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:03:27.384 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:03:27.854 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:03:27.901 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:03:27.901 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:03:27.902 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:03:27.902 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:03:27.903 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:04:27.905 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:04:27.906 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:04:27.907 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:04:27.907 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:04:27.908 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:04:27.909 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:04:28.369 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:04:28.414 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:04:28.415 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:04:28.415 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:04:28.415 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:04:28.415 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:05:28.416 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:05:28.420 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:05:28.421 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:05:28.422 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:05:28.424 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:05:28.425 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:05:28.455 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:05:28.455 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:05:28.821 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:05:28.822 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:05:29.363 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:05:29.422 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:05:29.423 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:05:29.423 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:05:29.424 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:05:29.424 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:06:29.426 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:06:29.452 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:06:29.453 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:06:29.453 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:06:29.454 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:06:29.455 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:06:29.957 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:06:30.011 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:06:30.012 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:06:30.013 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:06:30.014 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:06:30.016 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:07:30.017 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:07:30.021 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:07:30.021 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:07:30.022 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:07:30.025 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:07:30.025 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:07:30.488 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:07:30.538 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:07:30.538 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:07:30.539 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:07:30.539 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:07:30.540 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:08:30.542 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:08:30.544 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:08:30.545 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:08:30.545 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:08:30.547 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:08:30.547 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:08:31.135 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:08:31.187 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:08:31.188 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:08:31.188 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:08:31.188 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:08:31.189 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:09:31.190 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:09:31.191 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:09:31.192 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:09:31.192 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:09:31.193 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:09:31.194 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:09:31.608 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:09:31.655 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:09:31.655 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:09:31.655 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:09:31.655 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:09:31.656 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:10:31.656 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:10:31.658 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:10:31.659 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:10:31.659 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:10:31.661 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:10:31.661 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:10:32.267 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:10:32.325 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:10:32.326 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:10:32.326 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:10:32.327 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:10:32.328 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:11:32.329 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:11:32.332 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:11:32.333 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:11:32.334 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:11:32.337 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:11:32.337 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:11:32.820 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:11:32.868 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:11:32.868 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:11:32.868 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:11:32.868 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:11:32.869 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:12:32.870 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:12:32.872 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:12:32.873 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:12:32.874 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:12:32.876 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:12:32.876 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:12:33.415 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:12:33.472 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:12:33.473 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:12:33.473 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:12:33.474 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:12:33.475 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:13:33.476 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:13:33.478 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:13:33.479 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:13:33.480 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:13:33.482 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:13:33.482 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:13:33.958 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:13:34.008 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:13:34.009 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:13:34.009 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:13:34.010 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:13:34.010 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:14:34.011 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:14:34.015 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:14:34.015 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:14:34.016 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:14:34.020 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:14:34.021 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:14:34.486 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:14:34.532 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:14:34.532 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:14:34.532 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:14:34.534 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:14:34.536 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:15:34.537 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:15:34.538 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:15:34.538 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:15:34.538 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:15:34.539 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:15:34.539 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:15:34.573 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:15:34.573 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:15:34.899 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:15:34.900 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:15:35.484 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:15:35.532 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:15:35.533 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:15:35.533 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:15:35.533 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:15:35.534 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:16:35.535 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:16:35.557 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:16:35.558 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:16:35.558 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:16:35.558 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:16:35.558 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:16:36.008 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:16:36.052 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:16:36.052 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:16:36.052 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:16:36.053 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:16:36.053 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:17:36.055 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:17:36.057 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:17:36.058 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:17:36.059 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:17:36.060 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:17:36.061 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:17:36.500 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:17:36.545 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:17:36.546 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:17:36.546 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:17:36.546 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:17:36.547 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:18:36.548 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:18:36.550 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:18:36.551 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:18:36.551 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:18:36.553 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:18:36.553 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:18:37.073 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:18:37.128 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:18:37.129 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:18:37.129 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:18:37.130 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:18:37.130 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:19:37.132 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:19:37.134 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:19:37.134 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:19:37.134 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:19:37.135 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:19:37.136 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:19:37.607 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:19:37.653 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:19:37.654 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:19:37.654 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:19:37.654 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:19:37.655 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:20:37.655 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:20:37.658 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:20:37.659 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:20:37.659 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:20:37.661 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:20:37.662 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:20:38.196 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:20:38.248 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:20:38.249 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:20:38.249 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:20:38.249 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:20:38.249 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:21:38.249 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:21:38.251 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:21:38.251 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:21:38.251 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:21:38.252 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:21:38.252 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:21:38.720 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:21:38.769 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:21:38.769 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:21:38.769 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:21:38.769 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:21:38.770 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:22:38.770 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:22:38.772 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:22:38.774 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:22:38.774 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:22:38.775 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:22:38.776 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:22:39.239 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:22:39.287 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:22:39.287 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:22:39.287 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:22:39.288 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:22:39.289 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:23:39.289 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:23:39.292 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:23:39.293 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:23:39.294 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:23:39.297 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:23:39.297 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:23:39.752 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:23:39.800 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:23:39.800 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:23:39.801 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:23:39.801 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:23:39.803 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:24:39.804 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:24:39.806 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:24:39.807 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:24:39.807 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:24:39.809 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:24:39.810 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:24:40.242 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:24:40.289 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:24:40.290 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:24:40.290 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:24:40.290 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:24:40.291 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:25:40.293 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:25:40.296 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:25:40.297 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:25:40.298 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:25:40.299 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:25:40.301 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:25:40.334 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:25:40.335 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:25:40.663 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:25:40.664 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:25:41.102 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:25:41.148 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:25:41.149 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:25:41.150 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:25:41.150 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:25:41.151 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:26:41.151 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:26:41.157 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:26:41.158 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:26:41.158 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:26:41.158 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:26:41.159 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:26:41.604 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:26:41.639 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:26:41.639 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:26:41.639 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:26:41.640 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:26:41.640 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:27:41.641 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:27:41.642 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:27:41.642 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:27:41.643 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:27:41.643 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:27:41.644 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:27:42.106 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:27:42.150 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:27:42.151 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:27:42.151 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:27:42.151 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:27:42.152 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:28:42.153 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:28:42.156 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:28:42.157 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:28:42.158 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:28:42.160 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:28:42.161 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:28:42.613 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:28:42.660 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:28:42.661 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:28:42.661 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:28:42.662 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:28:42.663 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:29:42.664 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:29:42.666 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:29:42.667 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:29:42.667 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:29:42.669 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:29:42.669 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:29:43.192 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:29:43.249 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:29:43.251 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:29:43.251 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:29:43.252 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:29:43.253 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:30:43.255 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:30:43.257 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:30:43.258 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:30:43.258 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:30:43.260 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:30:43.260 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:30:43.714 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:30:43.760 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:30:43.760 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:30:43.760 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:30:43.760 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:30:43.761 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:31:43.762 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:31:43.764 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:31:43.765 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:31:43.765 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:31:43.767 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:31:43.768 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:31:44.231 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:31:44.272 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:31:44.273 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:31:44.273 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:31:44.274 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:31:44.275 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:32:44.276 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:32:44.278 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:32:44.278 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:32:44.279 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:32:44.280 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:32:44.280 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:32:44.704 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:32:44.745 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:32:44.746 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:32:44.746 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:32:44.746 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:32:44.746 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:33:44.747 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:33:44.748 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:33:44.749 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:33:44.749 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:33:44.750 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:33:44.750 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:33:45.324 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:33:45.373 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:33:45.374 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:33:45.374 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:33:45.374 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:33:45.375 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:34:45.376 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:34:45.377 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:34:45.378 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:34:45.378 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:34:45.379 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:34:45.379 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:34:45.855 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:34:45.891 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:34:45.891 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:34:45.891 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:34:45.892 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:34:45.893 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:35:45.894 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:35:45.898 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:35:45.899 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:35:45.899 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:35:45.902 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:35:45.903 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:35:45.944 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:35:45.945 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:35:46.276 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:35:46.277 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:35:46.790 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:35:46.832 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:35:46.832 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:35:46.833 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:35:46.833 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:35:46.833 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:36:46.835 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:36:46.862 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:36:46.862 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:36:46.863 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:36:46.863 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:36:46.863 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:36:47.342 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:36:47.383 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:36:47.384 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:36:47.384 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:36:47.384 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:36:47.385 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:37:47.386 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:37:47.388 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:37:47.389 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:37:47.389 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:37:47.389 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:37:47.389 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:37:47.851 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:37:47.893 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:37:47.894 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:37:47.894 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:37:47.894 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:37:47.895 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:38:47.896 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:38:47.900 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:38:47.901 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:38:47.901 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:38:47.903 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:38:47.904 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:38:48.347 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:38:48.391 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:38:48.392 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:38:48.393 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:38:48.394 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:38:48.395 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:39:48.396 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:39:48.396 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:39:48.397 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:39:48.397 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:39:48.397 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:39:48.397 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:39:48.853 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:39:48.894 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:39:48.895 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:39:48.895 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:39:48.896 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:39:48.897 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:40:48.897 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:40:48.899 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:40:48.900 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:40:48.901 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:40:48.903 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:40:48.903 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:40:49.411 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:40:49.461 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:40:49.461 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:40:49.461 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:40:49.461 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:40:49.462 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:41:49.462 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:41:49.463 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:41:49.463 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:41:49.463 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:41:49.464 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:41:49.464 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:41:49.889 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:41:49.933 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:41:49.933 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:41:49.934 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:41:49.934 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:41:49.935 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:42:49.936 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:42:49.939 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:42:49.939 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:42:49.940 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:42:49.942 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:42:49.942 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:42:50.379 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:42:50.423 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:42:50.424 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:42:50.425 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:42:50.425 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:42:50.427 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:43:50.428 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:43:50.430 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:43:50.431 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:43:50.432 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:43:50.434 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:43:50.434 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:43:50.955 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:43:51.001 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:43:51.002 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:43:51.002 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:43:51.003 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:43:51.003 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:44:51.005 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:44:51.009 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:44:51.011 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:44:51.011 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:44:51.013 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:44:51.014 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:44:51.484 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:44:51.527 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:44:51.528 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:44:51.528 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:44:51.529 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:44:51.529 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:45:51.530 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:45:51.531 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:45:51.531 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:45:51.531 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:45:51.532 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:45:51.532 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:45:51.625 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:45:51.625 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:45:51.929 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:45:51.930 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:45:52.532 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:45:52.586 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:45:52.587 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:45:52.588 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:45:52.588 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:45:52.588 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:46:52.589 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:46:52.606 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:46:52.607 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:46:52.607 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:46:52.608 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:46:52.609 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:46:53.141 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:46:53.189 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:46:53.190 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:46:53.190 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:46:53.190 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:46:53.191 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:47:53.192 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:47:53.193 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:47:53.193 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:47:53.193 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:47:53.194 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:47:53.194 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:47:53.656 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:47:53.701 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:47:53.702 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:47:53.702 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:47:53.703 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:47:53.704 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:48:53.705 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:48:53.707 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:48:53.708 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:48:53.709 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:48:53.710 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:48:53.710 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:48:54.258 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:48:54.308 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:48:54.308 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:48:54.308 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:48:54.308 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:48:54.309 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:49:54.310 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:49:54.312 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:49:54.313 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:49:54.313 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:49:54.315 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:49:54.315 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:49:54.774 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:49:54.827 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:49:54.827 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:49:54.827 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:49:54.827 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:49:54.828 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:50:54.828 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:50:54.829 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:50:54.829 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:50:54.829 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:50:54.830 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:50:54.830 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:50:55.400 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:50:55.447 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:50:55.447 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:50:55.447 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:50:55.447 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:50:55.448 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:51:55.449 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:51:55.452 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:51:55.453 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:51:55.454 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:51:55.455 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:51:55.456 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:51:56.010 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:51:56.061 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:51:56.062 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:51:56.062 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:51:56.062 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:51:56.063 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:52:56.064 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:52:56.068 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:52:56.069 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:52:56.070 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:52:56.072 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:52:56.073 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:52:56.569 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:52:56.619 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:52:56.619 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:52:56.620 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:52:56.620 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:52:56.621 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:53:56.621 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:53:56.624 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:53:56.625 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:53:56.625 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:53:56.626 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:53:56.627 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:53:57.095 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:53:57.138 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:53:57.138 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:53:57.139 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:53:57.140 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:53:57.141 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:54:57.142 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:54:57.144 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:54:57.146 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:54:57.146 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:54:57.149 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:54:57.149 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:54:57.603 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:54:57.645 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:54:57.645 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:54:57.645 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:54:57.645 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:54:57.646 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:55:57.646 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:55:57.648 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:55:57.648 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:55:57.649 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:55:57.649 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:55:57.650 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:55:57.664 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 04:55:57.665 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 04:55:57.937 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 04:55:57.938 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 04:55:58.354 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:55:58.396 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:55:58.396 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:55:58.397 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:55:58.397 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:55:58.397 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:56:58.398 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:56:58.416 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:56:58.416 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:56:58.416 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:56:58.417 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:56:58.417 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:56:58.862 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:56:58.907 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:56:58.907 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:56:58.907 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:56:58.908 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:56:58.908 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:57:58.909 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:57:58.911 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:57:58.911 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:57:58.912 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:57:58.913 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:57:58.913 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:57:59.366 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:57:59.410 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:57:59.411 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:57:59.412 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:57:59.412 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:57:59.413 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:58:59.415 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:58:59.418 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:58:59.420 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:58:59.421 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:58:59.422 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:58:59.423 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 04:58:59.884 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 04:58:59.927 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 04:58:59.928 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 04:58:59.928 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 04:58:59.929 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 04:58:59.930 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 04:59:59.931 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 04:59:59.937 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 04:59:59.938 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 04:59:59.940 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 04:59:59.942 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 04:59:59.943 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:00:00.365 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:00:00.413 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:00:00.415 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:00:00.415 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:00:00.416 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:00:00.416 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:01:00.418 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:01:00.422 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:01:00.423 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:01:00.424 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:01:00.427 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:01:00.428 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:01:00.862 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:01:00.905 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:01:00.906 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:01:00.906 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:01:00.906 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:01:00.907 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:02:00.908 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:02:00.910 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:02:00.910 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:02:00.910 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:02:00.911 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:02:00.911 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:02:01.417 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:02:01.467 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:02:01.468 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:02:01.468 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:02:01.469 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:02:01.469 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:03:01.470 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:03:01.471 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:03:01.472 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:03:01.472 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:03:01.473 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:03:01.474 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:03:01.955 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:03:01.999 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:03:02.000 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:03:02.000 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:03:02.000 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:03:02.000 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:04:02.000 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:04:02.002 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:04:02.003 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:04:02.003 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:04:02.004 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:04:02.005 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:04:02.528 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:04:02.580 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:04:02.581 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:04:02.581 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:04:02.581 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:04:02.582 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:05:02.583 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:05:02.586 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:05:02.587 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:05:02.587 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:05:02.589 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:05:02.589 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:05:03.072 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:05:03.123 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:05:03.124 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:05:03.124 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:05:03.124 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:05:03.125 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:06:03.126 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:06:03.129 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:06:03.130 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:06:03.131 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:06:03.133 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:06:03.134 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:06:03.159 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 05:06:03.160 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 05:06:03.431 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 05:06:03.431 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 05:06:03.857 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:06:03.901 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:06:03.901 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:06:03.902 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:06:03.902 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:06:03.903 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:07:03.904 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:07:03.934 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:07:03.935 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:07:03.935 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:07:03.936 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:07:03.937 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:07:04.370 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:07:04.410 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:07:04.410 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:07:04.410 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:07:04.410 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:07:04.411 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:08:04.412 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:08:04.414 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:08:04.415 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:08:04.416 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:08:04.417 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:08:04.418 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:08:05.032 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:08:05.084 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:08:05.085 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:08:05.085 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:08:05.086 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:08:05.086 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:09:05.088 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:09:05.089 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:09:05.090 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:09:05.090 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:09:05.092 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:09:05.092 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:09:05.566 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:09:05.610 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:09:05.610 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:09:05.610 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:09:05.610 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:09:05.611 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:10:05.612 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:10:05.614 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:10:05.614 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:10:05.615 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:10:05.616 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:10:05.616 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:10:06.085 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:10:06.128 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:10:06.129 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:10:06.129 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:10:06.129 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:10:06.130 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:11:06.130 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:11:06.133 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:11:06.134 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:11:06.135 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:11:06.137 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:11:06.137 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:11:06.662 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:11:06.713 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:11:06.714 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:11:06.714 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:11:06.714 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:11:06.715 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:12:06.716 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:12:06.718 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:12:06.718 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:12:06.719 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:12:06.721 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:12:06.722 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:12:07.194 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:12:07.239 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:12:07.239 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:12:07.240 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:12:07.241 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:12:07.242 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:13:07.242 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:13:07.243 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:13:07.243 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:13:07.243 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:13:07.244 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:13:07.244 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:13:07.717 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:13:07.763 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:13:07.763 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:13:07.763 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:13:07.764 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:13:07.764 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:14:07.765 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:14:07.767 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:14:07.767 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:14:07.767 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:14:07.769 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:14:07.769 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:14:08.271 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:14:08.322 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:14:08.323 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:14:08.323 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:14:08.324 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:14:08.325 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:15:08.326 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:15:08.328 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:15:08.329 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:15:08.330 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:15:08.332 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:15:08.333 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:15:08.748 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:15:08.784 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:15:08.785 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:15:08.785 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:15:08.785 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:15:08.786 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:16:08.786 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:16:08.788 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:16:08.789 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:16:08.789 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:16:08.789 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:16:08.789 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:16:08.821 | WARNING  | auth.login:get:411 - Access Token Expired
+2026-08-05 05:16:08.821 | INFO     | auth.login:login:262 - Logging in...
+2026-08-05 05:16:09.138 | SUCCESS  | auth.login:save_token:242 - Token Saved
+2026-08-05 05:16:09.139 | SUCCESS  | auth.login:login:340 - Login Successful
+2026-08-05 05:16:09.661 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:16:09.711 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:16:09.711 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:16:09.712 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:16:09.712 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:16:09.713 | INFO     | monitor:start:67 - Sleep 60 Seconds
+2026-08-05 05:17:09.713 | INFO     | auth.login:ensure_login:354 - Checking Login...
+2026-08-05 05:17:09.735 | SUCCESS  | auth.login:load_saved_token:192 - Saved Token Loaded
+2026-08-05 05:17:09.735 | SUCCESS  | auth.login:ensure_login:362 - Using Saved Token
+2026-08-05 05:17:09.735 | INFO     | monitor:scan:111 - Scanning Website...
+2026-08-05 05:17:09.736 | INFO     | monitor:scan:125 - Loading Page 1
+2026-08-05 05:17:09.736 | INFO     | api:get_files:60 - Loading Page 1
+2026-08-05 05:17:10.296 | INFO     | api:get_file:84 - Loading File 126d55ea-1cef-1496-4db0-84e02e159945
+2026-08-05 05:17:10.346 | INFO     | monitor:scan:273 - Reached Old Files
+2026-08-05 05:17:10.347 | INFO     | monitor:scan:303 - No New Serial
+2026-08-05 05:17:10.347 | INFO     | monitor:scan:325 - Nothing Changed
+2026-08-05 05:17:10.348 | SUCCESS  | monitor:scan:331 - Scan Finished
+2026-08-05 05:17:10.348 | INFO     | monitor:start:67 - Sleep 60 Seconds
